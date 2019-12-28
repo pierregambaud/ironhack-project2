@@ -1,7 +1,7 @@
 const Book = require(`../models/book.js`);
 
 // index
-exports index = (req, res, next) => {
+exports.index = (req, res, next) => {
   Book.find()
     .then(books => {
       res.render(`books/index`, { books })
@@ -11,7 +11,7 @@ exports index = (req, res, next) => {
 
 
 // create
-exports create = (req, res, next) => {
+exports.create = (req, res, next) => {
   const { isbn, isbn13, asin, title, authors, coverPath, publisher, publicationDate } = req.body;
 
   Book.create({
@@ -30,7 +30,7 @@ exports create = (req, res, next) => {
 
 
 // show
-exports show = (req, res, next) => {
+exports.show = (req, res, next) => {
   if(!req.params.id) {
     return next(new Error('This ID does not match any book'));
   }
@@ -46,7 +46,7 @@ exports show = (req, res, next) => {
 
 
 // update
-exports update = (req, res, next) => {
+exports.update = (req, res, next) => {
   if(!req.params.id) {
     return next(new Error('This ID does not match any book'));
   }
@@ -70,7 +70,7 @@ exports update = (req, res, next) => {
 
 
 // destroy
-exports destroy = (req, res, next) => {
+exports.destroy = (req, res, next) => {
   if(!req.params.id) {
     return next(new Error('This ID does not match any book'));
   }
