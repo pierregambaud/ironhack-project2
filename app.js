@@ -101,9 +101,11 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 // routes
 const appRoutes = require('./routes/index');
+const authenticationRoutes = require('./routes/authentication');
 const booksRoutes = require(`./routes/books`);
 const usersRoutes = require(`./routes/users`);
 app.use('/', appRoutes);
+app.use('/', authenticationRoutes);
 app.use('/api/books/', booksRoutes);
 app.use('/api/users/', usersRoutes);
 
