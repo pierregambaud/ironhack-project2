@@ -13,6 +13,8 @@ const BookSchema = Schema ({
   publicationDate: Date,
   rating: String,
   reviews: Array
+}, {
+  timestamps: true
 });
 
 const Book = mongoose.model(`Book`, BookSchema);

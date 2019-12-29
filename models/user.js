@@ -8,6 +8,8 @@ const UserSchema = Schema ({
   rank: String,
   favoritesBooks: Array,
   reviews: Array
+}, {
+  timestamps: true
 });
 
 const User = mongoose.model(`User`, UserSchema);

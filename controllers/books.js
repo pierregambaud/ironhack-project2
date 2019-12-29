@@ -15,6 +15,8 @@ exports.index = (req, res, next) => {
 exports.create = (req, res, next) => {
   const { isbn, isbn13, asin, title, authors, coverPath, publisher, publicationDate } = req.body;
 
+  console.log(`title: `, req.body);
+
   Book.create({
     isbn,
     isbn13,
