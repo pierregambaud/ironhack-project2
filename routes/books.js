@@ -8,7 +8,7 @@ router.get(`/`, booksController.index);
 
 
 // create
-router.post(`/create`, booksController.create);
+router.post(`/`, booksController.create);
 
 
 // show

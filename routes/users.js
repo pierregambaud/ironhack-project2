@@ -8,7 +8,7 @@ router.get(`/`, usersController.index);
 
 
 // create
-router.post(`/create`, usersController.create);
+router.post(`/`, usersController.create);
 
 
 // show
