@@ -6,8 +6,8 @@ const UserSchema = Schema ({
   password: String,
   username: String,
   rank: String,
-  favoritesBooks: Array,
-  reviews: Array
+  favoritesBooks: [ { type : Schema.Types.ObjectId, ref: 'Book' } ],
+  reviews: [ { type : Schema.Types.ObjectId, ref: 'Review' } ]
 }, {
   timestamps: true
 });

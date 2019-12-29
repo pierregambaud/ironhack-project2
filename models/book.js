@@ -12,7 +12,7 @@ const BookSchema = Schema ({
   publisher: String,
   publicationDate: Date,
   rating: String,
-  reviews: Array
+  reviews: [ { type : Schema.Types.ObjectId, ref: 'Review' } ]
 }, {
   timestamps: true
 });
