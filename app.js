@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const bodyParser      = require('body-parser');
+
 const cookieParser    = require('cookie-parser');
 const express         = require('express');
 const favicon         = require('serve-favicon');
@@ -13,6 +13,7 @@ const MongoStore      = require('connect-mongo')(session);
 const bcrypt          = require("bcrypt");
 const passport        = require("passport");
 const LocalStrategy   = require("passport-local").Strategy;
+
 
 mongoose
   .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
@@ -27,6 +28,21 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+
+// Default 'Accept' and 'Content-Type'
+app.use(function (req, res, next) {
+  req.headers['accept'] = req.headers['accept'] || 'application/json';
+
+  // if 'Accept: application/json' and 'Content-Type' is not set => defaults to 'application/json'
+  if (req.headers['accept'] === 'application/json' && !req.headers['content-type']) {
+    req.headers['content-type'] = req.headers['content-type'] || 'application/json';
+  }
+
+  next();
+});
+
+const bodyParser = require('body-parser');
 
 
 // middleware setup
@@ -99,17 +115,22 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Express - Generated with IronGenerator';
 
 
-// routes
+// APP routes
 const appRoutes = require('./routes/index');
 const authenticationRoutes = require('./routes/authentication');
+
+app.use('/', appRoutes);
+app.use('/', authenticationRoutes);
+
+
+// API routes
 const booksRoutes = require(`./routes/books`);
 const reviewsRoutes = require(`./routes/reviews`);
 const usersRoutes = require(`./routes/users`);
-app.use('/', appRoutes);
-app.use('/', authenticationRoutes);
-app.use('/api/books/', booksRoutes);
-app.use('/api/reviews/', reviewsRoutes);
-app.use('/api/users/', usersRoutes);
+
+app.use('/api/0.1/books/', booksRoutes);
+app.use('/api/0.1/reviews/', reviewsRoutes);
+app.use('/api/0.1/users/', usersRoutes);
 
 
 module.exports = app;

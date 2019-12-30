@@ -5,7 +5,7 @@ const Review = require(`../models/review.js`);
 exports.index = (req, res, next) => {
   Review.find()
     .then(reviews => {
-      res.render(`reviews/index`, { reviews })
+      res.status(200).json(reviews);
     })
     .catch(next);
 }
@@ -22,7 +22,9 @@ exports.create = (req, res, next) => {
     review,
     url
   })
-    .then(review => res.redirect(`/`))
+    .then(review => {
+      res.status(201).json(review);
+    })
     .catch(next);
 }
 
@@ -37,7 +39,7 @@ exports.show = (req, res, next) => {
 
   Review.findById(id)
     .then(review => {
-      res.render(`reviews/show`, review);
+      res.status(200).json(review);
     })
     .catch(next);
 }
@@ -59,7 +61,9 @@ exports.update = (req, res, next) => {
     review,
     url
   })
-    .then(review => res.redirect(`/`))
+    .then(review => {
+      res.status(200).json(review);
+    })
     .catch(next);
 }
 
@@ -73,6 +77,8 @@ exports.destroy = (req, res, next) => {
   const id = req.params.id;
   
   Review.findByIdAndDelete(id)
-    .then(review => res.redirect(`/`))
+    .then(() => {
+      res.status(204).json({});
+    })
     .catch(next);
 }

@@ -5,7 +5,7 @@ const Book = require(`../models/book.js`);
 exports.index = (req, res, next) => {
   Book.find()
     .then(books => {
-      res.render(`books/index`, { books })
+      res.status(200).json(books);
     })
     .catch(next);
 }
@@ -25,7 +25,9 @@ exports.create = (req, res, next) => {
     publisher,
     publicationDate
   })
-    .then(book => res.redirect(`/`))
+    .then(book => { 
+      res.status(201).json(book);
+    })
     .catch(next);
 }
 
@@ -40,7 +42,7 @@ exports.show = (req, res, next) => {
 
   Book.findById(id)
     .then(book => {
-      res.render(`books/show`, book);
+      res.status(200).json(book);
     })
     .catch(next);
 }
@@ -65,7 +67,9 @@ exports.update = (req, res, next) => {
     publisher,
     publicationDate
   })
-    .then(book => res.redirect(`/`))
+    .then(book => {
+      res.status(200).json(book);
+    })
     .catch(next);
 }
 
@@ -79,6 +83,8 @@ exports.destroy = (req, res, next) => {
   const id = req.params.id;
   
   Book.findByIdAndDelete(id)
-    .then(book => res.redirect(`/`))
+    .then(() => {
+      res.status(204).json({});
+    })
     .catch(next);
 }

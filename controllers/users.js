@@ -7,7 +7,7 @@ const bcryptSalt  = 10;
 exports.index = (req, res, next) => {
   User.find()
     .then(users => {
-      res.render(`users/index`, { users })
+      res.status(200).json(users);
     })
     .catch(next);
 }
@@ -105,6 +105,8 @@ exports.destroy = (req, res, next) => {
   const id = req.params.id;
   
   User.findByIdAndDelete(id)
-    .then(user => res.redirect(`/`))
+    .then(() => {
+      res.status(204).json({});
+    })
     .catch(next);
 }
