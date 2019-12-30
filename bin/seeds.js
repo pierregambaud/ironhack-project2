@@ -1,11 +1,31 @@
 require('dotenv').config();
 
 const mongoose = require(`mongoose`);
+const User = require(`../models/user.js`);
 const Book = require(`../models/book.js`);
+const Review = require(`../models/review.js`);
 
 mongoose.connect(process.env.MONGODB_URL);
 
-const books = [
+const rawUsers = [
+  {
+    email: `paul@beatles.co.uk`,
+    password: `liverpool`,
+    username: `Paul`
+  },
+  {
+    email: `conor@mcgregor.com`,
+    password: `mma4ever`,
+    username: `Conor`
+  },
+  {
+    email: `roger@rabbit.com`,
+    password: `jessica`,
+    username: `Roger`
+  }
+];
+
+const rawBooks = [
   {
     isbn: `2010008995`,
     isbn13: `978-2010008993`,
@@ -44,9 +64,71 @@ const books = [
   }
 ];
 
-Book.create(books, (err) => {
-  if (err) { throw(err) }
-  console.log(`Created ${books.length} books`);
+const rawReviews = [
+  {
+    book_id: ``,
+    user_id: ``,
+    rating: `5`,
+    review: `Ce livre est une référence : les personnages, l'histoire, la tension. A lire !`,
+    url: ``
+  },
+  {
+    book_id: ``,
+    user_id: ``,
+    rating: `4`,
+    review: `Un très bon classique qui traite d'un sujet délicat. Touchant et émouvant.`,
+    url: `https://www.leblogdulitteraire.fr/critiques/12`
+  },
+  {
+    book_id: ``,
+    user_id: ``,
+    rating: `4`,
+    review: `Des livres comme il en existe trop peu. On est transporté du début à la fin !`,
+    url: ``
+  }
+]
+
+
+User.create(rawUsers) // create users
+  .then(users => {
+    console.log(`${users.length} users created`);
+    
+    Book.create(rawBooks) // create books
+      .then(books => {
+        console.log(`${books.length} books created`);
   
-  mongoose.connection.close();
-});
+        rawReviews.map((review, i) => { // update reviews with books and users ids
+          review.book_id = books[i].id;
+          review.user_id = users[i].id;
+          return review;
+        });
+
+        Review.create(rawReviews) // create reviews
+          .then(reviews => {
+            console.log(`${reviews.length} reviews created`);
+            
+            const booksIds = books.map(book => book.id);
+            const reviewsIds = reviews.map(review => review.id);
+            const usersIds = users.map(user => user.id);
+
+            reviewsIds.forEach((reviewId, i) => { // assign favorite book and review to users
+              User.findByIdAndUpdate(usersIds[i],
+                { $set: {
+                  "favoritesBooks": booksIds[i],
+                  "reviews": reviewId
+                } }
+              )
+                .then(() => {
+                  console.log(`Book ${i} and review ${i} assigned`);
+  
+                  mongoose.connection.close();
+                })
+                .catch(err => console.error(err));
+            })
+
+          })
+          .catch(err => console.error(err));
+      })
+      .catch(err => console.error(err));
+  })
+  .catch(err => console.error(err));
