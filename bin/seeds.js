@@ -11,17 +11,20 @@ const rawUsers = [
   {
     email: `paul@beatles.co.uk`,
     password: `liverpool`,
-    username: `Paul`
+    username: `Paul`,
+    slug: `paul`
   },
   {
     email: `conor@mcgregor.com`,
     password: `mma4ever`,
-    username: `Conor`
+    username: `Conor`,
+    slug: `conor`
   },
   {
     email: `roger@rabbit.com`,
     password: `jessica`,
-    username: `Roger`
+    username: `Roger`,
+    slug: `roger`
   }
 ];
 
