@@ -5,7 +5,7 @@ const User = require(`../models/user.js`);
 const Book = require(`../models/book.js`);
 const Review = require(`../models/review.js`);
 
-mongoose.connect(process.env.MONGODB_URL);
+mongoose.connect(process.env.MONGODB_URI);
 
 const rawUsers = [
   {
