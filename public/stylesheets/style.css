@@ -1,8 +1,97 @@
+*, :before, :after {
+  box-sizing: border-box; }
+
+:root {
+  --background-color: #F7F9F9;
+  --primary-color: #384962;
+  --secondary-color: #B6BECC;
+  --tertiary-color: #F2A138;
+  --quaternary-color: #F7F9F9;
+  --input-size:14px;
+  --gutter:1.5rem; }
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  margin: 0;
+  font: 14px "Open Sans",sans-serif;
+  color: var(--secondary-color); }
+
+img {
+  max-width: 100%; }
 
 a {
-  color: #00B7FF; }
+  text-decoration: none;
+  color: var(--secondary-color); }
+
+h1, h2, h3 {
+  color: var(--primary-color); }
+
+::placeholder {
+  color: var(--secondary-color); }
+
+.isHidden {
+  display: none; }
+
+#indexContainer {
+  height: 100vh;
+  text-align: center; }
+
+#indexContainer img {
+  margin-top: 20vh;
+  width: 250px; }
+
+#indexContainer h1 {
+  margin-top: 0;
+  margin-bottom: -30px; }
+
+#indexContainer h2 {
+  font-size: .8em;
+  margin-bottom: 5em; }
+
+#indexContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+#indexContainer form input {
+  text-align: center;
+  font-size: var(--input-size);
+  color: var(--secondary-color);
+  padding-top: .8em;
+  padding-bottom: .8em;
+  width: 220px;
+  margin-bottom: 1em;
+  box-shadow: 0 0.8px 2.2px rgba(0, 0, 0, 0.02), 0 2px 5.3px rgba(0, 0, 0, 0.028), 0 3.8px 10px rgba(0, 0, 0, 0.035), 0 6.7px 17.9px rgba(0, 0, 0, 0.042), 0 12.5px 33.4px rgba(0, 0, 0, 0.05), 0 30px 80px rgba(0, 0, 0, 0.07);
+  border: none; }
+
+#indexContainer form button {
+  width: 220px;
+  padding-top: .8em;
+  padding-bottom: .8em;
+  background-color: var(--tertiary-color);
+  color: var(--quaternary-color);
+  font-weight: 600;
+  margin-bottom: 1em;
+  border: none; }
+
+#indexContainer #socialLogins {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+#indexContainer #socialLogins hr {
+  margin-bottom: 1em;
+  background-color: var(--secondary-color);
+  width: 40px;
+  height: 1px;
+  border: 0; }
+
+#indexContainer #socialLogins a {
+  width: 220px;
+  padding-top: .8em;
+  padding-bottom: .8em;
+  background-color: var(--tertiary-color);
+  color: var(--quaternary-color);
+  font-weight: 600;
+  margin-bottom: 1em; }
 
 /*# sourceMappingURL=style.css.map */
