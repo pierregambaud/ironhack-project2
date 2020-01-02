@@ -7,7 +7,7 @@ const bcryptSalt  = 10;
 exports.index = (req, res, next) => {
   User.find()
     .then(users => {
-      res.status(200).json(users);
+      res.status(200).json({ users });
     })
     .catch(next);
 }
@@ -19,7 +19,7 @@ exports.create = (req, res, next) => {
 
   // check username and password are not empty
   if (email === `` || password === `` || username === ``) {
-    res.render(`authentication/signup`, { errorMessage: `Indicate email, username and password` });
+    res.status(412).json({ "errorMessage": `Email, password and username are mandatory` });
     return;
   }
 
@@ -29,7 +29,7 @@ exports.create = (req, res, next) => {
 
       // check username does not already exist
       if (user) {
-        res.render(`authentication/signup`, { errorMessage: `The username already exists` });
+        res.status(409).json({ "errorMessage": `The username already exists` });
         return;
       }
 
@@ -39,18 +39,19 @@ exports.create = (req, res, next) => {
 
       // save the user in DB
       const newUser = new User({
-        username,
-        password: hashPass
+        email,
+        password: hashPass,
+        username
       });
 
       newUser.save()
         .then(user => {
           // save user in session: req.user
-          req.login(user, err => {
-            if (err) return next(err); // session save went bad
+          // req.login(user, err => {
+          //   if (err) return next(err); // session save went bad
 
-            res.redirect(`/`); // `req.user` is now set
-          });
+          //   res.redirect(`/`); // `req.user` is now set
+          // });
         })
         .catch(next)
       ;
@@ -63,14 +64,14 @@ exports.create = (req, res, next) => {
 // show
 exports.show = (req, res, next) => {
   if(!req.params.id) {
-    return next(new Error(`This ID does not match any user`));
+    return next(new Error('ID is mandatory'));
   }
 
   const id = req.params.id;
 
   User.findById(id)
     .then(user => {
-      res.render(`users/show`, user);
+      res.status(200).json({ user });
     })
     .catch(next);
 }
@@ -79,19 +80,20 @@ exports.show = (req, res, next) => {
 // update
 exports.update = (req, res, next) => {
   if(!req.params.id) {
-    return next(new Error(`This ID does not match any user`));
+    return next(new Error(`ID is mandatory`));
   }
 
   const id = req.params.id;
-  const { email, password, username, rank } = req.body;
+  const { email, password, username } = req.body;
   
   User.findByIdAndUpdate(id, {
     email,
     password,
-    username,
-    rank
+    username
+  },{ 
+    new: true
   })
-    .then(user => res.redirect(`/`))
+    .then(user => res.status(200).json({ user }))
     .catch(next);
 }
 
@@ -99,7 +101,7 @@ exports.update = (req, res, next) => {
 // destroy
 exports.destroy = (req, res, next) => {
   if(!req.params.id) {
-    return next(new Error(`This ID does not match any user`));
+    return next(new Error(`ID is mandatory`));
   }
 
   const id = req.params.id;
