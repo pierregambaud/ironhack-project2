@@ -1,6 +1,6 @@
 const express         = require(`express`);
 const router          = express.Router();
-const booksController = require(`../../controllers/books.js`);
+const booksController = require(`../../../controllers/books.js`);
 
 
 // index

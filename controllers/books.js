@@ -66,6 +66,8 @@ exports.update = (req, res, next) => {
     coverPath,
     publisher,
     publicationDate
+  },{ 
+    new: true
   })
     .then(book => {
       res.status(200).json(book);

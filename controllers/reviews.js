@@ -60,6 +60,8 @@ exports.update = (req, res, next) => {
     rating,
     review,
     url
+  },{ 
+    new: true
   })
     .then(review => {
       res.status(200).json(review);
