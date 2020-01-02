@@ -3,7 +3,14 @@ const bcrypt      = require(`bcrypt`);
 const bcryptSalt  = 10;
 
 
-// index
+//    _           _           
+//   (_)         | |          
+//    _ _ __   __| | _____  __
+//   | | '_ \ / _` |/ _ \ \/ /
+//   | | | | | (_| |  __/>  < 
+//   |_|_| |_|\__,_|\___/_/\_\
+//                                                      
+
 exports.index = (req, res, next) => {
   User.find()
     .then(users => {
@@ -13,7 +20,14 @@ exports.index = (req, res, next) => {
 }
 
 
-// create
+//                        _       
+//                       | |      
+//     ___ _ __ ___  __ _| |_ ___ 
+//    / __| '__/ _ \/ _` | __/ _ \
+//   | (__| | |  __/ (_| | ||  __/
+//    \___|_|  \___|\__,_|\__\___|
+//                                
+
 exports.create = (req, res, next) => {
   const { email, password, username } = req.body;
 
@@ -61,7 +75,14 @@ exports.create = (req, res, next) => {
 }
 
 
-// show
+//        _                   
+//       | |                  
+//    ___| |__   _____      __
+//   / __| '_ \ / _ \ \ /\ / /
+//   \__ \ | | | (_) \ V  V / 
+//   |___/_| |_|\___/ \_/\_/  
+//                            
+
 exports.show = (req, res, next) => {
   if(!req.params.id) {
     return next(new Error('ID is mandatory'));
@@ -77,7 +98,15 @@ exports.show = (req, res, next) => {
 }
 
 
-// update
+//                    _       _       
+//                   | |     | |      
+//    _   _ _ __   __| | __ _| |_ ___ 
+//   | | | | '_ \ / _` |/ _` | __/ _ \
+//   | |_| | |_) | (_| | (_| | ||  __/
+//    \__,_| .__/ \__,_|\__,_|\__\___|
+//         | |                        
+//         |_|                        
+
 exports.update = (req, res, next) => {
   if(!req.params.id) {
     return next(new Error(`ID is mandatory`));
@@ -98,7 +127,15 @@ exports.update = (req, res, next) => {
 }
 
 
-// destroy
+//        _           _                   
+//       | |         | |                  
+//     __| | ___  ___| |_ _ __ ___  _   _ 
+//    / _` |/ _ \/ __| __| '__/ _ \| | | |
+//   | (_| |  __/\__ \ |_| | | (_) | |_| |
+//    \__,_|\___||___/\__|_|  \___/ \__, |
+//                                   __/ |
+//                                  |___/ 
+
 exports.destroy = (req, res, next) => {
   if(!req.params.id) {
     return next(new Error(`ID is mandatory`));
