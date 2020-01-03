@@ -30,7 +30,11 @@ img {max-width: 100%;}
 
 a {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--quaternary-color);
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 h1, h2, h3 {
@@ -57,34 +61,34 @@ textarea:focus, input:focus, button:focus {
 //   |_|_| |_|\__,_|\___/_/\_\
 //                                                      
 
-#index-container {
+#visitor-index-container {
   height: 100vh;
   text-align: center;
 }
 
-#index-container img {
+#visitor-index-container img {
   margin-top: 20vh;
   width: 250px;
 }
 
-#index-container h1 {
+#visitor-index-container h1 {
   margin-top: 0;
   margin-bottom: -30px;
 }
 
-#index-container h2 {
+#visitor-index-container h2 {
   font-size: .9em;
   font-weight: 600;
   margin-bottom: 5em;
 }
 
-#index-container form {
+#visitor-index-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#index-container form input {
+#visitor-index-container form input {
   text-align: center;
   font-size: var(--input-size);
   color: var(--primary-color);
@@ -96,12 +100,13 @@ textarea:focus, input:focus, button:focus {
   border: none;
   z-index: 2;
 }
-#index-container form input:nth-child(1) {
+#visitor-index-container form input:nth-child(1) {
   z-index: 3;
 }
 
-#index-container form button {
+#visitor-index-container form button {
   width: 280px;
+  font-size: 1em;
   padding-top: .8em;
   padding-bottom: .8em;
   background-color: var(--quaternary-color);
@@ -115,22 +120,25 @@ textarea:focus, input:focus, button:focus {
   --slide-bottom-duration: 1.6s;
 }
 
-#index-container #social-logins {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#visitor-index-container #dynamic-bloc {
   --slide-bottom-y-origin: -8em;
   --slide-bottom-y-target: 0;
   --slide-bottom-duration: 1.6s;
 }
 
-#index-container #social-logins p {
+#visitor-index-container #dynamic-bloc #social-logins {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#visitor-index-container #dynamic-bloc #social-logins p {
   padding-top: .6em;
   padding-bottom: .3em;
   font-size: .8em;
 }
 
-#index-container #social-logins a {
+#visitor-index-container #dynamic-bloc #social-logins a {
   width: 280px;
   padding-top: .8em;
   padding-bottom: .8em;
@@ -142,8 +150,11 @@ textarea:focus, input:focus, button:focus {
   margin-bottom: 1em;
   padding-left: 2em;
 }
+#visitor-index-container #dynamic-bloc #social-logins a:hover {
+  text-decoration: none;
+}
 
-#index-container #social-logins a:before {
+#visitor-index-container #dynamic-bloc #social-logins a:before {
   font-family: 'FontAwesome';
   speak: none;
   font-size: 1.4em;
@@ -157,16 +168,21 @@ textarea:focus, input:focus, button:focus {
   vertical-align: middle;
 }
 
-#index-container #social-logins #btn-twitter:before  {
+#visitor-index-container #dynamic-bloc #social-logins #btn-twitter:before  {
   content: "\f099";
   color: #1DA1F2;
   margin-right: 1.8em;
 }
 
-#index-container #social-logins #btn-facebook:before {
+#visitor-index-container #dynamic-bloc #social-logins #btn-facebook:before {
   content: "\f082";
   color: #4267B2;
   margin-right: 1.5em;
+}
+
+#visitor-index-container #dynamic-bloc #signup {
+  font-size: 0.8em;
+  color: var(--primary-color);
 }
 
 //                _                 _   _                 
@@ -184,8 +200,8 @@ textarea:focus, input:focus, button:focus {
 
 @-webkit-keyframes slide-bottom {
   0% {
-    -webkit-transform: translateY(var(--slide-bottom-y-origin, -50px));
-            transform: translateY(var(--slide-bottom-y-origin, -50px));
+    -webkit-transform: translateY(var(--slide-bottom-y-origin, -60px));
+            transform: translateY(var(--slide-bottom-y-origin, -60px));
   }
   100% {
     -webkit-transform: translateY(var(--slide-bottom-y-target, 0));
@@ -194,8 +210,8 @@ textarea:focus, input:focus, button:focus {
 }
 @keyframes slide-bottom {
   0% {
-    -webkit-transform: translateY(var(--slide-bottom-y-origin, -50px));
-            transform: translateY(var(--slide-bottom-y-origin, -50px));
+    -webkit-transform: translateY(var(--slide-bottom-y-origin, -60px));
+            transform: translateY(var(--slide-bottom-y-origin, -60px));
   }
   100% {
     -webkit-transform: translateY(var(--slide-bottom-y-target, 0));

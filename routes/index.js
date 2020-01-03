@@ -2,9 +2,14 @@ const express = require(`express`);
 const router  = express.Router();
 
 
-// homepage
+// visitor homepage
 router.get(`/`, (req, res, next) => {
   res.render(`index`);
+});
+
+// signup homepage
+router.get(`/inscription`, (req, res, next) => {
+  res.render(`signup`);
 });
 
 

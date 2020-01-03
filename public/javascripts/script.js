@@ -9,12 +9,12 @@
 const emailInput = document.querySelector(`input[name="email"]`);
 const passwordInput = document.querySelector(`input[name="password"]`);
 const submitButton = document.querySelector(`button`);
-const socialLogins = document.getElementById(`social-logins`);
+const dynamicBloc = document.getElementById(`dynamic-bloc`);
 
 emailInput.addEventListener('focus', () => {
   passwordInput.classList.remove(`is-hidden`);
-  socialLogins.style.paddingTop = "3em";
-  socialLogins.classList.add(`slide-bottom`);
+  dynamicBloc.style.paddingTop = "3em";
+  dynamicBloc.classList.add(`slide-bottom`);
   submitButton.classList.remove(`is-hidden`);
 });
 
