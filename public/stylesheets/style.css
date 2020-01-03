@@ -8,18 +8,26 @@
   --tertiary-color: #FFFFFF;
   --quaternary-color: #337ab7;
   --main-shadow-color: 0 0.8px 2.2px rgba(0, 0, 0, 0.02),
-    0 2px 5.3px rgba(0, 0, 0, 0.028),
-    0 3.8px 10px rgba(0, 0, 0, 0.035),
-    0 6.7px 17.9px rgba(0, 0, 0, 0.042),
-    0 12.5px 33.4px rgba(0, 0, 0, 0.05),
-    0 30px 80px rgba(0, 0, 0, 0.07);
+  0 2px 5.3px rgba(0, 0, 0, 0.028),
+  0 3.8px 10px rgba(0, 0, 0, 0.035),
+  0 6.7px 17.9px rgba(0, 0, 0, 0.042),
+  0 12.5px 33.4px rgba(0, 0, 0, 0.05),
+  0 30px 80px rgba(0, 0, 0, 0.07);
   --input-size:14px;
   --gutter:1.5rem; }
 
 body {
   margin: 0;
   font: 14px "Open Sans",sans-serif;
-  color: var(--secondary-color); }
+  color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh; }
+
+#main-content {
+  flex: 1 1 auto;
+  overflow-y: auto; }
 
 img {
   max-width: 100%; }
@@ -43,29 +51,29 @@ textarea:focus, input:focus, button:focus {
 .is-hidden {
   display: none; }
 
-#visitor-index-container {
+#index-visitor-container {
   height: 100vh;
   text-align: center; }
 
-#visitor-index-container img {
+#index-visitor-container img {
   margin-top: 20vh;
   width: 250px; }
 
-#visitor-index-container h1 {
+#index-visitor-container h1 {
   margin-top: 0;
   margin-bottom: -30px; }
 
-#visitor-index-container h2 {
+#index-visitor-container h2 {
   font-size: .9em;
   font-weight: 600;
   margin-bottom: 5em; }
 
-#visitor-index-container form {
+#index-visitor-container form {
   display: flex;
   flex-direction: column;
   align-items: center; }
 
-#visitor-index-container form input {
+#index-visitor-container form input {
   text-align: center;
   font-size: var(--input-size);
   color: var(--primary-color);
@@ -77,10 +85,10 @@ textarea:focus, input:focus, button:focus {
   border: none;
   z-index: 2; }
 
-#visitor-index-container form input:nth-child(1) {
+#index-visitor-container form input:nth-child(1) {
   z-index: 3; }
 
-#visitor-index-container form button {
+#index-visitor-container form button {
   width: 280px;
   font-size: 1em;
   padding-top: .8em;
@@ -95,22 +103,22 @@ textarea:focus, input:focus, button:focus {
   --slide-bottom-y-origin: -7.6em;
   --slide-bottom-duration: 1.6s; }
 
-#visitor-index-container #dynamic-bloc {
+#index-visitor-container #dynamic-bloc {
   --slide-bottom-y-origin: -8em;
   --slide-bottom-y-target: 0;
   --slide-bottom-duration: 1.6s; }
 
-#visitor-index-container #dynamic-bloc #social-logins {
+#index-visitor-container #dynamic-bloc #social-logins {
   display: flex;
   flex-direction: column;
   align-items: center; }
 
-#visitor-index-container #dynamic-bloc #social-logins p {
+#index-visitor-container #dynamic-bloc #social-logins p {
   padding-top: .6em;
   padding-bottom: .3em;
   font-size: .8em; }
 
-#visitor-index-container #dynamic-bloc #social-logins a {
+#index-visitor-container #dynamic-bloc #social-logins a {
   width: 280px;
   padding-top: .8em;
   padding-bottom: .8em;
@@ -122,10 +130,10 @@ textarea:focus, input:focus, button:focus {
   margin-bottom: 1em;
   padding-left: 2em; }
 
-#visitor-index-container #dynamic-bloc #social-logins a:hover {
+#index-visitor-container #dynamic-bloc #social-logins a:hover {
   text-decoration: none; }
 
-#visitor-index-container #dynamic-bloc #social-logins a:before {
+#index-visitor-container #dynamic-bloc #social-logins a:before {
   font-family: 'FontAwesome';
   speak: none;
   font-size: 1.4em;
@@ -138,19 +146,30 @@ textarea:focus, input:focus, button:focus {
   -webkit-font-smoothing: antialiased;
   vertical-align: middle; }
 
-#visitor-index-container #dynamic-bloc #social-logins #btn-twitter:before {
+#index-visitor-container #dynamic-bloc #social-logins #btn-twitter:before {
   content: "\f099";
   color: #1DA1F2;
   margin-right: 1.8em; }
 
-#visitor-index-container #dynamic-bloc #social-logins #btn-facebook:before {
+#index-visitor-container #dynamic-bloc #social-logins #btn-facebook:before {
   content: "\f082";
   color: #4267B2;
   margin-right: 1.5em; }
 
-#visitor-index-container #dynamic-bloc #signup {
+#index-visitor-container #dynamic-bloc #signup {
   font-size: 0.8em;
   color: var(--primary-color); }
+
+#main-nav {
+  flex: 0 0 auto; }
+
+#main-nav ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2em 3em; }
+
+#main-nav li {
+  list-style-type: none; }
 
 .slide-bottom {
   -webkit-animation: slide-bottom var(--slide-bottom-duration, 0.8s) cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
