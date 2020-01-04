@@ -103,22 +103,22 @@ textarea:focus, input:focus, button:focus {
   --slide-bottom-y-origin: -7.6em;
   --slide-bottom-duration: 1.6s; }
 
-#index-visitor-container #dynamic-bloc {
+#index-visitor-container {
   --slide-bottom-y-origin: -8em;
   --slide-bottom-y-target: 0;
   --slide-bottom-duration: 1.6s; }
 
-#index-visitor-container #dynamic-bloc #social-logins {
+#index-visitor-container #social-logins {
   display: flex;
   flex-direction: column;
   align-items: center; }
 
-#index-visitor-container #dynamic-bloc #social-logins p {
+#index-visitor-container #social-logins p {
   padding-top: .6em;
   padding-bottom: .3em;
   font-size: .8em; }
 
-#index-visitor-container #dynamic-bloc #social-logins a {
+#index-visitor-container #social-logins a {
   width: 280px;
   padding-top: .8em;
   padding-bottom: .8em;
@@ -130,10 +130,10 @@ textarea:focus, input:focus, button:focus {
   margin-bottom: 1em;
   padding-left: 2em; }
 
-#index-visitor-container #dynamic-bloc #social-logins a:hover {
+#index-visitor-container #social-logins a:hover {
   text-decoration: none; }
 
-#index-visitor-container #dynamic-bloc #social-logins a:before {
+#index-visitor-container #social-logins a:before {
   font-family: 'FontAwesome';
   speak: none;
   font-size: 1.4em;
@@ -146,17 +146,17 @@ textarea:focus, input:focus, button:focus {
   -webkit-font-smoothing: antialiased;
   vertical-align: middle; }
 
-#index-visitor-container #dynamic-bloc #social-logins #btn-twitter:before {
+#index-visitor-container #social-logins #btn-twitter:before {
   content: "\f099";
   color: #1DA1F2;
   margin-right: 1.8em; }
 
-#index-visitor-container #dynamic-bloc #social-logins #btn-facebook:before {
+#index-visitor-container #social-logins #btn-facebook:before {
   content: "\f082";
   color: #4267B2;
   margin-right: 1.5em; }
 
-#index-visitor-container #dynamic-bloc #signup {
+#index-visitor-container #signup {
   font-size: 0.8em;
   color: var(--primary-color); }
 
