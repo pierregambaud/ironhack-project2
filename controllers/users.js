@@ -85,13 +85,20 @@ exports.create = (req, res, next) => {
 
 exports.show = (req, res, next) => {
   if(!req.params.id) {
-    return next(new Error('ID is mandatory'));
+    return next(new Error('user ID is mandatory'));
   }
 
   const id = req.params.id;
 
   User.findById(id)
     .then(user => {
+      let err = new Error(`This user ID does not match any entry`);
+      err.status = 404;
+
+      if (!user) {
+        return next(err);
+      }
+
       res.status(200).json({ user });
     })
     .catch(next);

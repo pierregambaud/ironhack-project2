@@ -31,16 +31,16 @@ const app = express();
 
 
 // Default 'Accept' and 'Content-Type'
-app.use(function (req, res, next) {
-  req.headers['accept'] = req.headers['accept'] || 'application/json';
+// app.use(function (req, res, next) {
+//   req.headers['accept'] = req.headers['accept'] || 'application/json';
 
-  // if 'Accept: application/json' and 'Content-Type' is not set => defaults to 'application/json'
-  if (req.headers['accept'] === 'application/json' && !req.headers['content-type']) {
-    req.headers['content-type'] = req.headers['content-type'] || 'application/json';
-  }
+//   // if 'Accept: application/json' and 'Content-Type' is not set => defaults to 'application/json'
+//   if (req.headers['accept'] === 'application/json' && !req.headers['content-type']) {
+//     req.headers['content-type'] = req.headers['content-type'] || 'application/json';
+//   }
 
-  next();
-});
+//   next();
+// });
 
 const bodyParser = require('body-parser');
 
@@ -126,5 +126,41 @@ app.use(`/api/0.1/`, apiRoutes);
 const appRoutes = require('./routes/index');
 app.use('/', appRoutes);
 
+
+// errors middlewares
+app.use((req, res, next) => {
+  let err = new Error();
+  err.status = 404;
+
+  next(err);
+});
+
+er2JSON = function (err) {
+  // http://stackoverflow.com/questions/18391212/is-it-not-possible-to-stringify-an-error-using-json-stringify#18391212
+  var o = {};
+
+  Object.getOwnPropertyNames(err).forEach(function (key) {
+    o[key] = err[key];
+  });
+
+  return o;
+}
+
+app.use((err, req, res, next) => {
+  // always log the error
+  // console.error('ERROR', req.method, req.path, err);
+
+  res.format({  
+    html: function () {
+      res.render(`error`, {
+        err
+      });
+    },
+  
+    json: function () {
+      res.send({err: er2JSON(err)});
+    }
+  })
+});
 
 module.exports = app;
