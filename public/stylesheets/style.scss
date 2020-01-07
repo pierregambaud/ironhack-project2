@@ -1,23 +1,21 @@
 *, :before, :after {box-sizing:border-box;}
 
 :root {
-  --main-bg-color: #F7F9F9;
+  --main-bg-color: rgba(0,0,0,1);
+  --star-color: #F2A138;
   
-  --primary-color: #2f2f2f;
+  --primary-color: #53566f;
   --secondary-color: #B6BECC;
   --tertiary-color: #FFFFFF;
   --quaternary-color: #337ab7;
 
-  --main-shadow-color: 0 0.8px 2.2px rgba(0, 0, 0, 0.02),
-  0 2px 5.3px rgba(0, 0, 0, 0.028),
-  0 3.8px 10px rgba(0, 0, 0, 0.035),
-  0 6.7px 17.9px rgba(0, 0, 0, 0.042),
-  0 12.5px 33.4px rgba(0, 0, 0, 0.05),
-  0 30px 80px rgba(0, 0, 0, 0.07);
+  --main-shadow-color: 0 0 10px 5px rgba(0,0,0,0.1);
 
-  --input-size:14px;
+  --input-size: 14px;
 
-  --gutter:1.5rem;
+  --border-radius: 5px;
+
+  --gutter: 1.5rem;
 }
 
 body {
@@ -48,6 +46,12 @@ a:hover {
 
 h1, h2, h3 {
   color: var(--primary-color);
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.2em;
 }
 
 textarea:focus, input:focus, button:focus {
@@ -106,11 +110,10 @@ textarea:focus, input:focus, button:focus {
   width: 280px;
   margin-bottom: .8em;
   box-shadow: var(--main-shadow-color);
+  -moz-box-shadow: var(--main-shadow-color);
+  -webkit-box-shadow: var(--main-shadow-color);
+  -o-box-shadow: var(--main-shadow-color);
   border: none;
-  z-index: 2;
-}
-#index-visitor-container form input:nth-child(1) {
-  z-index: 3;
 }
 
 #index-visitor-container form button {
@@ -124,7 +127,6 @@ textarea:focus, input:focus, button:focus {
   margin-bottom: 1em;
   box-shadow: var(--main-shadow-color);
   border: none;
-  z-index: 1;
   --slide-bottom-y-origin: -7.6em;
   --slide-bottom-duration: 1.6s;
 }
@@ -204,6 +206,201 @@ textarea:focus, input:focus, button:focus {
 //                                                                       
 
 #index-member-container {
+  margin: var(--gutter);
+}
+
+#index-member-container #search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--input-size);
+
+  box-shadow: var(--main-shadow-color);
+  -moz-box-shadow: var(--main-shadow-color);
+  -webkit-box-shadow: var(--main-shadow-color);
+  -o-box-shadow: var(--main-shadow-color);
+}
+
+#index-member-container #search i {
+  margin-left: 1em;
+}
+
+#index-member-container #search input {
+  width: 100%;
+  padding: .6em 1em;
+}
+
+#last-reviews, #user-lists, #trending-books {
+  margin-top: 1.8em;
+}
+
+#index-member-container #last-reviews header, #index-member-container #trending-books header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#index-member-container #last-reviews header a, #index-member-container #trending-books header a {
+  font-size: .9em;
+}
+
+#index-member-container #last-reviews main {
+  display: flex;
+  flex-direction: row;
+  margin-left: calc(var(--gutter) * -1);
+  padding-left: var(--gutter);
+  margin-right: calc(var(--gutter) * -1);
+  padding-top: 1.2em;
+  overflow: hidden;
+}
+
+#index-member-container #last-reviews main .last-review {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 315px;
+  font-size: .9em;
+  margin-top: 1.2em;
+  margin-bottom: 2.1em;
+  margin-right: 1.2em;
+  box-shadow: var(--main-shadow-color);
+  -moz-box-shadow: var(--main-shadow-color);
+  -webkit-box-shadow: var(--main-shadow-color);
+  -o-box-shadow: var(--main-shadow-color);
+  border-radius: var(--border-radius);
+}
+
+#index-member-container #last-reviews main .last-review .cover {
+  width: 24em;
+}
+
+#index-member-container #last-reviews main .last-review .cover img {
+  margin: -1em 1em;
+  height: 12em;
+  max-width: 10em;
+  box-shadow: var(--main-shadow-color);
+  -moz-box-shadow: var(--main-shadow-color);
+  -webkit-box-shadow: var(--main-shadow-color);
+  -o-box-shadow: var(--main-shadow-color);
+  border-radius: var(--border-radius);
+}
+
+#index-member-container #last-reviews main .last-review .review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: .8em 1em .5em 0;
+}
+
+#index-member-container #last-reviews main .last-review .review p {
+  margin-top: 0;
+}
+
+#index-member-container #last-reviews main .last-review .review .details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: -0.4em;
+}
+
+#index-member-container #last-reviews main .last-review .review .details .rating {
+  color: var(--star-color);
+  font-weight: 600;
+}
+
+#index-member-container #last-reviews main .last-review .review .details .review-author a {
+  color: var(--primary-color);
+}
+
+#index-member-container #last-reviews main .last-review .review .details .review-author span {
+  margin-left: .2em;
+}
+
+#index-member-container #last-reviews main .last-review .review .details .review-author img {
+  vertical-align: middle;
+  width: 25px;
+  height: 25px;
+  box-shadow: var(--main-shadow-color);
+  -moz-box-shadow: var(--main-shadow-color);
+  -webkit-box-shadow: var(--main-shadow-color);
+  -o-box-shadow: var(--main-shadow-color);
+  border-radius: 50%;
+}
+
+#index-member-container #user-lists {
+  margin-top: .2em;
+}
+
+#index-member-container #user-lists ul {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  font-size: .8em;
+  font-weight: 600;
+}
+
+#index-member-container #user-lists ul li {
+  padding-top: .3em;
+}
+
+#index-member-container #user-lists ul a {
+  color: var(--primary-color);
+}
+
+#index-member-container #user-lists ul img {
+  height: 60px;
+  width: 60px;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-bottom: .6em;
+  border: 2px solid white;
+  box-shadow: var(--main-shadow-color);
+  -moz-box-shadow: var(--main-shadow-color);
+  -webkit-box-shadow: var(--main-shadow-color);
+  -o-box-shadow: var(--main-shadow-color);
+}
+
+#index-member-container #trending-books main {
+  display: flex;
+  flex-direction: row;
+  margin-left: calc(var(--gutter) * -1);
+  padding-left: var(--gutter);
+  margin-right: calc(var(--gutter) * -1);
+  overflow: hidden;
+}
+
+#index-member-container #trending-books main img {
+  border-radius: var(--border-radius);
+  height: 12em;
+  max-width: 6.8em;
+  box-shadow: var(--main-shadow-color);
+  -moz-box-shadow: var(--main-shadow-color);
+  -webkit-box-shadow: var(--main-shadow-color);
+  -o-box-shadow: var(--main-shadow-color);
+}
+
+#index-member-container #trending-books main .trending-book {
+  padding-top: 1.4em;
+  margin-right: 1.2em;
+}
+
+#index-member-container #trending-books main h3 {
+  font-size: .8em;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-top: .6em;
+  margin-bottom: .3em;
+}
+
+#index-member-container #trending-books main p {
+  font-size: .6em;
+  margin-top: 0;
 }
 
 //                      _                
@@ -216,12 +413,20 @@ textarea:focus, input:focus, button:focus {
 
 #main-nav {
   flex: 0 0 auto;
+  -webkit-box-shadow: 0px 99px 80px 29px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 99px 80px 29px rgba(0,0,0,1);
+  box-shadow: 0px 99px 80px 29px rgba(0,0,0,1);
+}
+
+#main-nav a {
+  color: var(--secondary-color);
 }
 
 #main-nav ul {
   display: flex;
   justify-content: space-between;
-  padding: 1.2em 3em;
+  padding: 1.5em 3em;
+  margin: 0;
 }
 
 #main-nav li {
