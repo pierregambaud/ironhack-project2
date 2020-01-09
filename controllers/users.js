@@ -1,4 +1,5 @@
 const User        = require(`../models/user.js`);
+const passport    = require(`passport`);
 const bcrypt      = require(`bcrypt`);
 const bcryptSalt  = 10;
 
@@ -33,8 +34,10 @@ exports.create = (req, res, next) => {
 
   // check username and password are not empty
   if (email === `` || password === `` || username === ``) {
-    res.status(412).json({ "errorMessage": `Email, password and username are mandatory` });
-    return;
+    let err = new Error(`Email, password and username are mandatory`);
+    err.status = 412;
+    
+    return next(err);
   }
 
   User.findOne({ username })
@@ -43,8 +46,10 @@ exports.create = (req, res, next) => {
 
       // check username does not already exist
       if (user) {
-        res.status(409).json({ "errorMessage": `The username already exists` });
-        return;
+        let err = new Error(`This username already exists`);
+        err.status = 409;
+        
+        return next(err);
       }
 
       // encrypt the password
@@ -60,12 +65,21 @@ exports.create = (req, res, next) => {
 
       newUser.save()
         .then(user => {
-          // save user in session: req.user
-          // req.login(user, err => {
-          //   if (err) return next(err); // session save went bad
 
-          //   res.redirect(`/`); // `req.user` is now set
-          // });
+          req.uest({
+            method: 'POST',
+            url: '/api/0.1/sessions',
+            body: {email, password, username}
+          }, (er, resp, body) => {
+            if (er) {
+              // deal with specific "Forbidden" error
+              if (er.status === 403) {
+                return res.status(403)({error: "Username and password do not match"})
+              }
+        
+              return next(er); // for any other error
+            }
+          })
         })
         .catch(next)
       ;
@@ -85,7 +99,10 @@ exports.create = (req, res, next) => {
 
 exports.show = (req, res, next) => {
   if(!req.params.id) {
-    return next(new Error('user ID is mandatory'));
+    let err = new Error(`This user ID does not match any entry`);
+    err.status = 404;
+
+    return next(err);
   }
 
   const id = req.params.id;
@@ -116,7 +133,10 @@ exports.show = (req, res, next) => {
 
 exports.update = (req, res, next) => {
   if(!req.params.id) {
-    return next(new Error(`ID is mandatory`));
+    let err = new Error(`ID is mandatory`);
+    err.status = 404;
+    
+    return next(err);
   }
 
   const id = req.params.id;
@@ -145,7 +165,10 @@ exports.update = (req, res, next) => {
 
 exports.destroy = (req, res, next) => {
   if(!req.params.id) {
-    return next(new Error(`ID is mandatory`));
+    let err = new Error(`ID is mandatory`);
+    err.status = 404;
+    
+    return next(err);
   }
 
   const id = req.params.id;
