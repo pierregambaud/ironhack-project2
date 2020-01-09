@@ -5,36 +5,39 @@ const uest            = require('uest');
 
 // visitor homepage
 router.get(`/`, (req, res, next) => {
+  if(req.user) {
+    return res.render(`index/member`, {
+      layout: 'member-layout'
+    });
+  }
   res.render(`index/visitor`);
 });
 
 
 // signup form
-router.post('/', (req, res, next) => {
+router.post('/inscription', (req, res, next) => {
   const {email, password} = req.body;
-  const username = `foo`;
 
-  // subsequent request to `POST /api/0.1/users` route
+  if (email === `` || password === ``) {
+    res.render(`/inscription`, { error: `Email, password and username are mandatory`})
+    return;
+  }
+
   req.uest({
     method: 'POST',
     url: '/api/0.1/users',
-    body: {email, password, username}
+    body: {email, password}
   }, (er, resp, body) => {
     if (er) {
       // deal with specific "Forbidden" error
-      if (er.status === 403) {
-        return res.render('login', {error: "Username already taken"})
+      if (er.status === 409) {
+        return res.render('signup', {error: "Email already taken"})
       }
 
       return next(er); // for any other error
     }
-    console.log(email, password, username)
-    console.log('User-session created for', body.user);
-
-    // `req.session` is up-to-date
-    console.log(`Welcome back !`);
       
-    res.redirect('/profile')
+    res.redirect('/')
   })
 });
 
@@ -45,11 +48,30 @@ router.get(`/inscription`, (req, res, next) => {
 });
 
 
-// member homepage => FIXME: need to merge with visitor when auth with API created
-router.get(`/m`, (req, res, next) => {
-  res.render(`index/member`, {
-    layout: 'member-layout'
-  });
+// login form
+router.post('/connexion', (req, res, next) => {
+  const {email, password} = req.body;
+
+  if (email === `` || password === ``) {
+    return res.render(`index/visitor`, { error: `Email, password and username are mandatory`});
+  }
+
+  req.uest({
+    method: 'POST',
+    url: '/api/0.1/sessions',
+    body: {email, password}
+  }, (er, resp, body) => {
+    if (er) {
+      // deal with specific "Forbidden" error
+      if (er.status === 401) {
+        return res.render('index/visitor', {error: `Username and password does not match`});
+      }
+
+      return next(er); // for any other error
+    }
+      
+    res.redirect('/');
+  })
 });
 
 

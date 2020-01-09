@@ -11,9 +11,9 @@ const passport    = require(`passport`);
 //      
 
 exports.create = (req, res, next) => {
-  const { email, password, username } = req.body;
+  const { email, password } = req.body;
 
-  User.findOne({ username })
+  User.findOne({ email })
     .then(user => {
       passport.authenticate("local", (err, theUser, failureDetails) => {
         if (err) {
@@ -23,7 +23,7 @@ exports.create = (req, res, next) => {
     
         if (!theUser) {
           // unauthorized, `failureDetails` contains the error messages from our logic in "LocalStrategy" {message: '…'}.
-          res.status(401).json({error: `Wrong username or password`}); 
+          res.status(401).json({error: `Wrong email or password`}); 
           return;
         }
     

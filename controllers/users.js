@@ -29,23 +29,31 @@ exports.index = (req, res, next) => {
 //                                
 
 exports.create = (req, res, next) => {
-  const { email, password, username } = req.body;
+  const { email, password } = req.body;
 
-  // check username and password are not empty
-  if (email === `` || password === `` || username === ``) {
-    let err = new Error(`Email, password and username are mandatory`);
+  // check email and password are not empty
+  if (email === `` || password === ``) {
+    let err = new Error(`Email and password are mandatory`);
     err.status = 412;
     
     return next(err);
   }
 
-  User.findOne({ username })
+  const generateUsername = (email) => {
+    return email.split(`@`)[0];
+  }
+
+  const generateSlug = (email) => {
+    return email.split(`@`)[0];
+  }
+
+  User.findOne({ email })
     .then(user => {
       // TODO if email already exists?
 
       // check username does not already exist
       if (user) {
-        let err = new Error(`This username already exists`);
+        let err = new Error(`This email already exists`);
         err.status = 409;
         
         return next(err);
@@ -59,7 +67,8 @@ exports.create = (req, res, next) => {
       const newUser = new User({
         email,
         password: hashPass,
-        username
+        username: generateUsername(email),
+        slug: generateSlug(email)
       });
 
       newUser.save()
@@ -68,19 +77,14 @@ exports.create = (req, res, next) => {
           req.uest({
             method: 'POST',
             url: '/api/0.1/sessions',
-            body: {email, password, username}
+            body: {email, password}
           }, (er, resp, body) => {
             if (er) {
-              // deal with specific "Forbidden" error
-              if (er.status === 403) {
-                return res.status(403)({error: "Username and password do not match"})
-              }
-        
               return next(er); // for any other error
             }
-          })
 
-          res.status(201).json(user);
+            res.status(201).json(user);
+          })
         })
         .catch(next)
       ;
