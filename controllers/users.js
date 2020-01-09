@@ -86,9 +86,7 @@ exports.create = (req, res, next) => {
             res.status(201).json(user);
           })
         })
-        .catch(next)
-      ;
-        
+        .catch(next);
     })
     .catch(next);
 }

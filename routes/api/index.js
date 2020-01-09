@@ -10,5 +10,6 @@ router.use('/books', booksRoutes);
 router.use('/reviews', reviewsRoutes);
 router.use('/users', usersRoutes);
 router.use('/sessions', sessionsRoutes);
+router.use('/session', sessionsRoutes);
 
 module.exports = router;

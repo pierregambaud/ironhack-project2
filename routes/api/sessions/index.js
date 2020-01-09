@@ -8,7 +8,7 @@ router.post(`/`, sessionsController.create);
 
 
 // destroy
-router.delete(`/:id`, sessionsController.destroy);
+router.delete(`/`, sessionsController.destroy);
 
 
 module.exports = router;

@@ -75,4 +75,21 @@ router.post('/connexion', (req, res, next) => {
 });
 
 
+// disconnect
+router.get(`/deconnexion`, (req, res, next) => {
+  const id = req.user.id;
+
+  req.uest({
+    method: 'DELETE',
+    url: '/api/0.1/session'
+  }, (er, resp, body) => {
+    if (er) {
+      return next(er);
+    }
+      
+    res.redirect('/');
+  })
+})
+
+
 module.exports = router;

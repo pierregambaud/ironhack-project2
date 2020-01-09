@@ -54,5 +54,5 @@ exports.create = (req, res, next) => {
 
 exports.destroy = (req, res, next) => {
   req.logout();
-  res.status(204);
+  res.status(204).send();
 };
