@@ -1,5 +1,4 @@
 const User        = require(`../models/user.js`);
-const passport    = require(`passport`);
 const bcrypt      = require(`bcrypt`);
 const bcryptSalt  = 10;
 
@@ -80,6 +79,8 @@ exports.create = (req, res, next) => {
               return next(er); // for any other error
             }
           })
+
+          res.status(201).json(user);
         })
         .catch(next)
       ;
