@@ -87,11 +87,32 @@ exports.facebookCallback = (req, res, next) => {
 //                                    
 
 exports.twitter = (req, res, next) => {
+  passport.authenticate(`twitter`, (err, theUser, failureDetails) => {
+    if (err) {
+      // something went wrong authenticating user
+      return next(err);
+    }
 
+    res.status(302).send();
+  })(req, res, next);
 };
 
 exports.twitterCallback = (req, res, next) => {
+  passport.authenticate(`twitter`, (err, theUser, failureDetails) => {
+    if (err) {
+      // something went wrong authenticating user
+      return next(err);
+    }
 
+    // save user in session: req.user
+    req.login(theUser, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.status(302).json(user);
+    });
+  })(req, res, next);
 };
 
 

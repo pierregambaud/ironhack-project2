@@ -90,6 +90,21 @@ router.get('/connexion-facebook', (req, res, next) => {
 });
 
 
+// twitter connect
+router.get('/connexion-twitter', (req, res, next) => {
+  req.uest({
+    method: 'GET',
+    url: '/api/0.1/sessions/twitter'
+  }, (er, resp, body) => {
+    if (er) {
+      return next(er); // for any other error
+    }
+      
+    res.redirect('/');
+  })
+});
+
+
 // disconnect
 router.get(`/deconnexion`, (req, res, next) => {
   const id = req.user.id;

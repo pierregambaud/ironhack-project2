@@ -15,6 +15,7 @@ const bcrypt             = require(`bcrypt`);
 const passport           = require(`passport`);
 const LocalStrategy      = require(`passport-local`).Strategy;
 const FacebookStrategy   = require(`passport-facebook`).Strategy;
+const TwitterStrategy    = require(`passport-twitter`).Strategy;
 const User               = require(`./models/user.js`);
 
 mongoose
@@ -112,6 +113,20 @@ passport.use(new FacebookStrategy({
   console.log("Facebook account details: ", profile);
 
   User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));
+
+passport.use(new TwitterStrategy({
+  consumerKey: process.env.TWITTER_CONSUMER_KEY,
+  consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+  callbackURL: "/api/0.1/sessions/twitterCallback"
+},
+function(token, tokenSecret, profile, cb) {
+  console.log("Twitter account details: ", profile);
+
+  User.findOrCreate({ twitterId: profile.id }, function (err, user) {
     return cb(err, user);
   });
 }

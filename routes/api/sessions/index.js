@@ -9,7 +9,7 @@ router.post(`/`, sessionsController.create);
 
 // facebook
 router.get(`/facebook`, sessionsController.facebook);
-router.get(`/facebookCallback`, sessionsController.facebookCallback);
+router.post(`/facebookCallback`, sessionsController.facebookCallback);
 
 
 // twitter
