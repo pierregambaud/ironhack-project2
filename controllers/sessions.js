@@ -15,9 +15,8 @@ exports.create = (req, res, next) => {
 
   User.findOne({ email })
     .then(user => {
-      passport.authenticate("local", (err, theUser, failureDetails) => {
+      passport.authenticate(`local`, (err, theUser, failureDetails) => {
         if (err) {
-          // something went wrong authenticating user
           return next(err);
         }
     
@@ -30,16 +29,69 @@ exports.create = (req, res, next) => {
         // save user in session: req.user
         req.login(theUser, (err) => {
           if (err) {
-            // Session save went bad
             return next(err);
           }
     
-          // all good, we are now logged in and `req.user` is now set
-          res.status(201).json(user); // `req.user` is now set
+          res.status(201).json(user);
         });
       })(req, res, next);
     })
     .catch(next);
+};
+
+
+//     __               _                 _    
+//    / _|             | |               | |   
+//   | |_ __ _  ___ ___| |__   ___   ___ | | __
+//   |  _/ _` |/ __/ _ \ '_ \ / _ \ / _ \| |/ /
+//   | || (_| | (_|  __/ |_) | (_) | (_) |   < 
+//   |_| \__,_|\___\___|_.__/ \___/ \___/|_|\_\
+//                                             
+              
+exports.facebook = (req, res, next) => {
+  passport.authenticate(`facebook`, (err, theUser, failureDetails) => {
+    if (err) {
+      // something went wrong authenticating user
+      return next(err);
+    }
+
+    res.status(302).send();
+  })(req, res, next);
+};
+
+exports.facebookCallback = (req, res, next) => {
+  passport.authenticate(`facebook`, (err, theUser, failureDetails) => {
+    if (err) {
+      // something went wrong authenticating user
+      return next(err);
+    }
+
+    // save user in session: req.user
+    req.login(theUser, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.status(302).json(user);
+    });
+  })(req, res, next);
+};
+
+
+//    _            _ _   _            
+//   | |          (_) | | |           
+//   | |___      ___| |_| |_ ___ _ __ 
+//   | __\ \ /\ / / | __| __/ _ \ '__|
+//   | |_ \ V  V /| | |_| ||  __/ |   
+//    \__| \_/\_/ |_|\__|\__\___|_|   
+//                                    
+
+exports.twitter = (req, res, next) => {
+
+};
+
+exports.twitterCallback = (req, res, next) => {
+
 };
 
 

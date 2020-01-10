@@ -7,6 +7,16 @@ const sessionsController = require(`../../../controllers/sessions.js`);
 router.post(`/`, sessionsController.create);
 
 
+// facebook
+router.get(`/facebook`, sessionsController.facebook);
+router.get(`/facebookCallback`, sessionsController.facebookCallback);
+
+
+// twitter
+router.get(`/twitter`, sessionsController.twitter);
+router.post(`/twitterCallback`, sessionsController.twitterCallback);
+
+
 // destroy
 router.delete(`/`, sessionsController.destroy);
 

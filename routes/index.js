@@ -75,6 +75,21 @@ router.post('/connexion', (req, res, next) => {
 });
 
 
+// facebook connect
+router.get('/connexion-facebook', (req, res, next) => {
+  req.uest({
+    method: 'GET',
+    url: '/api/0.1/sessions/facebook'
+  }, (er, resp, body) => {
+    if (er) {
+      return next(er); // for any other error
+    }
+      
+    res.redirect('/');
+  })
+});
+
+
 // disconnect
 router.get(`/deconnexion`, (req, res, next) => {
   const id = req.user.id;
