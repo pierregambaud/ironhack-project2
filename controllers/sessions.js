@@ -48,16 +48,7 @@ exports.create = (req, res, next) => {
 //   |_| \__,_|\___\___|_.__/ \___/ \___/|_|\_\
 //                                             
               
-exports.facebook = (req, res, next) => {
-  passport.authenticate(`facebook`, (err, theUser, failureDetails) => {
-    if (err) {
-      // something went wrong authenticating user
-      return next(err);
-    }
-
-    res.status(302).send();
-  })(req, res, next);
-};
+exports.facebook = passport.authenticate(`facebook`, { scope : ['email'] });
 
 exports.facebookCallback = (req, res, next) => {
   passport.authenticate(`facebook`, (err, theUser, failureDetails) => {
@@ -66,14 +57,13 @@ exports.facebookCallback = (req, res, next) => {
       return next(err);
     }
 
-    // save user in session: req.user
-    req.login(theUser, (err) => {
-      if (err) {
-        return next(err);
-      }
+    let id = theUser.id;
+    let displayName = theUser.displayName;
+    let email = theUser.emails[0].value || `${id}@facebook.com`;
+    let profilePicture = theUser.photos[0].value;
 
-      res.status(302).json(user);
-    });
+    console.log(`id: `, id, `displayName: `, displayName, `email: `, email)
+
   })(req, res, next);
 };
 
@@ -86,16 +76,7 @@ exports.facebookCallback = (req, res, next) => {
 //    \__| \_/\_/ |_|\__|\__\___|_|   
 //                                    
 
-exports.twitter = (req, res, next) => {
-  passport.authenticate(`twitter`, (err, theUser, failureDetails) => {
-    if (err) {
-      // something went wrong authenticating user
-      return next(err);
-    }
-
-    res.status(302).send();
-  })(req, res, next);
-};
+exports.twitter = passport.authenticate(`twitter`);
 
 exports.twitterCallback = (req, res, next) => {
   passport.authenticate(`twitter`, (err, theUser, failureDetails) => {

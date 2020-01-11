@@ -9,12 +9,12 @@ router.post(`/`, sessionsController.create);
 
 // facebook
 router.get(`/facebook`, sessionsController.facebook);
-router.post(`/facebookCallback`, sessionsController.facebookCallback);
+router.get(`/facebookCallback`, sessionsController.facebookCallback);
 
 
 // twitter
 router.get(`/twitter`, sessionsController.twitter);
-router.post(`/twitterCallback`, sessionsController.twitterCallback);
+router.get(`/twitterCallback`, sessionsController.twitterCallback);
 
 
 // destroy

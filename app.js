@@ -107,15 +107,21 @@ passport.use(new LocalStrategy({
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID,
   clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: "/api/0.1/sessions/facebookCallback"
+  callbackURL: "/api/0.1/sessions/facebookCallback",
+  profileFields: [
+    "id",
+    "displayName",
+    "email",
+    "picture.type(large)"
+  ]
 },
-(accessToken, refreshToken, profile, cb) => {
-  console.log("Facebook account details: ", profile);
+  (accessToken, refreshToken, profile, done) => {
+    process.nextTick(() => {
+      console.log('facebook success:', profile, accessToken, refreshToken);
 
-  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-    return cb(err, user);
-  });
-}
+      return done(null, profile);
+    });
+  }
 ));
 
 passport.use(new TwitterStrategy({

@@ -77,31 +77,13 @@ router.post('/connexion', (req, res, next) => {
 
 // facebook connect
 router.get('/connexion-facebook', (req, res, next) => {
-  req.uest({
-    method: 'GET',
-    url: '/api/0.1/sessions/facebook'
-  }, (er, resp, body) => {
-    if (er) {
-      return next(er); // for any other error
-    }
-      
-    res.redirect('/');
-  })
+  res.redirect('/api/0.1/sessions/facebook');
 });
 
 
 // twitter connect
 router.get('/connexion-twitter', (req, res, next) => {
-  req.uest({
-    method: 'GET',
-    url: '/api/0.1/sessions/twitter'
-  }, (er, resp, body) => {
-    if (er) {
-      return next(er); // for any other error
-    }
-      
-    res.redirect('/');
-  })
+  res.redirect('/api/0.1/sessions/twitter');
 });
 
 
