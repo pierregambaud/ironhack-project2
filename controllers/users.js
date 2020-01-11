@@ -29,7 +29,8 @@ exports.index = (req, res, next) => {
 //                                
 
 exports.create = (req, res, next) => {
-  const { email, password } = req.body;
+  const email      = req.body.email;
+  const password   = req.body.password;
 
   // check email and password are not empty
   if (email === `` || password === ``) {
@@ -37,10 +38,6 @@ exports.create = (req, res, next) => {
     err.status = 412;
     
     return next(err);
-  }
-
-  const generateUsername = (email) => {
-    return email.split(`@`)[0];
   }
 
   const generateSlug = (email) => {
@@ -67,24 +64,18 @@ exports.create = (req, res, next) => {
       const newUser = new User({
         email,
         password: hashPass,
-        username: generateUsername(email),
-        slug: generateSlug(email)
+        username: generateSlug(email),
+        slug: generateSlug(email),
       });
 
       newUser.save()
         .then(user => {
 
-          req.uest({
-            method: 'POST',
-            url: '/api/0.1/sessions',
-            body: {email, password}
-          }, (er, resp, body) => {
-            if (er) {
-              return next(er); // for any other error
-            }
-
-            res.status(201).json(user);
-          })
+          req.login(user, (err) => {
+            if (err) return next(err);
+      
+            res.redirect(`/`);
+          });
         })
         .catch(next);
     })

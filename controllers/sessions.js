@@ -16,9 +16,7 @@ exports.create = (req, res, next) => {
   User.findOne({ email })
     .then(user => {
       passport.authenticate(`local`, (err, theUser, failureDetails) => {
-        if (err) {
-          return next(err);
-        }
+        if (err) return next(err);
     
         if (!theUser) {
           // unauthorized, `failureDetails` contains the error messages from our logic in "LocalStrategy" {message: '…'}.
@@ -28,9 +26,7 @@ exports.create = (req, res, next) => {
     
         // save user in session: req.user
         req.login(theUser, (err) => {
-          if (err) {
-            return next(err);
-          }
+          if (err) return next(err);
     
           res.status(201).json(user);
         });
@@ -52,17 +48,93 @@ exports.facebook = passport.authenticate(`facebook`, { scope : ['email'] });
 
 exports.facebookCallback = (req, res, next) => {
   passport.authenticate(`facebook`, (err, theUser, failureDetails) => {
-    if (err) {
-      // something went wrong authenticating user
-      return next(err);
-    }
+    if (err) return next(err);
 
+    // PROCESS
+    // 1. check facebookId presence in DB
+    //   ✔ true  => connect user
+    //   ✘ false => go to 2.
+    // 2. check facebookEmail presence in DB
+    //   ✔ true
+    //     => add facebookId to profile
+    //     => connect user
+    //   ✘ false
+    //     => create user
+    //     => connect user
+        
     let id = theUser.id;
-    let displayName = theUser.displayName;
-    let email = theUser.emails[0].value || `${id}@facebook.com`;
+    let username = theUser.displayName;
+    let email = theUser.emails[0].value || `${id}@facebook.com`; // default email set if not provided
     let profilePicture = theUser.photos[0].value;
 
-    console.log(`id: `, id, `displayName: `, displayName, `email: `, email)
+    console.log(`id: `, id, `username: `, username, `email: `, email);
+
+    // 1. check facebookId presence in DB
+    User.findOne({ facebookId: id })
+      .then(user => {
+        if(!user) {
+          console.log(`facebookId not found 🙅‍♂️`);
+
+          // 2. check facebookEmail presence in DB
+          User.findOne({ email: email })
+            .then(user => {
+              if(!user) {
+                console.log(`facebookEmail not found 🙅‍♂️`);
+
+                const generatePassword = () => {
+                  return Math.random().toString(36).substr(2, 8);
+                }
+
+                const password   = generatePassword();
+
+                // create user account
+                req.uest({
+                  method: 'POST',
+                  url: '/api/0.1/users',
+                  body: {email, password}
+                }, (er, resp, body) => {
+                  if (er) return next(er);
+
+                  // connect user
+                  User.findOneAndUpdate({ email }, { facebookId: id }, {new: true})
+                    .then(user => {
+                      console.log(`user profile created with facebookId 🎉`);
+
+                      res.redirect(`/`);
+                    })
+                    .catch(next);
+                })
+                return;
+              }
+
+              // add facebookId to profile and save
+              user.facebookId = id;
+              user.save()
+                .then(user => {
+                  console.log(`user profile updated with facebookId 🎉`);
+
+                  req.login(user, (err) => {
+                    if (err) return next(err);
+              
+                    res.redirect(`/`);
+                  });
+                })
+                .catch(next)
+                
+            })
+            .catch(next)
+
+          return;
+        }
+
+        console.log(`facebookId found 🎉`)
+        req.login(user, (err) => {
+          if (err) return next(err);
+    
+          res.redirect(`/`);
+        });
+      })
+      .catch(next);
 
   })(req, res, next);
 };
@@ -80,16 +152,11 @@ exports.twitter = passport.authenticate(`twitter`);
 
 exports.twitterCallback = (req, res, next) => {
   passport.authenticate(`twitter`, (err, theUser, failureDetails) => {
-    if (err) {
-      // something went wrong authenticating user
-      return next(err);
-    }
+    if (err) return next(err);
 
     // save user in session: req.user
     req.login(theUser, (err) => {
-      if (err) {
-        return next(err);
-      }
+      if (err) return next(err);
 
       res.status(302).json(user);
     });

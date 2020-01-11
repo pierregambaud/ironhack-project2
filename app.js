@@ -117,7 +117,7 @@ passport.use(new FacebookStrategy({
 },
   (accessToken, refreshToken, profile, done) => {
     process.nextTick(() => {
-      console.log('facebook success:', profile, accessToken, refreshToken);
+      console.log('Facebook success:', profile, accessToken, refreshToken);
 
       return done(null, profile);
     });
@@ -129,13 +129,13 @@ passport.use(new TwitterStrategy({
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
   callbackURL: "/api/0.1/sessions/twitterCallback"
 },
-function(token, tokenSecret, profile, cb) {
-  console.log("Twitter account details: ", profile);
+  (accessToken, refreshToken, profile, done) => {
+    process.nextTick(() => {
+      console.log('Twitter success:', profile, accessToken, refreshToken);
 
-  User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-    return cb(err, user);
-  });
-}
+      return done(null, profile);
+    });
+  }
 ));
 
 
