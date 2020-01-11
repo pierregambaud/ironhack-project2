@@ -127,7 +127,8 @@ passport.use(new FacebookStrategy({
 passport.use(new TwitterStrategy({
   consumerKey: process.env.TWITTER_CONSUMER_KEY,
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-  callbackURL: "/api/0.1/sessions/twitterCallback"
+  callbackURL: "/api/0.1/sessions/twitterCallback",
+  userProfileURL  : 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true' // to collect email
 },
   (accessToken, refreshToken, profile, done) => {
     process.nextTick(() => {
