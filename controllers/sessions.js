@@ -154,12 +154,92 @@ exports.twitterCallback = (req, res, next) => {
   passport.authenticate(`twitter`, (err, theUser, failureDetails) => {
     if (err) return next(err);
 
-    // save user in session: req.user
-    req.login(theUser, (err) => {
-      if (err) return next(err);
+    // PROCESS
+    // 1. check twitterId presence in DB
+    //   ✔ true  => connect user
+    //   ✘ false => go to 2.
+    // 2. check twitterEmail presence in DB
+    //   ✔ true
+    //     => add twitterId to profile
+    //     => connect user
+    //   ✘ false
+    //     => create user
+    //     => connect user
+        
+    let id = theUser.id;
+    let username = theUser.displayName;
+    let email = theUser.emails[0].value || `${id}@twitter.com`; // default email set if not provided
+    let profilePicture = theUser.photos[0].value;
 
-      res.status(302).json(user);
-    });
+    console.log(`id: `, id, `username: `, username, `email: `, email);
+
+    // 1. check twitterId presence in DB
+    User.findOne({ twitterId: id })
+      .then(user => {
+        if(!user) {
+          console.log(`twitterId not found 🙅‍♂️`);
+
+          // 2. check twitterEmail presence in DB
+          User.findOne({ email: email })
+            .then(user => {
+              if(!user) {
+                console.log(`twitterEmail not found 🙅‍♂️`);
+
+                const generatePassword = () => {
+                  return Math.random().toString(36).substr(2, 8);
+                }
+
+                const password   = generatePassword();
+
+                // create user account
+                req.uest({
+                  method: 'POST',
+                  url: '/api/0.1/users',
+                  body: {email, password}
+                }, (er, resp, body) => {
+                  if (er) return next(er);
+
+                  // connect user
+                  User.findOneAndUpdate({ email }, { twitterId: id }, {new: true})
+                    .then(user => {
+                      console.log(`user profile created with twitterId 🎉`);
+
+                      res.redirect(`/`);
+                    })
+                    .catch(next);
+                })
+                return;
+              }
+
+              // add twitterId to profile and save
+              user.twitterId = id;
+              user.save()
+                .then(user => {
+                  console.log(`user profile updated with twitterId 🎉`);
+
+                  req.login(user, (err) => {
+                    if (err) return next(err);
+              
+                    res.redirect(`/`);
+                  });
+                })
+                .catch(next)
+                
+            })
+            .catch(next)
+
+          return;
+        }
+
+        console.log(`twitterId found 🎉`)
+        req.login(user, (err) => {
+          if (err) return next(err);
+    
+          res.redirect(`/`);
+        });
+      })
+      .catch(next);
+
   })(req, res, next);
 };
 
