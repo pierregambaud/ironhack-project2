@@ -8,6 +8,7 @@ const UserSchema = Schema ({
   twitterId: { type: String },
   username: { type: String, match: /^[a-zA-Z0-9]+([_ -]?[a-zA-Z0-9])*$/, minlength: 3, maxlength: 20, unique: true, required: true },
   slug: { type: String, match: /^[a-za-z0-9]+(?:-[a-za-z0-9]+)*$/, min: 3, unique: true },
+  avatarPath: { type: String, default: `images/default-avatar.png` },
   rank: { type: Number, min: 0, max: 3, default: 0 },
   favoritesBooks: [ { type: Schema.Types.ObjectId, ref: 'Book' } ],
   reviews: [ { type: Schema.Types.ObjectId, ref: 'Review' } ]

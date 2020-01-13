@@ -11,6 +11,8 @@ const Review = require(`../models/review.js`);
 
 exports.index = (req, res, next) => {
   Review.find()
+    .populate(`book_id`)
+    .populate(`user_id`)
     .then(reviews => {
       res.status(200).json(reviews);
     })
@@ -92,6 +94,8 @@ exports.update = (req, res, next) => {
   },{ 
     new: true
   })
+    .populate(`book`)
+    .populate(`user`)
     .then(review => {
       res.status(200).json(review);
     })

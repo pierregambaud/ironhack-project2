@@ -6,10 +6,24 @@ const uest            = require('uest');
 // visitor homepage
 router.get(`/`, (req, res, next) => {
   if(req.user) {
-    return res.render(`index/member`, {
-      layout: 'member-layout'
-    });
+    req.uest({
+      method: 'GET',
+      url: '/api/0.1/reviews',
+      body: {} 
+    }, (err, resp, body) => {
+      if (err) return next(err);
+      
+      console.log(body);
+
+      return res.render(`index/member`, {
+        layout: 'member-layout',
+        reviews: body
+      });
+    })
+
+    return;
   }
+
   res.render(`index/visitor`);
 });
 
@@ -27,14 +41,14 @@ router.post('/inscription', (req, res, next) => {
     method: 'POST',
     url: '/api/0.1/users',
     body: {email, password}
-  }, (er, resp, body) => {
-    if (er) {
+  }, (err, resp, body) => {
+    if (err) {
       // deal with specific "Forbidden" error
-      if (er.status === 409) {
+      if (err.status === 409) {
         return res.render('signup', {error: "Email already taken"})
       }
 
-      return next(er); // for any other error
+      return next(err); // for any other error
     }
       
     res.redirect('/')
@@ -60,14 +74,14 @@ router.post('/connexion', (req, res, next) => {
     method: 'POST',
     url: '/api/0.1/sessions',
     body: {email, password}
-  }, (er, resp, body) => {
-    if (er) {
+  }, (err, resp, body) => {
+    if (err) {
       // deal with specific "Forbidden" error
-      if (er.status === 401) {
+      if (err.status === 401) {
         return res.render('index/visitor', {error: `Username and password does not match`});
       }
 
-      return next(er); // for any other error
+      return next(err); // for any other error
     }
       
     res.redirect('/');
@@ -94,14 +108,14 @@ router.get(`/deconnexion`, (req, res, next) => {
   req.uest({
     method: 'DELETE',
     url: '/api/0.1/session'
-  }, (er, resp, body) => {
-    if (er) {
-      return next(er);
+  }, (err, resp, body) => {
+    if (err) {
+      return next(err);
     }
       
     res.redirect('/');
   })
-})
+});
 
 
 module.exports = router;

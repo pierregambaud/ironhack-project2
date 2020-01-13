@@ -10,47 +10,9 @@
       <a href="">plus</a>
     </header>
     <main>
-      <div class="last-review">
-        <div class="cover">
-          <img src="https://www.blablalivre.fr/resources/vignettes/livres/covers/2/27/270/2702/27024/270243/2702436/27024361/270243614/2702436145.jpg">
-        </div>
-        <div class="review">
-          <p>Encore une énigme résolue par Miss Marple avec brio ! J'ai aimé retrouver tous les personnages des affaires précédentes aventures.</p>
-          <div class="details">
-            <div class="rating">
-              <i class="fas fa-star"></i>
-              4
-            </div>
-            <div class="review-author">
-              <a href="">
-                <img alt="Pierre avatar" src="https://geeko.lesoir.be/wp-content/uploads/sites/58/2019/01/pikachu.jpg">
-                <span>Pierre</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="last-review">
-        <div class="cover">
-          <img src="https://www.blablalivre.fr/resources/vignettes/livres/covers/2/27/275/2755/27556/275561/2755617/27556172/275561726/2755617268.jpg">
-        </div>
-        <div class="review">
-          <p>Encore une énigme résolue par Miss Marple avec brio ! J'ai aimé retrouver tous les personnages des affaires précédentes aventures.</p>
-          <div class="details">
-            <div class="rating">
-              <i class="fas fa-star"></i>
-              4
-            </div>
-            <div class="review-author">
-              <a href="">
-                <img alt="Pierre avatar" src="https://geeko.lesoir.be/wp-content/uploads/sites/58/2019/01/pikachu.jpg">
-                <span>Pierre</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      {{#each reviews}}
+        {{> reviewCard}}
+      {{/each}}
     </main>
   </div>
   
