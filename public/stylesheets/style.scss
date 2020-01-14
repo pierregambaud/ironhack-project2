@@ -294,6 +294,10 @@ textarea:focus, input:focus, button:focus {
   padding: .8em 1em .5em 0;
 }
 
+#index-member-container #last-reviews main .last-review .review a {
+  color: var(--primary-color);
+}
+
 #index-member-container #last-reviews main .last-review .review p {
   margin-top: 0;
 }
@@ -388,6 +392,10 @@ textarea:focus, input:focus, button:focus {
 #index-member-container #trending-books main .trending-book {
   padding-top: 1.4em;
   margin-right: 1.2em;
+}
+
+#index-member-container #trending-books main .trending-book a {
+  color: var(--primary-color);
 }
 
 #index-member-container #trending-books main .trending-book .description {

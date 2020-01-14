@@ -1,9 +1,13 @@
 <div class="last-review">
   <div class="cover">
-    <img src="{{book_id.coverPath}}">
+    <a href="/livre/{{book_id.slug}}">
+      <img src="{{book_id.coverPath}}">
+    </a>
   </div>
   <div class="review">
-    <p>{{review}}</p>
+    <a href="/livre/{{book_id.slug}}">
+      <p>{{review}}</p>
+    </a>
     <div class="details">
       <div class="rating">
         <i class="fas fa-star"></i>
