@@ -4,7 +4,7 @@ const uest            = require('uest');
 
 
 // auth routes
-const authRoutes = require(`./auth`);
+const authRoutes = require(`./authentication`);
 router.use('/', authRoutes);
 
 
