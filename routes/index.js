@@ -13,11 +13,24 @@ router.get(`/`, (req, res, next) => {
     }, (err, resp, body) => {
       if (err) return next(err);
       
-      console.log(body);
+      const reviews = body;
 
-      return res.render(`index/member`, {
-        layout: 'member-layout',
-        reviews: body
+      req.uest({
+        method: 'GET',
+        url: '/api/0.1/books',
+        body: {} 
+      }, (err, resp, body) => {
+        if (err) return next(err);
+        
+        const books = body;
+
+        console.log(books);
+
+        return res.render(`index/member`, {
+          layout: 'member-layout',
+          reviews,
+          books
+        });
       });
     })
 

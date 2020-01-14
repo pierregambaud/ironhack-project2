@@ -390,18 +390,27 @@ textarea:focus, input:focus, button:focus {
   margin-right: 1.2em;
 }
 
-#index-member-container #trending-books main h3 {
+#index-member-container #trending-books main .trending-book .description {
+  overflow: hidden;
+  width: 6.5em;
+}
+
+#index-member-container #trending-books main .trending-book .description h3 {
   font-size: .8em;
   font-weight: 600;
   color: var(--primary-color);
   margin-top: .6em;
   margin-bottom: .3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-#index-member-container #trending-books main p {
+#index-member-container #trending-books main .trending-book .description p {
   font-size: .6em;
   margin-top: 0;
 }
+
 
 //                      _                
 //                     | |               

@@ -23,7 +23,7 @@
     <main>
       <ul>
         <li>
-          <a href="">
+          <a href="/{{slug}}/">
             <img src="/images/picto-reviews.png">
             <span>Critiques</span>
           </a>
@@ -49,33 +49,17 @@
       </ul>
     </main>
   </div>
-  
+
   <div id="trending-books">
     <header>
       <h2>Livres populaires</h2>
       <a href="">plus</a>
     </header>
     <main>
-      <div class="trending-book">
-        <img src="https://www.blablalivre.fr/resources/vignettes/livres/covers/2/27/271/2715/27152/271524/2715248/27152480/2715248008.jpg">
-        <h3>Ceci est un titre</h3>
-        <p>Paul Smith</p>
-      </div>
-      <div class="trending-book">
-        <img src="https://www.blablalivre.fr/resources/vignettes/livres/covers/2/22/226/2266/22662/226625/2266259/22662592/226625929/2266259296.jpg">
-        <h3>Ceci est un titre</h3>
-        <p>Paul Smith</p>
-      </div>
-      <div class="trending-book">
-        <img src="https://www.blablalivre.fr/resources/vignettes/livres/covers/2/27/270/2702/27024/270243/2702436/27024361/270243614/2702436145.jpg">
-        <h3>Ceci est un titre</h3>
-        <p>Paul Smith</p>
-      </div>
-      <div class="trending-book">
-        <img src="https://www.blablalivre.fr/resources/vignettes/livres/covers/2/22/220/2203/22030/220306/2203063/22030638/220306381/2203063815.jpg">
-        <h3>Ceci est un titre</h3>
-        <p>Paul Smith</p>
-      </div>
+      {{#each books}}
+        {{> bookCard}}
+      {{/each}}
     </main>
   </div>
+  
 </div>
