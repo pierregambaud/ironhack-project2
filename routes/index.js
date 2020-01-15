@@ -58,8 +58,27 @@ router.get(`/livre/:id`, (req, res, next) => {
     
     const book = body;
 
-    return res.render(`book`, {
+    return res.render(`books/show`, {
       book
+    });
+  });  
+});
+
+
+// user page
+router.get(`/membre/:id`, (req, res, next) => {
+  req.uest({
+    method: 'GET',
+    url: '/api/0.1/users/' + req.params.id
+  }, (err, resp, body) => {
+    if (err) return next(err);
+    
+    const user = body;
+
+    console.log(user)
+
+    return res.render(`users/show`, {
+      user: user
     });
   });  
 });

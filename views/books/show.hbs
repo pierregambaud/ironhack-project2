@@ -1,0 +1,65 @@
+<div id="books-show-container">
+  <nav>
+    <span><a href="/"><i class="fas fa-arrow-left fa-2x"></i></a></span>
+    <span><a href=""><i class="fas fa-shopping-cart fa-2x"></i></a></span>
+  </nav>
+  <div id="book">
+    <div class="cover">
+      <img src="{{book.coverPath}}" alt="Couverture de {{book.title}}">
+    </div>
+    <div class="main-details">
+      <h1>{{book.title}}</h1>
+      <h2>{{book.authors}}</h2>
+      <p>{{book.rating}} (X)</p>
+    </div>
+  </div>
+  <div id="interactions">
+    <ul>
+      <li><i class="fas fa-book fa-2x"></i> ajouter à une liste</li>
+      <li><i class="fas fa-pen fa-2x"></i> écrire une critique</li>
+    </ul>
+  </div>
+  <div id="description">
+    <header>
+      <h3>Description</h3>
+      <a href="/livre/{{book.id}}/enrichir">enrichir</a>
+    </header>
+    <main>
+      <p>Ceci est la description du livre, blabla, blabla.</p>
+      <div class="tags">
+        <ul>
+          <li>roman policier</li>
+          <li>londres</li>
+          <li>enquêtes</li>
+        </ul>
+      </div>
+    </main>
+  </div>
+  <div id="reviews">
+    <header>
+      <h3>Critiques</h3>
+      <a href="/livre/{{book.id}}/critiques">plus</a>
+    </header>
+    <main>
+      <div class="review">
+        <div class="avatar">
+          <img src="" alt="avatar">
+        </div>
+        <div class="content">
+          <header>
+            <div class="username">
+              <span>Username</span>
+              <span><i></i></span>
+            </div>
+            <div class="rating">
+              <span><i class="fas fa-star"></i>3/5</span>
+            </div>
+          </header>
+          <main>
+            Ceci est une critique pour critiquer le livre.
+          </main>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

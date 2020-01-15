@@ -14,7 +14,7 @@ const bcryptSalt  = 10;
 exports.index = (req, res, next) => {
   User.find()
     .then(users => {
-      res.status(200).json({ users });
+      res.status(200).json(users);
     })
     .catch(next);
 }
@@ -68,6 +68,7 @@ exports.create = (req, res, next) => {
         slug: generateSlug(email),
       });
 
+      // login user
       newUser.save()
         .then(user => {
 
@@ -92,25 +93,18 @@ exports.create = (req, res, next) => {
 //                            
 
 exports.show = (req, res, next) => {
-  if(!req.params.id) {
-    let err = new Error(`This user ID does not match any entry`);
-    err.status = 404;
-
-    return next(err);
-  }
-
   const id = req.params.id;
 
   User.findById(id)
     .then(user => {
-      let err = new Error(`This user ID does not match any entry`);
-      err.status = 404;
-
       if (!user) {
+        let err = new Error(`This ID does not match any user`);
+        err.status = 404;
+
         return next(err);
       }
 
-      res.status(200).json({ user });
+      res.status(200).json(user);
     })
     .catch(next);
 }
@@ -127,10 +121,7 @@ exports.show = (req, res, next) => {
 
 exports.update = (req, res, next) => {
   if(!req.params.id) {
-    let err = new Error(`ID is mandatory`);
-    err.status = 404;
-    
-    return next(err);
+    return next(new Error(`This ID does not match any user`));
   }
 
   const id = req.params.id;
@@ -143,7 +134,7 @@ exports.update = (req, res, next) => {
   },{ 
     new: true
   })
-    .then(user => res.status(200).json({ user }))
+    .then(user => res.status(200).json(user))
     .catch(next);
 }
 
@@ -159,10 +150,7 @@ exports.update = (req, res, next) => {
 
 exports.destroy = (req, res, next) => {
   if(!req.params.id) {
-    let err = new Error(`ID is mandatory`);
-    err.status = 404;
-    
-    return next(err);
+    return next(new Error(`This ID does not match any user`));
   }
 
   const id = req.params.id;

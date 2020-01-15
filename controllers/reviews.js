@@ -54,14 +54,17 @@ exports.create = (req, res, next) => {
 //                            
 
 exports.show = (req, res, next) => {
-  if(!req.params.id) {
-    return next(new Error(`This ID does not match any review`));
-  }
-
   const id = req.params.id;
 
   Review.findById(id)
     .then(review => {
+      if (!review) {
+        let err = new Error(`This ID does not match any review`);
+        err.status = 404;
+
+        return next(err);
+      }
+
       res.status(200).json(review);
     })
     .catch(next);

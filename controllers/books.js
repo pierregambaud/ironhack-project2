@@ -55,14 +55,17 @@ exports.create = (req, res, next) => {
 //                                                        
 
 exports.show = (req, res, next) => {
-  if(!req.params.id) {
-    return next(new Error(`This ID does not match any book`));
-  }
-
   const id = req.params.id;
 
   Book.findById(id)
     .then(book => {
+      if (!book) {
+        let err = new Error(`This ID does not match any book`);
+        err.status = 404;
+
+        return next(err);
+      }
+
       res.status(200).json(book);
     })
     .catch(next);
