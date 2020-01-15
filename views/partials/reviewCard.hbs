@@ -1,11 +1,11 @@
 <div class="last-review">
   <div class="cover">
-    <a href="/livre/{{book_id.slug}}">
+    <a href="/livre/{{book_id._id}}">
       <img src="{{book_id.coverPath}}">
     </a>
   </div>
   <div class="review">
-    <a href="/livre/{{book_id.slug}}">
+    <a href="/livre/{{book_id._id}}">
       <p>{{review}}</p>
     </a>
     <div class="details">
@@ -14,7 +14,7 @@
         {{rating}}
       </div>
       <div class="review-author">
-        <a href="/livre/{{book_id.slug}}">
+        <a href="/membre/{{user_id._id}}">
           <img alt="{{user_id.username}} avatar" src="{{user_id.avatarPath}}">
           <span>{{user_id.username}}</span>
         </a>

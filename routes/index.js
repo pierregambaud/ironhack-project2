@@ -32,7 +32,6 @@ router.get(`/`, (req, res, next) => {
         console.log(books);
 
         return res.render(`index/member`, {
-          layout: 'member-layout',
           user: req.user,
           reviews,
           books
@@ -43,7 +42,26 @@ router.get(`/`, (req, res, next) => {
     return;
   }
 
-  res.render(`index/visitor`);
+  res.render(`index/visitor`, {
+    layout: '/layouts/homepage'
+  });
+});
+
+
+// book page
+router.get(`/livre/:id`, (req, res, next) => {
+  req.uest({
+    method: 'GET',
+    url: '/api/0.1/books/' + req.params.id
+  }, (err, resp, body) => {
+    if (err) return next(err);
+    
+    const book = body;
+
+    return res.render(`book`, {
+      book
+    });
+  });  
 });
 
 
