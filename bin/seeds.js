@@ -25,6 +25,12 @@ const rawUsers = [
     password: `jessica`,
     username: `Roger`,
     slug: `roger`
+  },
+  {
+    email: `thierry@lhermitte.fr`,
+    password: `tititi`,
+    username: `thierry`,
+    slug: `thierry`
   }
 ];
 
@@ -64,6 +70,18 @@ const rawBooks = [
     publisher: `Stock`,
     publicationDate: `2019-11-20`,
     rating: `4`
+  },
+  {
+    isbn: `289225955X`,
+    isbn13: `978-2892259551`,
+    asin: `B082VJ6DKN`,
+    title: `Père riche, père pauvre`,
+    slug: `pere-riche-pere-pauvre`,
+    authors: `Robert T. Kiyosaki`,
+    coverPath: `https://images-na.ssl-images-amazon.com/images/I/51ijjHLLiCL._SX332_BO1,204,203,200_.jpg`,
+    publisher: `Un monde different`,
+    publicationDate: `2017-12-01`,
+    rating: `3`
   }
 ];
 
@@ -87,6 +105,13 @@ const rawReviews = [
     user_id: ``,
     rating: `4`,
     review: `Des livres comme il en existe trop peu. On est transporté du début à la fin !`,
+    url: ``
+  },
+  {
+    book_id: ``,
+    user_id: ``,
+    rating: `3`,
+    review: `Une dystopie accessible et prenante, des personnages attachants, le tout dans un pseudo huit clos. A lire pour les fans de SF`,
     url: ``
   }
 ]
@@ -122,13 +147,22 @@ User.create(rawUsers) // create users
                 } }
               )
                 .then(() => {
-                  console.log(`Book ${i} and review ${i} assigned`);
-  
-                  mongoose.connection.close();
+                  console.log(`Book ${i} and review ${i} assigned to user`);
+
+                  Book.findByIdAndUpdate(booksIds[i], // assign review to book
+                    { $push: {
+                        "reviews": reviewId,
+                    } }
+                  )
+                    .then(() => {
+                      console.log(`Review ${i} assigned to book`);
+
+                      mongoose.connection.close();
+                    })
+                    .catch(err => console.error(err));
                 })
                 .catch(err => console.error(err));
             })
-
           })
           .catch(err => console.error(err));
       })

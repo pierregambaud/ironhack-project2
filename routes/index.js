@@ -58,6 +58,8 @@ router.get(`/livre/:id`, (req, res, next) => {
     
     const book = body;
 
+    console.log(body);
+
     return res.render(`books/show`, {
       book
     });
