@@ -58,6 +58,12 @@ exports.show = (req, res, next) => {
   const id = req.params.id;
 
   Book.findById(id)
+    .populate({
+      path : `reviews`,
+      populate : {
+        path : `user_id`
+      }
+    })
     .then(book => {
       if (!book) {
         let err = new Error(`This ID does not match any book`);

@@ -254,7 +254,7 @@ textarea:focus, input:focus, button:focus {
   padding-left: var(--gutter);
   margin-right: calc(var(--gutter) * -1);
   padding-top: 1.2em;
-  overflow: hidden;
+  overflow: auto;
 }
 
 #index-member-container #last-reviews main .last-review {
@@ -377,7 +377,7 @@ textarea:focus, input:focus, button:focus {
   margin-left: calc(var(--gutter) * -1);
   padding-left: var(--gutter);
   margin-right: calc(var(--gutter) * -1);
-  overflow: hidden;
+  overflow: auto;
 }
 
 #index-member-container #trending-books main img {

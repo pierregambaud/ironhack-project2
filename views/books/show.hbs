@@ -41,25 +41,9 @@
       <a href="/livre/{{book.id}}/critiques">plus</a>
     </header>
     <main>
-      <div class="review">
-        <div class="avatar">
-          <img src="" alt="avatar">
-        </div>
-        <div class="content">
-          <header>
-            <div class="username">
-              <span>Username</span>
-              <span><i class="fas fa-heart"></i></span>
-            </div>
-            <div class="rating">
-              <span><i class="fas fa-star"></i>3/5</span>
-            </div>
-          </header>
-          <main>
-            Ceci est une critique pour critiquer le livre.
-          </main>
-        </div>
-      </div>
+      {{#each book.reviews}}
+        {{>reviewCardBookPage}}
+      {{/each}}
     </main>
   </div>
 </div>

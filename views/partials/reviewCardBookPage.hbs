@@ -1,0 +1,19 @@
+<div class="review">
+  <div class="avatar">
+    <img src="/{{user_id.avatarPath}}" alt="Avatar de {{user_id.username}}">
+  </div>
+  <div class="content">
+    <header>
+      <div class="username">
+        <span>{{user_id.username}}</span>
+        <span><i class="fas fa-heart"></i></span>
+      </div>
+      <div class="rating">
+        <span><i class="fas fa-star"></i>{{rating}}/5</span>
+      </div>
+    </header>
+    <main>
+      {{review}}
+    </main>
+  </div>
+</div>
