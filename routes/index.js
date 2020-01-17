@@ -32,6 +32,7 @@ router.get(`/`, (req, res, next) => {
         console.log(books);
 
         return res.render(`index/member`, {
+          layout: '/layouts/homepage',
           user: req.user,
           reviews,
           books
