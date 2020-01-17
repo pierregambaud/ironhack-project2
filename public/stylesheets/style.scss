@@ -126,7 +126,7 @@ textarea:focus, input:focus, button:focus {
       color: var(--primary-color);
       padding-top: .8em;
       padding-bottom: .8em;
-      width: 280px;
+      width: calc(100% - 3*var(--gutter));
       margin-bottom: .8em;
       box-shadow: var(--main-shadow-color);
       -moz-box-shadow: var(--main-shadow-color);
@@ -136,7 +136,7 @@ textarea:focus, input:focus, button:focus {
     }
   
     button {
-      width: 280px;
+      width: calc(100% - 3*var(--gutter));
       padding-top: .8em;
       padding-bottom: .8em;
       background-color: var(--quaternary-color);
@@ -160,7 +160,7 @@ textarea:focus, input:focus, button:focus {
   }
 
   a {
-    width: 280px;
+    width: calc(100% - 3*var(--gutter));
     padding-top: .8em;
     padding-bottom: .8em;
     text-align: left;
@@ -169,7 +169,7 @@ textarea:focus, input:focus, button:focus {
     box-shadow: var(--main-shadow-color);
     font-weight: 500;
     margin-bottom: 1em;
-    padding-left: .8em;
+    padding-left: 1em;
   }
   a:hover {
     text-decoration: none;
@@ -177,7 +177,7 @@ textarea:focus, input:focus, button:focus {
   a:before {
     font-family: 'FontAwesome';
     speak: none;
-    font-size: 1.4em;
+    font-size: 1.6em;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -191,13 +191,13 @@ textarea:focus, input:focus, button:focus {
   #btn-twitter:before  {
     content: "\f099";
     color: #1DA1F2;
-    margin-right: .7em;
+    margin-right: .8em;
   }
 
   #btn-facebook:before {
     content: "\f082";
     color: #4267B2;
-    margin-right: .4em;
+    margin-right: .5em;
   }
 
   #signup {

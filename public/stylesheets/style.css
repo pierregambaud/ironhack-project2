@@ -96,7 +96,7 @@ textarea:focus, input:focus, button:focus {
       color: var(--primary-color);
       padding-top: .8em;
       padding-bottom: .8em;
-      width: 280px;
+      width: calc(100% - 3*var(--gutter));
       margin-bottom: .8em;
       box-shadow: var(--main-shadow-color);
       -moz-box-shadow: var(--main-shadow-color);
@@ -104,7 +104,7 @@ textarea:focus, input:focus, button:focus {
       -o-box-shadow: var(--main-shadow-color);
       border: none; }
     #index-visitor-container form button {
-      width: 280px;
+      width: calc(100% - 3*var(--gutter));
       padding-top: .8em;
       padding-bottom: .8em;
       background-color: var(--quaternary-color);
@@ -122,7 +122,7 @@ textarea:focus, input:focus, button:focus {
     padding-top: .6em;
     padding-bottom: .3em; }
   #index-visitor-container #social-logins a {
-    width: 280px;
+    width: calc(100% - 3*var(--gutter));
     padding-top: .8em;
     padding-bottom: .8em;
     text-align: left;
@@ -131,13 +131,13 @@ textarea:focus, input:focus, button:focus {
     box-shadow: var(--main-shadow-color);
     font-weight: 500;
     margin-bottom: 1em;
-    padding-left: .8em; }
+    padding-left: 1em; }
   #index-visitor-container #social-logins a:hover {
     text-decoration: none; }
   #index-visitor-container #social-logins a:before {
     font-family: 'FontAwesome';
     speak: none;
-    font-size: 1.4em;
+    font-size: 1.6em;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -149,11 +149,11 @@ textarea:focus, input:focus, button:focus {
   #index-visitor-container #social-logins #btn-twitter:before {
     content: "\f099";
     color: #1DA1F2;
-    margin-right: .7em; }
+    margin-right: .8em; }
   #index-visitor-container #social-logins #btn-facebook:before {
     content: "\f082";
     color: #4267B2;
-    margin-right: .4em; }
+    margin-right: .5em; }
   #index-visitor-container #social-logins #signup {
     color: var(--primary-color); }
 
