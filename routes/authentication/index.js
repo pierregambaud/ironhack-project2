@@ -33,7 +33,9 @@ router.post('/inscription', (req, res, next) => {
 
 // signup homepage
 router.get(`/inscription`, (req, res, next) => {
-  res.render(`signup`);
+  res.render(`signup`, {
+    layout: '/layouts/homepage'
+  });
 });
 
 
