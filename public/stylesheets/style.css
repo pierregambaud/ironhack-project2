@@ -74,7 +74,7 @@ textarea:focus, input:focus, button:focus {
   color: var(--secondary-color); }
 
 #index-visitor-container {
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
   display: flex;
   flex-direction: column;
