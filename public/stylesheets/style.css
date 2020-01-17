@@ -154,38 +154,34 @@ textarea:focus, input:focus, button:focus {
   #container-index-visitor #social-logins #signup {
     color: var(--primary-color); }
 
-#index-member-container {
+#container-index-member {
   margin: var(--gutter); }
-
-#index-member-container #search {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  font-size: var(--input-size);
-  box-shadow: var(--main-shadow-color);
-  -moz-box-shadow: var(--main-shadow-color);
-  -webkit-box-shadow: var(--main-shadow-color);
-  -o-box-shadow: var(--main-shadow-color); }
-
-#index-member-container #search i {
-  margin-left: 1em; }
-
-#index-member-container #search input {
-  width: 100%;
-  padding: .6em 1em;
-  border: 0; }
+  #container-index-member #search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--input-size);
+    background-color: var(--quinary-color);
+    border: 1px solid var(--tertiary-color); }
+    #container-index-member #search i {
+      margin-left: 1em; }
+    #container-index-member #search input {
+      font-size: var(--input-size);
+      width: 100%;
+      padding: .8em 1em .7em 1em;
+      border: 0; }
 
 #last-reviews, #user-lists, #trending-books {
   margin-top: 1.8em; }
 
-#index-member-container #last-reviews header, #index-member-container #trending-books header {
+#container-index-member #last-reviews header, #container-index-member #trending-books header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center; }
 
-#index-member-container #last-reviews main {
+#container-index-member #last-reviews main {
   display: flex;
   flex-direction: row;
   margin-left: calc(var(--gutter) * -1);
@@ -193,140 +189,119 @@ textarea:focus, input:focus, button:focus {
   margin-right: calc(var(--gutter) * -1);
   padding-top: 1.2em;
   overflow: auto; }
+  #container-index-member #last-reviews main .last-review {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 315px;
+    margin-top: 1.2em;
+    margin-bottom: 2.1em;
+    margin-right: 1.2em;
+    box-shadow: var(--main-shadow-color);
+    -moz-box-shadow: var(--main-shadow-color);
+    -webkit-box-shadow: var(--main-shadow-color);
+    -o-box-shadow: var(--main-shadow-color);
+    border-radius: var(--border-radius); }
+    #container-index-member #last-reviews main .last-review .cover {
+      width: 24em; }
+      #container-index-member #last-reviews main .last-review .cover img {
+        margin: -1em 1em;
+        height: 12em;
+        max-width: 10em;
+        box-shadow: var(--main-shadow-color);
+        -moz-box-shadow: var(--main-shadow-color);
+        -webkit-box-shadow: var(--main-shadow-color);
+        -o-box-shadow: var(--main-shadow-color);
+        border-radius: var(--border-radius); }
+    #container-index-member #last-reviews main .last-review .review {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: .8em 1em .5em 0; }
+      #container-index-member #last-reviews main .last-review .review a {
+        color: var(--primary-color); }
+      #container-index-member #last-reviews main .last-review .review p {
+        margin-top: 0; }
+      #container-index-member #last-reviews main .last-review .review .details {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: -0.4em; }
+        #container-index-member #last-reviews main .last-review .review .details .rating {
+          color: var(--star-color);
+          font-weight: 600; }
+        #container-index-member #last-reviews main .last-review .review .details .review-author a {
+          color: var(--primary-color); }
+        #container-index-member #last-reviews main .last-review .review .details .review-author span {
+          margin-left: .2em; }
+        #container-index-member #last-reviews main .last-review .review .details .review-author img {
+          vertical-align: middle;
+          width: 25px;
+          height: 25px;
+          box-shadow: var(--main-shadow-color);
+          -moz-box-shadow: var(--main-shadow-color);
+          -webkit-box-shadow: var(--main-shadow-color);
+          -o-box-shadow: var(--main-shadow-color);
+          border-radius: 50%; }
 
-#index-member-container #last-reviews main .last-review {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 315px;
-  margin-top: 1.2em;
-  margin-bottom: 2.1em;
-  margin-right: 1.2em;
-  box-shadow: var(--main-shadow-color);
-  -moz-box-shadow: var(--main-shadow-color);
-  -webkit-box-shadow: var(--main-shadow-color);
-  -o-box-shadow: var(--main-shadow-color);
-  border-radius: var(--border-radius); }
-
-#index-member-container #last-reviews main .last-review .cover {
-  width: 24em; }
-
-#index-member-container #last-reviews main .last-review .cover img {
-  margin: -1em 1em;
-  height: 12em;
-  max-width: 10em;
-  box-shadow: var(--main-shadow-color);
-  -moz-box-shadow: var(--main-shadow-color);
-  -webkit-box-shadow: var(--main-shadow-color);
-  -o-box-shadow: var(--main-shadow-color);
-  border-radius: var(--border-radius); }
-
-#index-member-container #last-reviews main .last-review .review {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: .8em 1em .5em 0; }
-
-#index-member-container #last-reviews main .last-review .review a {
-  color: var(--primary-color); }
-
-#index-member-container #last-reviews main .last-review .review p {
-  margin-top: 0; }
-
-#index-member-container #last-reviews main .last-review .review .details {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: -0.4em; }
-
-#index-member-container #last-reviews main .last-review .review .details .rating {
-  color: var(--star-color);
-  font-weight: 600; }
-
-#index-member-container #last-reviews main .last-review .review .details .review-author a {
-  color: var(--primary-color); }
-
-#index-member-container #last-reviews main .last-review .review .details .review-author span {
-  margin-left: .2em; }
-
-#index-member-container #last-reviews main .last-review .review .details .review-author img {
-  vertical-align: middle;
-  width: 25px;
-  height: 25px;
-  box-shadow: var(--main-shadow-color);
-  -moz-box-shadow: var(--main-shadow-color);
-  -webkit-box-shadow: var(--main-shadow-color);
-  -o-box-shadow: var(--main-shadow-color);
-  border-radius: 50%; }
-
-#index-member-container #user-lists {
+#container-index-member #user-lists {
   margin-top: .2em; }
+  #container-index-member #user-lists ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center; }
+    #container-index-member #user-lists ul li {
+      padding-top: .3em; }
+    #container-index-member #user-lists ul a {
+      color: var(--primary-color); }
+    #container-index-member #user-lists ul img {
+      height: 60px;
+      width: 60px;
+      vertical-align: middle;
+      border-radius: 50%;
+      margin-bottom: .6em;
+      border: 2px solid white;
+      box-shadow: var(--main-shadow-color);
+      -moz-box-shadow: var(--main-shadow-color);
+      -webkit-box-shadow: var(--main-shadow-color);
+      -o-box-shadow: var(--main-shadow-color); }
 
-#index-member-container #user-lists ul {
-  list-style-type: none;
-  padding-left: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  text-align: center; }
-
-#index-member-container #user-lists ul li {
-  padding-top: .3em; }
-
-#index-member-container #user-lists ul a {
-  color: var(--primary-color); }
-
-#index-member-container #user-lists ul img {
-  height: 60px;
-  width: 60px;
-  vertical-align: middle;
-  border-radius: 50%;
-  margin-bottom: .6em;
-  border: 2px solid white;
-  box-shadow: var(--main-shadow-color);
-  -moz-box-shadow: var(--main-shadow-color);
-  -webkit-box-shadow: var(--main-shadow-color);
-  -o-box-shadow: var(--main-shadow-color); }
-
-#index-member-container #trending-books main {
+#container-index-member #trending-books main {
   display: flex;
   flex-direction: row;
   margin-left: calc(var(--gutter) * -1);
   padding-left: var(--gutter);
   margin-right: calc(var(--gutter) * -1);
   overflow: auto; }
-
-#index-member-container #trending-books main img {
-  border-radius: var(--border-radius);
-  height: 12em;
-  max-width: 6.8em;
-  box-shadow: var(--main-shadow-color);
-  -moz-box-shadow: var(--main-shadow-color);
-  -webkit-box-shadow: var(--main-shadow-color);
-  -o-box-shadow: var(--main-shadow-color); }
-
-#index-member-container #trending-books main .trending-book {
-  padding-top: 1.4em;
-  margin-right: 1.2em; }
-
-#index-member-container #trending-books main .trending-book a {
-  color: var(--primary-color); }
-
-#index-member-container #trending-books main .trending-book .description {
-  overflow: hidden;
-  width: 6.5em; }
-
-#index-member-container #trending-books main .trending-book .description h3 {
-  color: var(--primary-color);
-  margin-top: .6em;
-  margin-bottom: .3em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; }
-
-#index-member-container #trending-books main .trending-book .description p {
-  margin-top: 0; }
+  #container-index-member #trending-books main img {
+    border-radius: var(--border-radius);
+    height: 12em;
+    max-width: 6.8em;
+    box-shadow: var(--main-shadow-color);
+    -moz-box-shadow: var(--main-shadow-color);
+    -webkit-box-shadow: var(--main-shadow-color);
+    -o-box-shadow: var(--main-shadow-color); }
+  #container-index-member #trending-books main .trending-book {
+    padding-top: 1.4em;
+    margin-right: 1.2em; }
+    #container-index-member #trending-books main .trending-book a {
+      color: var(--primary-color); }
+    #container-index-member #trending-books main .trending-book .description {
+      overflow: hidden;
+      width: 6.5em; }
+      #container-index-member #trending-books main .trending-book .description h3 {
+        color: var(--primary-color);
+        margin-top: .6em;
+        margin-bottom: .3em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+      #container-index-member #trending-books main .trending-book .description p {
+        margin-top: 0; }
 
 #books-index-container {
   margin: var(--gutter); }
