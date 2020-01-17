@@ -10,13 +10,24 @@
   --quaternary-color: #337ab7;
   --quinary-color: #FFFFFF;
   --main-shadow-color: 0 0 10px 5px rgba(0,0,0,0.1);
-  --input-size: 14px;
+  --primary-title-size: 22px;
+  --secondary-title-size: 20px;
+  --primary-text-size: 18px;
+  --secondary-text-size: 18px;
+  --input-size: 18px;
+  --primary-title-weight: 600;
+  --secondary-title-weight: 600;
+  --primary-text-weight: 400;
+  --secondary-text-weight: 300;
+  --text-lineheight: 1.1;
   --border-radius: 5px;
   --gutter: 1.5rem; }
 
 body {
   margin: 0;
-  font: 14px "Open Sans",sans-serif;
+  font: var(--primary-text-size) "Open Sans", sans-serif;
+  font-weight: var(--primary-text-weight);
+  line-height: var(--text-lineheight);
   color: var(--secondary-color);
   display: flex;
   flex-direction: column;
@@ -42,8 +53,19 @@ h1, h2, h3 {
   margin-bottom: 0;
   margin-top: 0; }
 
+h1 {
+  font-size: var(--primary-title-size);
+  font-weight: var(--primary-title-weight); }
+
 h2 {
-  font-size: 1.2em; }
+  font-size: var(--secondary-title-size);
+  font-weight: var(--secondary-title-weight); }
+
+input {
+  font-size: var(--primary-text-size); }
+
+button {
+  font-size: var(--primary-text-size); }
 
 textarea:focus, input:focus, button:focus {
   outline: none; }
@@ -51,115 +73,89 @@ textarea:focus, input:focus, button:focus {
 ::placeholder {
   color: var(--secondary-color); }
 
-.is-hidden {
-  display: none; }
-
 #index-visitor-container {
   height: 100vh;
-  text-align: center; }
-
-#index-visitor-container img {
-  margin-top: 20vh;
-  width: 250px; }
-
-#index-visitor-container h1 {
-  margin-top: 0;
-  margin-bottom: -30px; }
-
-#index-visitor-container h2 {
-  font-size: .9em;
-  font-weight: 600;
-  margin-bottom: 5em; }
-
-#index-visitor-container form {
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; }
-
-#index-visitor-container form input {
-  text-align: center;
-  font-size: var(--input-size);
-  color: var(--primary-color);
-  padding-top: .8em;
-  padding-bottom: .8em;
-  width: 280px;
-  margin-bottom: .8em;
-  box-shadow: var(--main-shadow-color);
-  -moz-box-shadow: var(--main-shadow-color);
-  -webkit-box-shadow: var(--main-shadow-color);
-  -o-box-shadow: var(--main-shadow-color);
-  border: none; }
-
-#index-visitor-container form button {
-  width: 280px;
-  font-size: 1em;
-  padding-top: .8em;
-  padding-bottom: .8em;
-  background-color: var(--quaternary-color);
-  color: var(--quinary-color);
-  font-weight: 600;
-  margin-bottom: 1em;
-  box-shadow: var(--main-shadow-color);
-  border: none;
-  --slide-bottom-y-origin: -7.6em;
-  --slide-bottom-duration: 1.6s; }
-
-#index-visitor-container {
-  --slide-bottom-y-origin: -8em;
-  --slide-bottom-y-target: 0;
-  --slide-bottom-duration: 1.6s; }
+  justify-content: center; }
+  #index-visitor-container img {
+    width: 400px; }
+  #index-visitor-container h1 {
+    margin-top: 0;
+    margin-bottom: -30px; }
+  #index-visitor-container h2 {
+    font-size: var(--primary-text-size);
+    margin-bottom: 3em; }
+  #index-visitor-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    #index-visitor-container form input {
+      text-align: center;
+      color: var(--primary-color);
+      padding-top: .8em;
+      padding-bottom: .8em;
+      width: 280px;
+      margin-bottom: .8em;
+      box-shadow: var(--main-shadow-color);
+      -moz-box-shadow: var(--main-shadow-color);
+      -webkit-box-shadow: var(--main-shadow-color);
+      -o-box-shadow: var(--main-shadow-color);
+      border: none; }
+    #index-visitor-container form button {
+      width: 280px;
+      padding-top: .8em;
+      padding-bottom: .8em;
+      background-color: var(--quaternary-color);
+      color: var(--quinary-color);
+      font-weight: 600;
+      margin-bottom: 1em;
+      box-shadow: var(--main-shadow-color);
+      border: none; }
 
 #index-visitor-container #social-logins {
   display: flex;
   flex-direction: column;
   align-items: center; }
-
-#index-visitor-container #social-logins p {
-  padding-top: .6em;
-  padding-bottom: .3em;
-  font-size: .8em; }
-
-#index-visitor-container #social-logins a {
-  width: 280px;
-  padding-top: .8em;
-  padding-bottom: .8em;
-  text-align: left;
-  background-color: var(--quinary-color);
-  color: var(--primary-color);
-  box-shadow: var(--main-shadow-color);
-  font-weight: 500;
-  margin-bottom: 1em;
-  padding-left: 2em; }
-
-#index-visitor-container #social-logins a:hover {
-  text-decoration: none; }
-
-#index-visitor-container #social-logins a:before {
-  font-family: 'FontAwesome';
-  speak: none;
-  font-size: 1.4em;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  position: relative;
-  -webkit-font-smoothing: antialiased;
-  vertical-align: middle; }
-
-#index-visitor-container #social-logins #btn-twitter:before {
-  content: "\f099";
-  color: #1DA1F2;
-  margin-right: 1.8em; }
-
-#index-visitor-container #social-logins #btn-facebook:before {
-  content: "\f082";
-  color: #4267B2;
-  margin-right: 1.5em; }
-
-#index-visitor-container #signup {
-  font-size: 0.8em;
-  color: var(--primary-color); }
+  #index-visitor-container #social-logins p {
+    padding-top: .6em;
+    padding-bottom: .3em; }
+  #index-visitor-container #social-logins a {
+    width: 280px;
+    padding-top: .8em;
+    padding-bottom: .8em;
+    text-align: left;
+    background-color: var(--quinary-color);
+    color: var(--primary-color);
+    box-shadow: var(--main-shadow-color);
+    font-weight: 500;
+    margin-bottom: 1em;
+    padding-left: .8em; }
+  #index-visitor-container #social-logins a:hover {
+    text-decoration: none; }
+  #index-visitor-container #social-logins a:before {
+    font-family: 'FontAwesome';
+    speak: none;
+    font-size: 1.4em;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle; }
+  #index-visitor-container #social-logins #btn-twitter:before {
+    content: "\f099";
+    color: #1DA1F2;
+    margin-right: .7em; }
+  #index-visitor-container #social-logins #btn-facebook:before {
+    content: "\f082";
+    color: #4267B2;
+    margin-right: .4em; }
+  #index-visitor-container #social-logins #signup {
+    color: var(--primary-color); }
 
 #index-member-container {
   margin: var(--gutter); }
@@ -180,7 +176,8 @@ textarea:focus, input:focus, button:focus {
 
 #index-member-container #search input {
   width: 100%;
-  padding: .6em 1em; }
+  padding: .6em 1em;
+  border: 0; }
 
 #last-reviews, #user-lists, #trending-books {
   margin-top: 1.8em; }
@@ -190,9 +187,6 @@ textarea:focus, input:focus, button:focus {
   flex-direction: row;
   justify-content: space-between;
   align-items: center; }
-
-#index-member-container #last-reviews header a, #index-member-container #trending-books header a {
-  font-size: .9em; }
 
 #index-member-container #last-reviews main {
   display: flex;
@@ -208,7 +202,6 @@ textarea:focus, input:focus, button:focus {
   flex-direction: row;
   justify-content: center;
   width: 315px;
-  font-size: .9em;
   margin-top: 1.2em;
   margin-bottom: 2.1em;
   margin-right: 1.2em;
@@ -279,9 +272,7 @@ textarea:focus, input:focus, button:focus {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  text-align: center;
-  font-size: .8em;
-  font-weight: 600; }
+  text-align: center; }
 
 #index-member-container #user-lists ul li {
   padding-top: .3em; }
@@ -330,8 +321,6 @@ textarea:focus, input:focus, button:focus {
   width: 6.5em; }
 
 #index-member-container #trending-books main .trending-book .description h3 {
-  font-size: .8em;
-  font-weight: 600;
   color: var(--primary-color);
   margin-top: .6em;
   margin-bottom: .3em;
@@ -340,7 +329,6 @@ textarea:focus, input:focus, button:focus {
   white-space: nowrap; }
 
 #index-member-container #trending-books main .trending-book .description p {
-  font-size: .6em;
   margin-top: 0; }
 
 #books-index-container {
@@ -371,12 +359,7 @@ textarea:focus, input:focus, button:focus {
   justify-content: center;
   margin-left: 1em; }
 
-#books-show-container #book h1 {
-  font-size: 1.4em; }
-
 #books-show-container #book h2 {
-  font-size: .9em;
-  font-weight: 400;
   color: var(--secondary-color); }
 
 #books-show-container #book p {
@@ -396,8 +379,7 @@ textarea:focus, input:focus, button:focus {
 
 #books-show-container #interactions ul li {
   list-style-type: none;
-  vertical-align: middle;
-  font-size: .9em; }
+  vertical-align: middle; }
 
 #books-show-container #interactions ul li i {
   color: var(--secondary-color); }
@@ -415,9 +397,6 @@ textarea:focus, input:focus, button:focus {
   display: flex;
   justify-content: space-between; }
 
-#books-show-container #description header a {
-  font-size: .9em; }
-
 #books-show-container #description .tags ul {
   display: flex;
   margin: 0;
@@ -426,7 +405,6 @@ textarea:focus, input:focus, button:focus {
 #books-show-container #description .tags ul li {
   list-style-type: none;
   vertical-align: middle;
-  font-size: .9em;
   margin-right: .5em;
   border: 1px solid var(--tertiary-color);
   padding: .2em .5em; }
@@ -437,9 +415,6 @@ textarea:focus, input:focus, button:focus {
 #books-show-container #reviews header {
   display: flex;
   justify-content: space-between; }
-
-#books-show-container #reviews header a {
-  font-size: .9em; }
 
 #books-show-container #reviews > main {
   margin-top: 1em; }
