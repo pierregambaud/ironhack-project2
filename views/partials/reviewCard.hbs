@@ -1,24 +1,24 @@
-<div class="last-review">
-  <div class="cover">
+<div class="last-review-card">
+  <div class="book-cover">
     <a href="/livre/{{book_id._id}}">
-      <img src="{{book_id.coverPath}}">
+      <img src="{{book_id.coverPath}}" alt="Couverture de {{book_id.title}}">
     </a>
   </div>
-  <div class="review">
-    <a href="/livre/{{book_id._id}}">
+  <div class="book-review">
+    <main>
       <p>{{review}}</p>
-    </a>
-    <div class="details">
+    </main>
+    <footer>
       <div class="rating">
         <i class="fas fa-star"></i>
         {{rating}}
       </div>
-      <div class="review-author">
+      <div class="author">
         <a href="/membre/{{user_id._id}}">
           <img alt="{{user_id.username}} avatar" src="{{user_id.avatarPath}}">
           <span>{{user_id.username}}</span>
         </a>
       </div>
-    </div>
+    </footer>
   </div>
 </div>

@@ -11,6 +11,12 @@ const Book = require(`../models/book.js`);
 
 exports.index = (req, res, next) => {
   Book.find()
+    .populate({
+      path : `reviews`,
+      populate : {
+        path : `user_id`
+      }
+    })
     .then(books => {
       res.status(200).json(books);
     })
