@@ -1,19 +1,26 @@
-<div class="review">
-  <div class="avatar">
-    <img src="/{{user_id.avatarPath}}" alt="Avatar de {{user_id.username}}">
-  </div>
-  <div class="content">
-    <header>
-      <div class="username">
-        <span>{{user_id.username}}</span>
-        <span><i class="fas fa-heart"></i></span>
+<div class="book-review-card">
+  <header>
+    <div class="user">
+      <a href="/membre/{{user_id._id}}">
+        <img src="/{{user_id.avatarPath}}" alt="Avatar de {{user_id.username}}">
+      </a>
+      <div>
+        <a href="/membre/{{user_id._id}}">{{user_id.username}}</a>
+        <span class="review-date">il y a 1 jour</span>
       </div>
-      <div class="rating">
-        <span><i class="fas fa-star"></i>{{rating}}/5</span>
+    </div>
+    <div class="interactions">
+      <i class="fas fa-heart"></i>
+    </div>
+  </header>
+  <main>
+    <div class="user-rating">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
       </div>
-    </header>
-    <main>
-      {{review}}
-    </main>
-  </div>
+    <div>{{review}}</div>
+  </main>
 </div>

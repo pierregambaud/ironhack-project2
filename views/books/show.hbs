@@ -1,4 +1,4 @@
-<div id="books-show-container">
+<div id="container-books-show">
   <nav>
     <span><a href="/"><i class="fas fa-arrow-left fa-2x"></i></a></span>
     <span><a href=""><i class="fas fa-shopping-cart fa-2x"></i></a></span>
@@ -10,7 +10,7 @@
     <div class="main-details">
       <h1>{{book.title}}</h1>
       <h2>{{book.authors}}</h2>
-      <p>{{book.rating}} (X)</p>
+      <p><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <span>(x notes)</span></p>
     </div>
   </div>
   <div id="interactions">
@@ -35,7 +35,7 @@
       </div>
     </main>
   </div>
-  <div id="reviews">
+  <div id="book-reviews">
     <header>
       <h3>Critiques</h3>
       <a href="/livre/{{book.id}}/critiques">plus</a>
