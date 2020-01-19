@@ -16,7 +16,7 @@
   <div id="interactions">
     <ul>
       <li><a href=""><i class="fas fa-book"></i><span>ajouter à une liste</span></a></li>
-      <li><a href=""><i class="fas fa-pen"></i><span>écrire une critique</span></a></li>
+      <li><a href="#popup-writing-review"><i class="fas fa-pen"></i><span>écrire une critique</span></a></li>
     </ul>
   </div>
   <div id="description">
@@ -46,4 +46,31 @@
       {{/each}}
     </main>
   </div>
+
+  <div id="popup-writing-review">
+    <header>
+      <h3>Publier une critique</h3>
+      <a class="close" href="#"><i class="fas fa-chevron-down"></i></a>
+    </header>
+    <main>
+      <form action="" method="POST">
+        <fieldset class="rating">  
+          <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="J'ai détesté"></label>
+          <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Pas accroché"></label>
+          <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Bien aimé"></label>
+          <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="J'ai adoré"></label>
+          <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Coup de coeur !"></label>
+        </fieldset>
+        <input type="hidden" name="book_id" value="{{book._id}}">
+        {{#if user}}
+          <input type="hidden" name="user_id" value="{{user._id}}">
+        {{/if}}
+        <textarea name="review" rows="4" placeholder="Ecrivez votre critique en 140 caractères max..."></textarea>
+      
+        <div>
+          <span>140 caractères restants</span>
+          <button>Ecrire</button>
+        </div>
+      </form>
+    </main>
 </div>

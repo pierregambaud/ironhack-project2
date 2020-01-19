@@ -12,7 +12,7 @@ router.post(`/`, usersController.create);
 
 
 // show
-router.get(`/:id`, usersController.show);
+router.get(`/:slugOrId`, usersController.show);
 
 
 // update

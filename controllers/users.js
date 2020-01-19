@@ -93,12 +93,19 @@ exports.create = (req, res, next) => {
 //                            
 
 exports.show = (req, res, next) => {
-  const id = req.params.id;
+  const slugOrId = req.params.slugOrId;
 
-  User.findById(id)
+  let query;
+  if (Object.keys(slugOrId).length === 24) { // slug is always 24 caracters length
+    query = {_id: slugOrId};
+  } else {
+    query = {slug: slugOrId}; // TODO: make sure slug length can not be egale to 24!
+  };
+
+  User.findOne(query)
     .then(user => {
       if (!user) {
-        let err = new Error(`This ID does not match any user`);
+        let err = new Error(`This entry does not match any user`);
         err.status = 404;
 
         return next(err);

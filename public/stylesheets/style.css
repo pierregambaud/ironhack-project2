@@ -1,3 +1,4 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 *, :before, :after {
   box-sizing: border-box; }
 
@@ -187,8 +188,7 @@ textarea:focus, input:focus, button:focus {
 #container-index-member #last-reviews > main {
   display: flex;
   flex-direction: row;
-  margin-left: calc(var(--gutter) * -1);
-  padding-left: var(--gutter);
+  padding-bottom: 1em;
   margin-right: calc(var(--gutter) * -1);
   overflow: auto; }
 
@@ -267,8 +267,6 @@ textarea:focus, input:focus, button:focus {
 #container-index-member #trending-books main {
   display: flex;
   flex-direction: row;
-  margin-left: calc(var(--gutter) * -1);
-  padding-left: var(--gutter);
   margin-right: calc(var(--gutter) * -1);
   overflow: auto; }
   #container-index-member #trending-books main img {
@@ -277,7 +275,8 @@ textarea:focus, input:focus, button:focus {
     width: 104px; }
   #container-index-member #trending-books main .trending-book {
     padding-top: 1.4em;
-    margin-right: 1em; }
+    margin-right: 1em;
+    padding-bottom: .5em; }
     #container-index-member #trending-books main .trending-book a {
       color: var(--primary-color); }
     #container-index-member #trending-books main .trending-book .description {
@@ -376,7 +375,8 @@ textarea:focus, input:focus, button:focus {
 
 #container-books-show #book-reviews {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  margin-bottom: 1em; }
   #container-books-show #book-reviews > header {
     display: flex;
     flex-direction: row;
@@ -393,6 +393,7 @@ textarea:focus, input:focus, button:focus {
   background-color: var(--quinary-color);
   border-radius: var(--border-radius);
   padding: .5em;
+  margin-bottom: 1em;
   font-size: var(--secondary-text-size); }
   #container-books-show #book-reviews .book-review-card header {
     display: flex;
@@ -426,6 +427,54 @@ textarea:focus, input:focus, button:focus {
     font-size: var(--secondary-text-size); }
     #container-books-show #book-reviews .book-review-card main .user-rating {
       padding-bottom: .8em; }
+
+#container-books-show #popup-writing-review header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+#container-books-show #popup-writing-review main {
+  margin-top: 1em; }
+  #container-books-show #popup-writing-review main form {
+    /***** CSS Magic to Highlight Stars on Hover *****/
+    /* hover previous stars in list */ }
+    #container-books-show #popup-writing-review main form fieldset {
+      border: 0;
+      float: left; }
+    #container-books-show #popup-writing-review main form .rating > input {
+      display: none; }
+    #container-books-show #popup-writing-review main form .rating > label:before {
+      margin: 5px;
+      font-size: 1.25em;
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f005"; }
+    #container-books-show #popup-writing-review main form .rating > label {
+      color: #ddd;
+      float: right; }
+    #container-books-show #popup-writing-review main form .rating > input:checked ~ label,
+    #container-books-show #popup-writing-review main form .rating:not(:checked) > label:hover,
+    #container-books-show #popup-writing-review main form .rating:not(:checked) > label:hover ~ label {
+      color: var(--star-color); }
+    #container-books-show #popup-writing-review main form .rating > input:checked + label:hover,
+    #container-books-show #popup-writing-review main form .rating > input:checked ~ label:hover,
+    #container-books-show #popup-writing-review main form .rating > label:hover ~ input:checked ~ label,
+    #container-books-show #popup-writing-review main form .rating > input:checked ~ label:hover ~ label {
+      color: var(--star-color); }
+    #container-books-show #popup-writing-review main form textarea {
+      width: 100%;
+      font-size: var(--secondary-text-size);
+      padding: 1em; }
+    #container-books-show #popup-writing-review main form > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: .2em; }
+      #container-books-show #popup-writing-review main form > div span {
+        font-size: var(--secondary-text-size); }
+      #container-books-show #popup-writing-review main form > div button {
+        color: var(--primary-action-color); }
 
 #users-show-container {
   margin: var(--gutter); }

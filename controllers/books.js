@@ -61,9 +61,16 @@ exports.create = (req, res, next) => {
 //                                                        
 
 exports.show = (req, res, next) => {
-  const id = req.params.id;
+  const slugOrId = req.params.slugOrId;
 
-  Book.findById(id)
+  let query;
+  if (Object.keys(slugOrId).length === 24) { // slug is always 24 caracters length
+    query = {_id: slugOrId};
+  } else {
+    query = {slug: slugOrId}; // TODO: make sure slug length can not be egale to 24!
+  };
+
+  Book.findOne(query)
     .populate({
       path : `reviews`,
       populate : {
@@ -72,7 +79,7 @@ exports.show = (req, res, next) => {
     })
     .then(book => {
       if (!book) {
-        let err = new Error(`This ID does not match any book`);
+        let err = new Error(`This entry does not match any book`);
         err.status = 404;
 
         return next(err);

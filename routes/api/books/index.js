@@ -12,7 +12,7 @@ router.post(`/`, booksController.create);
 
 
 // show
-router.get(`/:id`, booksController.show);
+router.get(`/:slugOrId`, booksController.show);
 
 
 // update

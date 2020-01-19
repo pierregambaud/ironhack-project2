@@ -1,6 +1,6 @@
 <div class="last-review-card">
   <div class="book-cover">
-    <a href="/livre/{{book_id._id}}">
+    <a href="/livre/{{book_id.slug}}">
       <img src="{{book_id.coverPath}}" alt="Couverture de {{book_id.title}}">
     </a>
   </div>
@@ -14,7 +14,7 @@
         {{rating}}
       </div>
       <div class="author">
-        <a href="/membre/{{user_id._id}}">
+        <a href="/membre/{{user_id.slug}}">
           <img alt="{{user_id.username}} avatar" src="{{user_id.avatarPath}}">
           <span>{{user_id.username}}</span>
         </a>

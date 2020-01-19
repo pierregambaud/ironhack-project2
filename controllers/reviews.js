@@ -1,4 +1,5 @@
 const Review = require(`../models/review.js`);
+const Book   = require(`../models/book.js`);
 
 
 //    _           _           
@@ -39,7 +40,17 @@ exports.create = (req, res, next) => {
     url
   })
     .then(review => {
-      res.status(201).json(review);
+      Book.findByIdAndUpdate(book_id,
+        {
+          $push: {
+            "reviews": review._id
+          }
+        })
+        .then(() => {
+          res.status(201).json(review);
+        })
+        .catch(next);
+
     })
     .catch(next);
 }
