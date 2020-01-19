@@ -65,12 +65,32 @@
         {{#if user}}
           <input type="hidden" name="user_id" value="{{user._id}}">
         {{/if}}
-        <textarea name="review" rows="4" placeholder="Ecrivez votre critique en 140 caractères max..."></textarea>
+        <textarea name="review" id="review" maxlength="140" rows="4" placeholder="Ecrivez votre critique en 140 caractères max..."></textarea>
       
         <div>
-          <span>140 caractères restants</span>
+          <span><span id="remaining-review-characters">140</span> caractères restants</span>
           <button>Ecrire</button>
         </div>
       </form>
     </main>
 </div>
+
+<script>
+  // count and display remaining review characters
+  const $review = document.getElementById("review");
+  const $remainingReviewCharacters = document.getElementById("remaining-review-characters");
+
+  $review.addEventListener("input", event => {
+      const target = event.currentTarget;
+      const maxLength = target.getAttribute("maxlength");
+      const currentLength = target.value.length;
+      const remainingCharacters = maxLength - currentLength;
+      
+      $remainingReviewCharacters.parentNode.style.color = "";
+      $remainingReviewCharacters.firstChild.nodeValue = +remainingCharacters;
+
+      if (currentLength >= maxLength) {
+          return $remainingReviewCharacters.parentNode.style.color = "red";
+      }
+  });
+</script>
