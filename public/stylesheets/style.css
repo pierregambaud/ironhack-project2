@@ -435,46 +435,57 @@ textarea:focus, input:focus, button:focus {
 
 #container-books-show #popup-writing-review main {
   margin-top: 1em; }
-  #container-books-show #popup-writing-review main form {
-    /***** CSS Magic to Highlight Stars on Hover *****/
-    /* hover previous stars in list */ }
-    #container-books-show #popup-writing-review main form fieldset {
+  #container-books-show #popup-writing-review main form .bloc-rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    #container-books-show #popup-writing-review main form .bloc-rating fieldset {
       border: 0;
-      float: left; }
-    #container-books-show #popup-writing-review main form .rating > input {
+      padding-left: 0;
+      width: 200px; }
+    #container-books-show #popup-writing-review main form .bloc-rating .rating > input {
       display: none; }
-    #container-books-show #popup-writing-review main form .rating > label:before {
+    #container-books-show #popup-writing-review main form .bloc-rating .rating > label:before {
       margin: 5px;
       font-size: 1.25em;
       font-family: FontAwesome;
       display: inline-block;
       content: "\f005"; }
-    #container-books-show #popup-writing-review main form .rating > label {
-      color: #ddd;
+    #container-books-show #popup-writing-review main form .bloc-rating .rating > label {
+      color: var(--secondary-color);
       float: right; }
-    #container-books-show #popup-writing-review main form .rating > input:checked ~ label,
-    #container-books-show #popup-writing-review main form .rating:not(:checked) > label:hover,
-    #container-books-show #popup-writing-review main form .rating:not(:checked) > label:hover ~ label {
+    #container-books-show #popup-writing-review main form .bloc-rating .rating > input:checked ~ label,
+    #container-books-show #popup-writing-review main form .bloc-rating .rating:not(:checked) > label:hover,
+    #container-books-show #popup-writing-review main form .bloc-rating .rating:not(:checked) > label:hover ~ label {
       color: var(--star-color); }
-    #container-books-show #popup-writing-review main form .rating > input:checked + label:hover,
-    #container-books-show #popup-writing-review main form .rating > input:checked ~ label:hover,
-    #container-books-show #popup-writing-review main form .rating > label:hover ~ input:checked ~ label,
-    #container-books-show #popup-writing-review main form .rating > input:checked ~ label:hover ~ label {
+    #container-books-show #popup-writing-review main form .bloc-rating .rating > input:checked + label:hover,
+    #container-books-show #popup-writing-review main form .bloc-rating .rating > input:checked ~ label:hover,
+    #container-books-show #popup-writing-review main form .bloc-rating .rating > label:hover ~ input:checked ~ label,
+    #container-books-show #popup-writing-review main form .bloc-rating .rating > input:checked ~ label:hover ~ label {
       color: var(--star-color); }
-    #container-books-show #popup-writing-review main form textarea {
-      width: 100%;
+    #container-books-show #popup-writing-review main form .bloc-rating #rating-label {
+      flex: 1;
       font-size: var(--secondary-text-size);
-      padding: 1em; }
-    #container-books-show #popup-writing-review main form > div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: .2em; }
-      #container-books-show #popup-writing-review main form > div span {
-        font-size: var(--secondary-text-size); }
-      #container-books-show #popup-writing-review main form > div button {
-        color: var(--primary-action-color); }
+      text-align: center;
+      padding-right: .2em;
+      padding-bottom: .4em; }
+  #container-books-show #popup-writing-review main form textarea {
+    width: 100%;
+    font-size: var(--secondary-text-size);
+    line-height: var(--secondary-text-lineheight);
+    padding: 1em; }
+  #container-books-show #popup-writing-review main form .bloc-submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .2em; }
+    #container-books-show #popup-writing-review main form .bloc-submit span {
+      font-size: var(--secondary-text-size); }
+    #container-books-show #popup-writing-review main form .bloc-submit button {
+      color: var(--primary-action-color); }
+    #container-books-show #popup-writing-review main form .bloc-submit button[disabled=disabled], #container-books-show #popup-writing-review main form .bloc-submit button:disabled {
+      color: var(--secondary-color); }
 
 #users-show-container {
   margin: var(--gutter); }

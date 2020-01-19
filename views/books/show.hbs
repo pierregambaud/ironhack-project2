@@ -54,43 +54,100 @@
     </header>
     <main>
       <form action="" method="POST">
-        <fieldset class="rating">  
-          <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="J'ai détesté"></label>
-          <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Pas accroché"></label>
-          <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Bien aimé"></label>
-          <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="J'ai adoré"></label>
-          <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Coup de coeur !"></label>
-        </fieldset>
+        <div class="bloc-rating">
+          <fieldset class="rating">    
+            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Coup de coeur !"></label>
+            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="J'ai adoré"></label>
+            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Bien aimé"></label>
+            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Pas accroché"></label>
+            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="J'ai détesté"></label>
+          </fieldset>
+          <span id="rating-label">Quelle note ?</span>
+        </div>
         <input type="hidden" name="book_id" value="{{book._id}}">
         {{#if user}}
           <input type="hidden" name="user_id" value="{{user._id}}">
         {{/if}}
-        <textarea name="review" id="review" maxlength="140" rows="4" placeholder="Ecrivez votre critique en 140 caractères max..."></textarea>
+        <textarea name="review" id="review" minlength="20" maxlength="140" rows="5" placeholder="Ecrivez votre critique en 140 caractères max..."></textarea>
       
-        <div>
+        <div class="bloc-submit">
           <span><span id="remaining-review-characters">140</span> caractères restants</span>
-          <button>Ecrire</button>
+          <button disabled id="submit-review">Ecrire</button>
         </div>
       </form>
     </main>
 </div>
 
 <script>
+  // update rating label title for user notification
+  const $ratingRadios = document.querySelectorAll("input[type='radio']");
+  const $ratingLabel = document.getElementById("rating-label");
+
+  $ratingRadios.forEach((ratingRadio) => {
+    ratingRadio.addEventListener("click", event => {
+      const target = event.currentTarget;
+      const targetId = target.getAttribute("id");
+      const associatedLabel = document.querySelector(`label[for=${targetId}]`);
+      const labelTitle = associatedLabel.title;
+
+      return $ratingLabel.firstChild.nodeValue = labelTitle;
+    })
+  });
+
+
   // count and display remaining review characters
   const $review = document.getElementById("review");
-  const $remainingReviewCharacters = document.getElementById("remaining-review-characters");
 
   $review.addEventListener("input", event => {
-      const target = event.currentTarget;
-      const maxLength = target.getAttribute("maxlength");
-      const currentLength = target.value.length;
-      const remainingCharacters = maxLength - currentLength;
-      
-      $remainingReviewCharacters.parentNode.style.color = "";
-      $remainingReviewCharacters.firstChild.nodeValue = +remainingCharacters;
+    const target = event.currentTarget;
+    const maxLength = target.getAttribute("maxlength");
+    const currentLength = target.value.length;
+    const remainingCharacters = maxLength - currentLength;
+    
+    const $remainingReviewCharacters = document.getElementById("remaining-review-characters");
+    $remainingReviewCharacters.parentNode.style.color = "";
+    $remainingReviewCharacters.firstChild.nodeValue = +remainingCharacters;
 
-      if (currentLength >= maxLength) {
-          return $remainingReviewCharacters.parentNode.style.color = "red";
+    if(currentLength >= maxLength) {
+        return $remainingReviewCharacters.parentNode.style.color = "red";
+    }
+  });
+
+
+  // enable submit button
+  let hasReviewReachedMinLength = false; 
+  let isOneRadioChecked = false;
+
+  const globalCheckToEnableSubmit = () => {
+    const $submitButton = document.getElementById("submit-review");
+
+    if(hasReviewReachedMinLength && isOneRadioChecked) {
+      return $submitButton.removeAttribute("disabled");
+    } else {
+      if(!$submitButton.disabled) {
+        $submitButton.setAttribute("disabled", true);
       }
+    }
+  }
+
+  const $reviewTextarea = document.getElementById("review");
+  $reviewTextarea.addEventListener("input", event => {
+    const target = event.currentTarget;
+    const minLength = target.getAttribute("minlength");
+    const currentLength = target.value.length;
+
+    (currentLength >= minLength) ? hasReviewReachedMinLength = true : hasReviewReachedMinLength = false;
+
+    isOneRadioChecked = document.querySelector("input[type='radio']:checked") || false;
+    
+    globalCheckToEnableSubmit();
+  });
+
+  const $allRatingRadios = document.querySelectorAll("input[type='radio']");
+  $allRatingRadios.forEach((ratingRadio) => {
+    ratingRadio.addEventListener("click", event => {
+      isOneRadioChecked = true;
+      globalCheckToEnableSubmit();
+    })
   });
 </script>

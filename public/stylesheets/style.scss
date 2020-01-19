@@ -650,43 +650,59 @@ textarea:focus, input:focus, button:focus {
     margin-top: 1em;
 
     form {
-      fieldset {
-        border: 0;
-        float: left;
+      .bloc-rating {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        fieldset {
+          border: 0;
+          padding-left: 0;
+          width: 200px;
+        }
+        
+        .rating > input { display: none; } 
+        .rating > label:before { 
+          margin: 5px;
+          font-size: 1.25em;
+          font-family: FontAwesome;
+          display: inline-block;
+          content: "\f005";
+        }
+        
+        .rating > label { 
+          color: var(--secondary-color); 
+          float: right; 
+        }
+        
+        // highlight stars on hover
+        
+        .rating > input:checked ~ label, // show gold star when clicked
+        .rating:not(:checked) > label:hover, // hover current star
+        .rating:not(:checked) > label:hover ~ label { color: var(--star-color); } // hover previous stars in list
+        
+        .rating > input:checked + label:hover, // hover current star when changing rating
+        .rating > input:checked ~ label:hover,
+        .rating > label:hover ~ input:checked ~ label, // lighten current selection
+        .rating > input:checked ~ label:hover ~ label { color: var(--star-color); } 
+
+        #rating-label {
+          flex: 1;
+          font-size: var(--secondary-text-size);
+          text-align: center;
+          padding-right: .2em;
+          padding-bottom: .4em;
+        }
       }
-      
-      .rating > input { display: none; } 
-      .rating > label:before { 
-        margin: 5px;
-        font-size: 1.25em;
-        font-family: FontAwesome;
-        display: inline-block;
-        content: "\f005";
-      }
-      
-      .rating > label { 
-        color: #ddd; 
-       float: right; 
-      }
-      
-      /***** CSS Magic to Highlight Stars on Hover *****/
-      
-      .rating > input:checked ~ label, /* show gold star when clicked */
-      .rating:not(:checked) > label:hover, /* hover current star */
-      .rating:not(:checked) > label:hover ~ label { color: var(--star-color); } /* hover previous stars in list */
-      
-      .rating > input:checked + label:hover, /* hover current star when changing rating */
-      .rating > input:checked ~ label:hover,
-      .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-      .rating > input:checked ~ label:hover ~ label { color: var(--star-color); } 
       
       textarea {
         width: 100%;
         font-size: var(--secondary-text-size);
+        line-height: var(--secondary-text-lineheight);
         padding: 1em;
       }
 
-      > div {
+      .bloc-submit {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -699,6 +715,9 @@ textarea:focus, input:focus, button:focus {
 
         button {
           color: var(--primary-action-color);
+        }
+        button[disabled=disabled], button:disabled {
+          color: var(--secondary-color); 
         }
       }
     } 
