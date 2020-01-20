@@ -1,0 +1,40 @@
+<div id="container-profile">
+  <h1>Profil de {{user.username}}</h1>
+  <form method="POST">
+    <fieldset>
+      <img src="{{user.avatarPath}}">
+      <label for="username">
+        Pseudonyme
+        <input id="username" name="username" type="text" value="{{user.username}}">
+      </label>
+      <label for="email">
+        Adresse e-mail
+        <input id="email" name="email" type="text" value="{{user.email}}">
+      </label>
+      <label for="avatarPath">
+        Photo de profil
+        <input id="avatarPath" name="avatarPath" type="text" placeholder="Changer d'avatar ?">
+      </label>
+    </fieldset>
+    <fieldset>
+      <label for="newPassword">
+        Nouveau mot de passe (facultatif)
+        <input id="newPassword" name="newPassword" type="password" placeholder="************">
+      </label>
+      <label for="newPasswordConfirmation">
+        Confirmation nouveau mot de passe (facultatif)
+        <input id="newPasswordConfirmation" name="newPasswordConfirmation" type="password" placeholder="************">
+      </label>
+    </fieldset>
+    <button>Mettre à jour</button>
+  </form>
+
+  <div class="social-logins">
+    <a href="">Associer avec Twitter</a>
+    <a href="">Associer avec Facebook</a>
+  </div>
+
+  <div class="logout">
+    <a href="/deconnexion">Deconnexion</a>
+  </div>
+</div>

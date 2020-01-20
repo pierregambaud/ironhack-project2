@@ -68,7 +68,7 @@
         {{#if user}}
           <input type="hidden" name="user_id" value="{{user._id}}">
         {{/if}}
-        <textarea name="review" id="review" minlength="20" maxlength="140" rows="5" placeholder="Ecrivez votre critique en 140 caractères max..."></textarea>
+        <textarea name="review" id="review" minlength="20" maxlength="140" rows="5" placeholder="Ecrivez une critique entre 20 et 140 caractères"></textarea>
       
         <div class="bloc-submit">
           <span><span id="remaining-review-characters">140</span> caractères restants</span>
@@ -139,7 +139,7 @@
     (currentLength >= minLength) ? hasReviewReachedMinLength = true : hasReviewReachedMinLength = false;
 
     isOneRadioChecked = document.querySelector("input[type='radio']:checked") || false;
-    
+
     globalCheckToEnableSubmit();
   });
 

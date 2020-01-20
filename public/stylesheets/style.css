@@ -490,6 +490,19 @@ textarea:focus, input:focus, button:focus {
 #users-show-container {
   margin: var(--gutter); }
 
+#container-profile {
+  margin: var(--gutter); }
+  #container-profile form fieldset {
+    border: 0;
+    margin: 0;
+    margin-bottom: 1em;
+    padding: 0; }
+    #container-profile form fieldset label {
+      display: flex;
+      flex-direction: column; }
+  #container-profile .social-logins a {
+    display: block; }
+
 #main-nav {
   flex: 0 0 auto;
   -webkit-box-shadow: 0px 99px 80px 29px black;

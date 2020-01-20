@@ -132,13 +132,24 @@ exports.update = (req, res, next) => {
   }
 
   const id = req.params.id;
-  const { email, password, username } = req.body;
+  const { email, password, username, avatarPath } = req.body;
   
-  User.findByIdAndUpdate(id, {
-    email,
-    password,
-    username
-  },{ 
+  // TODO: refactor with a better way!
+  // TODO: encrypt password with bcrypt
+  // TODO: check if email already used
+  // TODO: deal with avatar
+  // TODO: if new username, regenerate slug
+  let userElementsToUpdate = {};
+  if(email) userElementsToUpdate.email = email;
+  if(password) userElementsToUpdate.password = password;
+  if(username) userElementsToUpdate.username = username;
+  if(avatarPath) userElementsToUpdate.avatarPath = avatarPath;
+  
+  userElementsToUpdate = { $set: userElementsToUpdate };
+
+  User.findByIdAndUpdate(id,
+    userElementsToUpdate,
+  { 
     new: true
   })
     .then(user => res.status(200).json(user))

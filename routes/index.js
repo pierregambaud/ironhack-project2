@@ -102,9 +102,63 @@ router.get(`/membre/:slugOrId`, (req, res, next) => {
     console.log(`foo:`, user)
 
     return res.render(`users/show`, {
-      user: user
+      user
     });
   });  
+});
+
+
+// profile page
+router.get(`/profil`, (req, res, next) => {
+  if(!req.user) {
+    return res.redirect(`/`);  
+  }
+
+  const id = req.user.id;
+
+  req.uest({
+    method: `GET`,
+    url: `/api/0.1/users/${id}`
+  }, (err, resp, body) => {
+    if (err) return next(err);
+    
+    const user = body;
+
+    console.log(`foo:`, user)
+
+    return res.render(`profile`, {
+      user
+    });
+  });  
+});
+
+
+// update profile
+router.post(`/profil`, (req, res, next) => {
+  const id = req.user.id;
+  const { email, username, avatarPath, newPassword, newPasswordConfirmation } = req.body;
+  let password;
+
+  if(newPassword === newPasswordConfirmation) {
+    password = newPassword;
+  } else {
+    return res.redirect(`/profil`);
+  }
+
+  req.uest({
+    method: `PUT`,
+    url: `/api/0.1/users/${id}`,
+    body: { email, password, username, avatarPath }
+  }, (err, resp, body) => {
+    if (err) return next(err);
+    
+    const user = body;
+
+    console.log(`bar:`, user)
+
+    return res.redirect(`/profil`);
+  });
+
 });
 
 
