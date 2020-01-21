@@ -130,25 +130,30 @@ exports.update = (req, res, next) => {
   const { email, password, username, avatarPath } = req.body;
   
   // TODO: refactor with a better way!
-  // TODO: encrypt password with bcrypt
   // TODO: check if email already used
   // TODO: deal with avatar
-  // TODO: if new username, regenerate slug
   let userElementsToUpdate = {};
   if(email) userElementsToUpdate.email = email;
   if(password) userElementsToUpdate.password = helpers.encryptPassword(password);
-  if(username) userElementsToUpdate.username = username;
   if(avatarPath) userElementsToUpdate.avatarPath = avatarPath;
-  
-  userElementsToUpdate = { $set: userElementsToUpdate };
+  if(username) {
+    userElementsToUpdate.username = username;
+    helpers.generateUniqueSlug(`username`, username, function (err, slug) {
+      if (err) return next(err);
 
-  User.findByIdAndUpdate(id,
-    userElementsToUpdate,
-  { 
-    new: true
-  })
-    .then(user => res.status(200).json(user))
-    .catch(next);
+      userElementsToUpdate.slug = slug;
+      
+      userElementsToUpdate = { $set: userElementsToUpdate };
+
+      User.findByIdAndUpdate(id,
+        userElementsToUpdate,
+        { 
+          new: true
+        })
+        .then(user => res.status(200).json(user))
+        .catch(next);
+    });
+  }
 }
 
 
