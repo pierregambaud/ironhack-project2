@@ -201,6 +201,9 @@ app.use((err, req, res, next) => {
     },
   
     json: function () {
+      err.status || (err.status = 500); // default to 500
+      res.status(err.status);
+
       res.send({err: er2JSON(err)});
     }
   })

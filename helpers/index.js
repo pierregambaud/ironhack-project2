@@ -16,6 +16,36 @@ exports.encryptPassword = (plaintextPassword) => {
 };
 
 
+//                                                                                     _             
+//                                                                                    | |            
+//    _   _ ___  ___ _ __ _ __   __ _ _ __ ___   ___    __ _  ___ _ __   ___ _ __ __ _| |_ ___  _ __ 
+//   | | | / __|/ _ \ '__| '_ \ / _` | '_ ` _ \ / _ \  / _` |/ _ \ '_ \ / _ \ '__/ _` | __/ _ \| '__|
+//   | |_| \__ \  __/ |  | | | | (_| | | | | | |  __/ | (_| |  __/ | | |  __/ | | (_| | || (_) | |   
+//    \__,_|___/\___|_|  |_| |_|\__,_|_| |_| |_|\___|  \__, |\___|_| |_|\___|_|  \__,_|\__\___/|_|   
+//                                                      __/ |                                        
+//                                                     |___/                                         
+
+const User = require(`../models/user.js`);
+
+exports.generateUniqueUsername = (email) => {
+  return new Promise((resolve, reject) => {
+    let username = email.split(`@`)[0];
+
+    User.findOne({ username })
+      .then(user => {
+        if(user) {
+          username = username + "-" + Math.floor(Math.random() * 10000);
+        }
+
+        resolve(username);
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+};
+
+
 //        _                                               _             
 //       | |                                             | |            
 //    ___| |_   _  __ _    __ _  ___ _ __   ___ _ __ __ _| |_ ___  _ __ 
@@ -26,94 +56,53 @@ exports.encryptPassword = (plaintextPassword) => {
 //                |___/   |___/                                         
 
 const slugify = require('slugify');
-const User    = require(`../models/user.js`);
 const Book    = require(`../models/book.js`); 
 
-exports.generateUniqueSlug = (type, elementToSlugify, cb) => {
-  let slug;
-
-  const checkLength = (slug) => {
-    if(slug.length === 24) { // length dedicated for ObjectId, criteria slugOrId routes
-      return slug = slug + "-1";
+exports.generateUniqueSlug = (type, elementToSlugify) => {
+  return new Promise((resolve, reject) => {  
+    const checkLength = (slug) => {
+      if(slug.length === 24) { slug + "-1" } // length dedicated for ObjectId, criteria slugOrId routes
+  
+      return slug;
     }
 
-    return slug;
-  }
+    let slug = checkLength(slugify(elementToSlugify, {
+      replacement: '-',
+      remove: /[*+~.()'"!:@]/g,
+      lower: true,
+    }));
+    
+    switch (type) {
+      case `username`:
+        User.findOne({ slug })
+          .then(user => {               
+            if(user) {
+              // TODO: if slug already contains "-X", then remove and add "-(X+1)" => ^(.*?)(-).*[0-9]$
+              // if (preg_match('.*(-).*[0-9]$', slug)) {}
+              // TODO : check if new slug is unique
+              slug = slug + "-" + Math.floor(Math.random() * 10000)
+            }
   
-  switch (type) {
-    case `email`:
-      slug = checkLength(slugify(elementToSlugify.split(`@`)[0], {
-        replacement: '-',
-        remove: null,
-        lower: true,
-      }));
+            resolve(slug);
+          })
+          .catch(reject);
+        break;
 
-      User.findOne({ "slug": slug })
-        .then(user => {     
-          console.log(user); 
-          if(!user) {
-            isSlugUnique = true;
-          } else {
-            // TODO: if slug already contains "-X", then remove and add "-(X+1)"
-            // if (preg_match('.*(-).*[0-9]$', slug)) {}
-            // TODO : check if new slug is unique
-            slug = slug + "-" + Math.floor(Math.random() * 10000)
-            console.log(slug);
+      case `bookTitle`:
+        Book.findOne({ slug })
+          .then(book => {
+            if(book) {
+              // TODO: if slug already contains "-X", then remove and add "-(X+1)"
+              // if (preg_match('.*(-).*[0-9]$', slug)) {}
+              // TODO : check if new slug is unique
+              slug = slug + "-" + Math.floor(Math.random() * 10000)
+            }
 
-            cb(null, slug);
-          }
-        })
-        .catch(cb);
-
-      break; 
-    case `username`:
-      slug = checkLength(slugify(elementToSlugify, {
-        replacement: '-',
-        remove: null,
-        lower: true,
-      }));
-
-      User.findOne({ "slug": slug })
-        .then(user => {     
-          console.log(user); 
-        
-          if(user) {
-            // TODO: if slug already contains "-X", then remove and add "-(X+1)" => ^(.*?)(-).*[0-9]$
-            // if (preg_match('.*(-).*[0-9]$', slug)) {}
-            // TODO : check if new slug is unique
-            slug = slug + "-" + Math.floor(Math.random() * 10000)
-          }
-
-          console.log(slug);
-          cb(null, slug);
-
-        })
-        .catch(cb);
-
-      break;
-    case `bookTitle`:
-      slug = checkLength(slugify(elementToSlugify, {
-        replacement: '-',
-        remove: null,
-        lower: true,
-      }));
-
-      Book.findOne({ "slug": slug })
-        .then(book => {     
-          console.log(book); 
-          if(!book) {
-            isSlugUnique = true;
-          } else {
-            // TODO: if slug already contains "-X", then remove and add "-(X+1)"
-            // if (preg_match('.*(-).*[0-9]$', slug)) {}
-            // TODO : check if new slug is unique
-            slug = slug + "-" + Math.floor(Math.random() * 10000)
-            console.log(slug);
-          }
-        })
-        .catch(cb);
-        
-      break;
-  }
+            resolve(slug);
+          })
+          .catch(reject);
+        break;   
+    }
+  })
 };
 

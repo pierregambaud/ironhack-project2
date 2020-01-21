@@ -39,10 +39,6 @@ exports.create = (req, res, next) => {
     return next(err);
   }
 
-  const generateSlug = (email) => {
-    return email.split(`@`)[0];
-  }
-
   User.findOne({ email })
     .then(user => {
       // TODO if email already exists?
@@ -55,25 +51,32 @@ exports.create = (req, res, next) => {
         return next(err);
       }
 
-      // save the user in DB
-      const newUser = new User({
-        email,
-        password: helpers.encryptPassword(password),
-        username: generateSlug(email),
-        slug: generateSlug(email),
-      });
-
-      // login user
-      newUser.save()
-        .then(user => {
-
-          req.login(user, (err) => {
-            if (err) return next(err);
-      
-            res.redirect(`/`);
-          });
+      helpers.generateUniqueUsername(email)
+        .then(username => {
+          helpers.generateUniqueSlug(`username`, username)
+            .then(slug => {
+              // save the user in DB
+              const newUser = new User({
+                email,
+                password: helpers.encryptPassword(password),
+                username,
+                slug
+              });
+    
+              // login user
+              newUser.save()
+                .then(user => {
+                  req.login(user, (err) => {
+                    if (err) return next(err);
+              
+                    res.redirect(`/`);
+                  });
+                })
+                .catch(next);
+            })
+            .catch(next)
         })
-        .catch(next);
+        .catch(next)
     })
     .catch(next);
 }
@@ -138,21 +141,33 @@ exports.update = (req, res, next) => {
   if(avatarPath) userElementsToUpdate.avatarPath = avatarPath;
   if(username) {
     userElementsToUpdate.username = username;
-    helpers.generateUniqueSlug(`username`, username, function (err, slug) {
-      if (err) return next(err);
+    // TODO: check if username already taken (include lower/uppercase)
 
-      userElementsToUpdate.slug = slug;
-      
-      userElementsToUpdate = { $set: userElementsToUpdate };
-
-      User.findByIdAndUpdate(id,
-        userElementsToUpdate,
-        { 
-          new: true
-        })
-        .then(user => res.status(200).json(user))
-        .catch(next);
-    });
+    helpers.generateUniqueSlug(`username`, username)
+      .then(slug => {
+        userElementsToUpdate.slug = slug;
+        
+        userElementsToUpdate = { $set: userElementsToUpdate };
+  
+        User.findByIdAndUpdate(id,
+          userElementsToUpdate,
+          { 
+            new: true
+          })
+          .then(user => res.status(200).json(user))
+          .catch(next);
+      })
+      .catch(next);
+  } else {
+    userElementsToUpdate = { $set: userElementsToUpdate };
+  
+    User.findByIdAndUpdate(id,
+      userElementsToUpdate,
+      { 
+        new: true
+      })
+      .then(user => res.status(200).json(user))
+      .catch(next);
   }
 }
 
