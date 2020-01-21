@@ -1,6 +1,5 @@
 const User        = require(`../models/user.js`);
-const bcrypt      = require(`bcrypt`);
-const bcryptSalt  = 10;
+const helpers     = require(`../helpers/index.js`);
 
 
 //    _           _           
@@ -56,14 +55,10 @@ exports.create = (req, res, next) => {
         return next(err);
       }
 
-      // encrypt the password
-      const salt = bcrypt.genSaltSync(bcryptSalt);
-      const hashPass = bcrypt.hashSync(password, salt);
-
       // save the user in DB
       const newUser = new User({
         email,
-        password: hashPass,
+        password: helpers.encryptPassword(password),
         username: generateSlug(email),
         slug: generateSlug(email),
       });
@@ -141,7 +136,7 @@ exports.update = (req, res, next) => {
   // TODO: if new username, regenerate slug
   let userElementsToUpdate = {};
   if(email) userElementsToUpdate.email = email;
-  if(password) userElementsToUpdate.password = password;
+  if(password) userElementsToUpdate.password = helpers.encryptPassword(password);
   if(username) userElementsToUpdate.username = username;
   if(avatarPath) userElementsToUpdate.avatarPath = avatarPath;
   
