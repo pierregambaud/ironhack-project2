@@ -79,7 +79,8 @@ input[type="text"], input[type="password"], textarea {
 
 label {
   font-size: var(--quaternary-text-size);
-  font-weight: var(--primary-text-weight); }
+  font-weight: var(--primary-text-weight);
+  color: var(--secondary-color); }
 
 textarea:focus, input:focus, button:focus {
   outline: none; }
@@ -173,79 +174,121 @@ textarea:focus, input:focus, button:focus {
   color: var(--primary-color); }
 
 #container-index-member {
-  margin: var(--gutter); }
+  background-color: var(--quinary-color); }
   #container-index-member #search {
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
+    padding-top: var(--gutter); }
+    #container-index-member #search form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--input-size);
+      background-color: var(--senary-color);
+      border: 1px solid var(--quaternary-color);
+      border-radius: var(--input-border-radius); }
+      #container-index-member #search form i {
+        margin-left: 1em; }
+      #container-index-member #search form input {
+        background-color: var(--senary-color);
+        width: 100%;
+        padding: .8em 1em .7em 1em;
+        border: 0; }
+
+#container-index-member #last-reviews {
+  margin: var(--gutter); }
+  #container-index-member #last-reviews > header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: var(--input-size);
-    background-color: var(--quinary-color);
-    border: 1px solid var(--quaternary-color); }
-    #container-index-member #search i {
-      margin-left: 1em; }
-    #container-index-member #search input {
-      font-size: var(--input-size);
-      width: 100%;
-      padding: .8em 1em .7em 1em;
-      border: 0; }
-
-#container-index-member #last-reviews > header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.8em; }
-  #container-index-member #last-reviews > header a {
-    font-size: var(--tertiary-text-size); }
-
-#container-index-member #last-reviews > main {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 1em;
-  margin-right: calc(var(--gutter) * -1);
-  overflow: auto; }
+    margin-top: 1.8em; }
+    #container-index-member #last-reviews > header a {
+      font-size: var(--tertiary-text-size); }
+  #container-index-member #last-reviews > main {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1em;
+    margin-top: 1em;
+    margin-right: calc(var(--gutter) * -1);
+    overflow: auto; }
 
 #container-index-member #last-reviews .last-review-card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  width: calc(100% - var(--gutter));
-  margin-top: 1.2em;
-  margin-right: .7em;
-  border-radius: var(--border-radius);
-  background-color: var(--quinary-color); }
-  #container-index-member #last-reviews .last-review-card .book-cover img {
-    height: 160px;
-    max-width: 100px;
-    border-radius: var(--border-radius); }
-  #container-index-member #last-reviews .last-review-card .book-review {
+  background-color: var(--senary-color);
+  border-radius: var(--input-border-radius);
+  margin-right: 1em;
+  border: 1px solid var(--quaternary-color); }
+  #container-index-member #last-reviews .last-review-card header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: var(--tertiary-text-size);
-    color: var(--primary-color);
-    padding: 0 .6em;
-    width: 240px;
-    text-align: center; }
-    #container-index-member #last-reviews .last-review-card .book-review main p {
-      margin-top: 0; }
-    #container-index-member #last-reviews .last-review-card .book-review footer {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: .5em;
+    margin-bottom: .5em;
+    border-bottom: 1px solid var(--quaternary-color); }
+    #container-index-member #last-reviews .last-review-card header .user-avatar {
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      margin-top: -0.4em; }
-      #container-index-member #last-reviews .last-review-card .book-review footer .rating {
-        color: var(--star-color);
-        font-weight: 600; }
-      #container-index-member #last-reviews .last-review-card .book-review footer .author a {
-        font-size: var(--tertiary-text-size); }
-      #container-index-member #last-reviews .last-review-card .book-review footer .author img {
+      font-size: var(--senary-text-size); }
+      #container-index-member #last-reviews .last-review-card header .user-avatar img {
+        height: 40px;
         vertical-align: middle;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%; }
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-bottom: .6em;
+        margin-left: 1em; }
+      #container-index-member #last-reviews .last-review-card header .user-avatar .user-details {
+        display: flex;
+        flex-direction: column;
+        margin-left: .5em;
+        margin-top: .2em; }
+        #container-index-member #last-reviews .last-review-card header .user-avatar .user-details a {
+          color: var(--primary-color);
+          font-weight: var(--primary-text-weight); }
+        #container-index-member #last-reviews .last-review-card header .user-avatar .user-details > span {
+          color: var(--tertiary-color); }
+    #container-index-member #last-reviews .last-review-card header .interactions {
+      padding-right: 1em;
+      padding-top: .2em; }
+  #container-index-member #last-reviews .last-review-card main {
+    height: 90px;
+    padding: .5em;
+    font-size: var(--quaternary-text-size);
+    margin-bottom: 1em;
+    text-align: center; }
+    #container-index-member #last-reviews .last-review-card main .user-rating {
+      margin-bottom: .5em; }
+    #container-index-member #last-reviews .last-review-card main .user-review {
+      width: 300px; }
+  #container-index-member #last-reviews .last-review-card footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: var(--senary-text-size);
+    margin: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: var(--quaternary-color);
+    border: 1px solid var(--quinary-color);
+    border-radius: var(--border-radius); }
+    #container-index-member #last-reviews .last-review-card footer .book-cover {
+      margin-right: 1em; }
+      #container-index-member #last-reviews .last-review-card footer .book-cover img {
+        height: 100px; }
+    #container-index-member #last-reviews .last-review-card footer .book-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; }
+      #container-index-member #last-reviews .last-review-card footer .book-details .book-title {
+        color: var(--primary-color);
+        font-weight: var(--primary-text-weight);
+        margin-bottom: .3em; }
+      #container-index-member #last-reviews .last-review-card footer .book-details .book-authors {
+        color: var(--tertiary-color);
+        margin-bottom: .3em; }
 
 #container-index-member #user-lists {
   margin-top: .2em; }
@@ -538,8 +581,7 @@ textarea:focus, input:focus, button:focus {
         #container-profile main form fieldset label {
           display: flex;
           flex-direction: column;
-          padding-top: .5em;
-          color: var(--primary-color); }
+          padding-top: .5em; }
           #container-profile main form fieldset label input {
             padding: .8em;
             margin-top: .8em;

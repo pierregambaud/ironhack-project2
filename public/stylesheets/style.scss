@@ -94,6 +94,7 @@ input[type="text"], input[type="password"], textarea {
 label {
   font-size: var(--quaternary-text-size);
   font-weight: var(--primary-text-weight);
+  color: var(--secondary-color);
 }
 textarea:focus, input:focus, button:focus {
   outline: none;
@@ -245,31 +246,41 @@ textarea:focus, input:focus, button:focus {
 //                                                                       
 
 #container-index-member {
-  margin: var(--gutter);
+  background-color: var(--quinary-color);
 
   #search {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-size: var(--input-size);
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
+    padding-top: var(--gutter);
 
-    background-color: var(--quinary-color);
-    border: 1px solid var(--quaternary-color);
-    
-    i {
-      margin-left: 1em;
-    }
-    input {
+    form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       font-size: var(--input-size);
-      width: 100%;
-      padding: .8em 1em .7em 1em;
-      border:0;
+  
+      background-color: var(--senary-color);
+      border: 1px solid var(--quaternary-color);
+      border-radius: var(--input-border-radius);
+
+      
+      i {
+        margin-left: 1em;
+      }
+      input {
+        background-color: var(--senary-color);
+        width: 100%;
+        padding: .8em 1em .7em 1em;
+        border:0;
+      }
     }
   }
 }
 
 #container-index-member #last-reviews {
+  margin: var(--gutter);
+
   > header {
     display: flex;
     flex-direction: row;
@@ -286,6 +297,7 @@ textarea:focus, input:focus, button:focus {
     display: flex;
     flex-direction: row;
     padding-bottom: 1em;
+    margin-top: 1em;
     margin-right: calc(var(--gutter) * -1);
     overflow: auto;
   }
@@ -293,63 +305,113 @@ textarea:focus, input:focus, button:focus {
 
 #container-index-member #last-reviews .last-review-card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  width: calc(100% - var(--gutter));
-  margin-top: 1.2em;
-  margin-right: .7em;
-  border-radius: var(--border-radius);
-  background-color: var(--quinary-color);
+  background-color: var(--senary-color);
+  border-radius: var(--input-border-radius);
+  margin-right: 1em;
 
-  .book-cover {
-    img {
-      height: 160px;
-      max-width: 100px;
-      border-radius: var(--border-radius);
+  border: 1px solid var(--quaternary-color);
+
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: .5em;
+
+    margin-bottom: .5em;
+    border-bottom: 1px solid var(--quaternary-color);
+
+    .user-avatar {
+      display: flex;
+      flex-direction: row;
+      font-size: var(--senary-text-size);
+
+      img {
+        height: 40px;
+        vertical-align: middle;
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-bottom: .6em;
+        margin-left: 1em;
+      }
+
+      .user-details {
+        display: flex;
+        flex-direction: column;
+        margin-left: .5em;
+        margin-top: .2em;
+
+        a {
+          color: var(--primary-color);
+          font-weight: var(--primary-text-weight);
+        }
+
+        > span {
+          color: var(--tertiary-color);
+        }
+      }
+    }
+
+    .interactions {
+      padding-right: 1em;
+      padding-top: .2em;
     }
   }
 
-  .book-review {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: var(--tertiary-text-size);
-    color: var(--primary-color);
-    padding: 0 .6em;
-    width: 240px;
+  main {
+    height: 90px;
+    padding: .5em;
+    font-size: var(--quaternary-text-size);
+    margin-bottom: 1em;
     text-align: center;
-
-    main {
-      p {
-        margin-top: 0;
-      }
+    
+    .user-rating {
+      margin-bottom: .5em;
     }
 
-    footer {
+    .user-review {
+      width: 300px;
+    }
+  }
+
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: var(--senary-text-size);
+
+    margin: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: var(--quaternary-color);
+    border: 1px solid var(--quinary-color);
+    border-radius: var(--border-radius);
+
+    .book-cover {
+      img {
+        height: 100px;
+      }
+      margin-right: 1em;
+    }
+
+    .book-details {
       display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      margin-top: -0.4em;
+      flex-direction: column;
+      justify-content: center;
 
-      .rating {
-        color: var(--star-color);
-        font-weight: 600;
+      .book-title {
+        color: var(--primary-color);
+        font-weight: var(--primary-text-weight);
+        margin-bottom: .3em;
       }
 
-      .author {
-        a {
-          font-size: var(--tertiary-text-size);
-        }
-
-        img {
-          vertical-align: middle;
-          width: 25px;
-          height: 25px;
-          border-radius: 50%;
-        }
+      .book-authors {
+        color: var(--tertiary-color);
+        margin-bottom: .3em;
       }
     }
+
   }
 }
 
@@ -824,7 +886,6 @@ textarea:focus, input:focus, button:focus {
           display: flex;
           flex-direction: column;
           padding-top: .5em;
-          color: var(--primary-color);
   
           input {
             padding: .8em;
