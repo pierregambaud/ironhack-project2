@@ -106,37 +106,38 @@ textarea:focus, input:focus, button:focus {
   color: var(--primary-action-color);
   border: 1px solid var(--secondary-action-color); }
 
-.social-logins a:hover {
-  text-decoration: none; }
-
-.social-logins a:before {
-  font-family: 'FontAwesome';
-  speak: none;
-  font-size: 1.6em;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  position: relative;
-  -webkit-font-smoothing: antialiased;
-  vertical-align: middle; }
-
-.social-logins #btn-twitter, .social-logins #btn-facebook {
+.social-logins {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding-left: .5em; }
-
-.social-logins #btn-twitter:before {
-  content: "\f099";
-  color: #1DA1F2;
-  padding-right: .5em; }
-
-.social-logins #btn-facebook:before {
-  content: "\f082";
-  color: #4267B2;
-  padding-right: .5em; }
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .social-logins a:hover {
+    text-decoration: none; }
+  .social-logins a:before {
+    font-family: 'FontAwesome';
+    speak: none;
+    font-size: 1.6em;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle; }
+  .social-logins #btn-twitter, .social-logins #btn-facebook {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left: .5em; }
+  .social-logins #btn-twitter:before {
+    content: "\f099";
+    color: #1DA1F2;
+    padding-right: .5em; }
+  .social-logins #btn-facebook:before {
+    content: "\f082";
+    color: #4267B2;
+    padding-right: .5em; }
 
 #container-index-visitor {
   min-height: 100vh;
@@ -164,15 +165,12 @@ textarea:focus, input:focus, button:focus {
         padding-bottom: .8em;
         margin-bottom: .5em; }
 
-#container-index-visitor .social-logins {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-  #container-index-visitor .social-logins p {
-    padding-top: .6em;
-    padding-bottom: .3em; }
-  #container-index-visitor .social-logins #signup {
-    color: var(--primary-color); }
+#container-index-visitor .social-logins p {
+  padding-top: .6em;
+  padding-bottom: .3em; }
+
+#container-index-visitor .social-logins #signup {
+  color: var(--primary-color); }
 
 #container-index-member {
   margin: var(--gutter); }
@@ -547,8 +545,6 @@ textarea:focus, input:focus, button:focus {
             margin-top: .8em;
             margin-bottom: 1em; }
     #container-profile main .social-logins {
-      display: flex;
-      flex-direction: column;
       margin-bottom: 1.5em; }
       #container-profile main .social-logins h2 {
         margin-bottom: 1em; }
