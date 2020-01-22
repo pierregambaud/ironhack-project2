@@ -68,7 +68,7 @@ exports.generateUniqueSlug = (type, elementToSlugify) => {
 
     let slug = checkLength(slugify(elementToSlugify, {
       replacement: '-',
-      remove: /[*+~.()'"!:@]/g,
+      remove: /[*+~.()'"!:@]/g, // TODO: update regex to include deletion of single caracter ou two caracters (except number)
       lower: true,
     }));
     

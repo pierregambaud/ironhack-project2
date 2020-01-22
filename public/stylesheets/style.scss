@@ -3,47 +3,49 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 :root {
-  --primary-color: #53566f;
-  --secondary-color: #B6BECC;
-  --tertiary-color: #E4E2E2;
-  --quaternary-color: #F9FAFB;
-  --quinary-color: #FFFFFF;
+  --primary-color: #233755;
+  --secondary-color: #98A0B0;
+  --tertiary-color: #ABB2BD;
+  --quaternary-color: #EFEFEF;
+  --quinary-color: #FDFDFD;
+  --senary-color: #FFFFFF;
 
   --primary-action-color: #337ab7;
+  --secondary-action-color: #aac5db;
 
   --star-color: #F2A138;
 
   --main-shadow-color: 0 0 10px 5px rgba(0,0,0,0.1);
 
-  --primary-title-size: 22px;
-  --secondary-title-size: 20px;
-  --primary-text-size: 18px;
-  --secondary-text-size: 16px;
-  --tertiary-text-size: 13px;
-  --quaternary-text-size: 12px;
+  --primary-text-size: 20px;
+  --secondary-text-size: 18px;
+  --tertiary-text-size: 16px;
+  --quaternary-text-size: 15px;
+  --quinary-text-size: 13px;
+  --senary-text-size: 12px;
 
   --input-size: 18px;
 
-  --primary-title-weight: 600;
-  --secondary-title-weight: 600;
-  --primary-text-weight: 400;
-  --secondary-text-weight: 300;
+  --primary-text-weight: 600;
+  --secondary-text-weight: 400;
+  --tertiary-text-weight: 300;
 
   --primary-text-lineheight: 1.1;
   --secondary-text-lineheight: 1.4;
 
   --border-radius: 5px;
+  --input-border-radius: 8px;
 
-  --gutter: 1rem;
+  --gutter: 1.5rem;
 }
 
 body {
   margin:0;
-  font: var(--primary-text-size) "Open Sans",sans-serif;
-  font-weight: var(--primary-text-weight);
+  font: var(--secondary-text-size) "Open Sans",sans-serif;
+  font-weight: var(--secondary-text-weight);
   line-height: var(primary-text-lineheight);
   color: var(--secondary-color);
-  background-color: var(--quaternary-color);
+  background-color: var(--senary-color);
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -72,28 +74,96 @@ h1, h2, h3 {
   margin-top: 0;
 }
 h1 {
-  font-size: var(--primary-title-size);
-  font-weight: var(--primary-title-weight);
+  font-size: var(--primary-text-size);
+  font-weight: var(--primary-text-weight);
 }
 h2 {
-  font-size: var(--secondary-title-size);
-  font-weight: var(--secondary-title-weight);
+  font-size: var(--secondary-text-size);
+  font-weight: var(--primary-text-weight);
 }
 
 input[type="text"], input[type="password"], textarea {
-  font-size: var(--primary-text-size);
+  width: 100%;
+  font-size: var(--input-size);
+  font-weight: var(--tertiary-text-weight);
   background-color: var(--quinary-color);
-  border: 1px solid var(--tertiary-color);
+  border: 1px solid var(--quaternary-color);
+  border-radius: var(--input-border-radius);
   color: var(--primary-color);
 }
-button {
-  font-size: var(--primary-text-size);
+label {
+  font-size: var(--quaternary-text-size);
+  font-weight: var(--primary-text-weight);
 }
 textarea:focus, input:focus, button:focus {
   outline: none;
 }
 ::placeholder {
   color: var(--secondary-color);
+}
+
+.btn-structure {
+  width: 100%;
+  padding-top: .8em;
+  padding-bottom: .8em;
+  margin-bottom: 1em;
+  border-radius: var(--input-border-radius);
+  font-size: var(--secondary-text-size);
+  cursor: pointer;
+}
+
+.btn-primary {
+  @extend .btn-structure;
+
+  background-color: var(--primary-action-color);
+  color: var(--senary-color);
+  border: 0;
+}
+
+.btn-secondary {
+  @extend .btn-structure;
+
+  background-color: var(--quinary-color);
+  color: var(--primary-action-color);
+  border: 1px solid var(--secondary-action-color);
+}
+
+.social-logins {
+  a:hover {
+    text-decoration: none;
+  }
+  a:before {
+    font-family: 'FontAwesome';
+    speak: none;
+    font-size: 1.6em;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
+  }
+
+  #btn-twitter, #btn-facebook {
+    @extend .btn-secondary;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left: .5em;
+  }
+  #btn-twitter:before  {
+    content: "\f099";
+    color: #1DA1F2;
+    padding-right: .5em;
+  }
+  #btn-facebook:before {
+    content: "\f082";
+    color: #4267B2;
+    padding-right: .5em;
+  }
 }
 
 
@@ -123,37 +193,33 @@ textarea:focus, input:focus, button:focus {
   }
 
   h2 {
-    font-size: var(--primary-text-size);
+    font-size: var(--secondary-text-size);
     margin-bottom: 3em;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  
-    input {
-      text-align: center;
-      padding-top: .8em;
-      padding-bottom: .8em;
-      width: calc(100% - 3*var(--gutter));
-      margin-bottom: .5em;
-    }
-  
-    button {
-      width: calc(100% - 3*var(--gutter));
-      padding-top: .8em;
-      padding-bottom: .8em;
-      background-color: var(--primary-action-color);
-      color: var(--quinary-color);
-      font-weight: 600;
-      margin-bottom: 1em;
-      border: 0;
+  main {
+    margin: var(--gutter);
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    
+      input {
+        text-align: center;
+        padding-top: .8em;
+        padding-bottom: .8em;
+        margin-bottom: .5em;
+      }
+    
+      button {
+        @extend .btn-primary;
+      }
     }
   }
 }
 
-#container-index-visitor #social-logins {
+#container-index-visitor .social-logins {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,47 +227,6 @@ textarea:focus, input:focus, button:focus {
   p {
     padding-top: .6em;
     padding-bottom: .3em;
-  }
-
-  a {
-    width: calc(100% - 3*var(--gutter));
-    padding-top: .8em;
-    padding-bottom: .8em;
-    text-align: left;
-    background-color: var(--quinary-color);
-    color: var(--primary-color);
-    border: 1px solid var(--tertiary-color);
-    font-weight: 500;
-    margin-bottom: .5em;
-    padding-left: 1em;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  a:before {
-    font-family: 'FontAwesome';
-    speak: none;
-    font-size: 1.6em;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    position: relative;
-    -webkit-font-smoothing: antialiased;
-    vertical-align: middle;
-  }
-
-  #btn-twitter:before  {
-    content: "\f099";
-    color: #1DA1F2;
-    margin-right: .8em;
-  }
-
-  #btn-facebook:before {
-    content: "\f082";
-    color: #4267B2;
-    margin-right: .5em;
   }
 
   #signup {
@@ -229,7 +254,7 @@ textarea:focus, input:focus, button:focus {
     font-size: var(--input-size);
 
     background-color: var(--quinary-color);
-    border: 1px solid var(--tertiary-color);
+    border: 1px solid var(--quaternary-color);
     
     i {
       margin-left: 1em;
@@ -252,7 +277,7 @@ textarea:focus, input:focus, button:focus {
     margin-top: 1.8em;
 
     a {
-      font-size: var(--secondary-text-size);
+      font-size: var(--tertiary-text-size);
     }
   }
 
@@ -287,7 +312,7 @@ textarea:focus, input:focus, button:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: var(--secondary-text-size);
+    font-size: var(--tertiary-text-size);
     color: var(--primary-color);
     padding: 0 .6em;
     width: 240px;
@@ -313,7 +338,7 @@ textarea:focus, input:focus, button:focus {
 
       .author {
         a {
-          font-size: var(--secondary-text-size);
+          font-size: var(--tertiary-text-size);
         }
 
         img {
@@ -341,7 +366,7 @@ textarea:focus, input:focus, button:focus {
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
-    font-size: var(--secondary-text-size);
+    font-size: var(--tertiary-text-size);
 
     li {
       padding-top: .3em;
@@ -367,7 +392,7 @@ textarea:focus, input:focus, button:focus {
     margin-top: 1.8em;
 
     a {
-      font-size: var(--secondary-text-size);
+      font-size: var(--tertiary-text-size);
     }
   }
 
@@ -398,7 +423,7 @@ textarea:focus, input:focus, button:focus {
 
         h3 {
           color: var(--primary-color);
-          font-size: var(--tertiary-text-size);
+          font-size: var(--quinary-text-size);
           margin-top: .6em;
           margin-bottom: .3em;
           overflow: hidden;
@@ -408,7 +433,7 @@ textarea:focus, input:focus, button:focus {
 
         p {
           margin-top: 0;
-          font-size: var(--quaternary-text-size);
+          font-size: var(--senary-text-size);
         }
       }
     }
@@ -455,12 +480,12 @@ textarea:focus, input:focus, button:focus {
     flex-direction: row;
 
     h1 {
-      font-size: var(--secondary-title-size);
+      font-size: var(--secondary-text-size);
     }
 
     h2 {
-      font-size: var(--secondary-text-size);
-      font-weight: var(--primary-text-weight);
+      font-size: var(--tertiary-text-size);
+      font-weight: var(--secondary-text-weight);
     }
 
     .cover {
@@ -481,7 +506,7 @@ textarea:focus, input:focus, button:focus {
         margin-bottom: 0;
 
         span {
-          font-size: var(--quaternary-text-size);
+          font-size: var(--senary-text-size);
         }
       }
     }
@@ -491,8 +516,8 @@ textarea:focus, input:focus, button:focus {
 #container-books-show #interactions {
   margin-top: .5em;
   margin-bottom: .5em;
-  border-top: solid 2px var(--quaternary-color);
-  border-bottom: solid 2px var(--quaternary-color);
+  border-top: solid 2px var(--quinary-color);
+  border-bottom: solid 2px var(--quinary-color);
 
   ul {
     display: flex;
@@ -501,7 +526,7 @@ textarea:focus, input:focus, button:focus {
     margin: 0;
 
     li {
-      font-size: var(--secondary-text-size);
+      font-size: var(--tertiary-text-size);
       list-style-type: none;
       vertical-align: middle;
 
@@ -523,14 +548,14 @@ textarea:focus, input:focus, button:focus {
   margin-right: calc(var(--gutter) * -1);
   margin-bottom: 1em;
   padding: 1em var(--gutter);
-  border-bottom: solid 2px var(--quaternary-color);
+  border-bottom: solid 2px var(--quinary-color);
 
   header {
     display: flex;
     justify-content: space-between;
   
     a {
-      font-size: var(--secondary-text-size)
+      font-size: var(--tertiary-text-size)
     }
   }
 
@@ -543,9 +568,9 @@ textarea:focus, input:focus, button:focus {
       list-style-type: none;
       vertical-align: middle;
       margin-right: .5em;
-      border: 1px solid var(--quaternary-color);
+      border: 1px solid var(--quinary-color);
       padding: .2em .5em;
-      font-size: var(--tertiary-text-size);
+      font-size: var(--quinary-text-size);
   
       a {
         color: var(--secondary-color);
@@ -565,7 +590,7 @@ textarea:focus, input:focus, button:focus {
     justify-content: space-between;
 
     a {
-      font-size: var(--secondary-text-size)
+      font-size: var(--tertiary-text-size)
     }
   }
 
@@ -582,14 +607,14 @@ textarea:focus, input:focus, button:focus {
   border-radius: var(--border-radius);
   padding: .5em;
   margin-bottom: 1em;
-  font-size: var(--secondary-text-size);
+  font-size: var(--tertiary-text-size);
 
   header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: .6em;
-    border-bottom: 1px solid var(--quaternary-color);
+    border-bottom: 1px solid var(--quinary-color);
 
     .user {
       display: flex;
@@ -604,11 +629,11 @@ textarea:focus, input:focus, button:focus {
 
       > div {
         margin-left: .5em;
-        font-size: var(--quaternary-text-size);
+        font-size: var(--senary-text-size);
 
         a {
           color: var(--primary-color);
-          font-weight: var(--primary-title-weight);
+          font-weight: var(--primary-text-weight);
         }
 
         .review-date {
@@ -630,7 +655,7 @@ textarea:focus, input:focus, button:focus {
     padding-top: 1em;
     padding-bottom: .5em;
     text-align: center;
-    font-size: var(--secondary-text-size);
+    font-size: var(--tertiary-text-size);
     
     .user-rating {
       padding-bottom: .8em;
@@ -687,7 +712,7 @@ textarea:focus, input:focus, button:focus {
 
         #rating-label {
           flex: 1;
-          font-size: var(--secondary-text-size);
+          font-size: var(--tertiary-text-size);
           text-align: center;
           padding-right: .2em;
           padding-bottom: .4em;
@@ -696,7 +721,7 @@ textarea:focus, input:focus, button:focus {
       
       textarea {
         width: 100%;
-        font-size: var(--secondary-text-size);
+        font-size: var(--tertiary-text-size);
         line-height: var(--secondary-text-lineheight);
         padding: 1em;
       }
@@ -709,7 +734,7 @@ textarea:focus, input:focus, button:focus {
         margin-top: .2em;
 
         span {
-          font-size: var(--secondary-text-size);
+          font-size: var(--tertiary-text-size);
         }
 
         button {
@@ -751,23 +776,40 @@ textarea:focus, input:focus, button:focus {
 //   |_|                           
 
 #container-profile {
-  margin: var(--gutter);
+  background-color: var(--tertiary-color);
 
   header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
     margin-bottom: 1em;
+    padding-top: 2em;
+
+    h1 {
+      color: var(--senary-color);
+      margin-bottom: .5em;
+    }
   
     img {
       vertical-align: middle;
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
+      border: 2px solid var(--senary-color);
     }
   }
 
   main {
+    background-color: var(--senary-color);
+    padding: var(--gutter);
+
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+    h2 {
+      font-size: var(--secondary-text-size);
+      margin-bottom: .5em;
+    }
+
     form {
       margin-bottom: 1.5em;
   
@@ -780,33 +822,19 @@ textarea:focus, input:focus, button:focus {
         label {
           display: flex;
           flex-direction: column;
-          font-size: var(--secondary-text-size);
-          padding-top: .3em;
+          padding-top: .5em;
+          color: var(--primary-color);
   
           input {
-            font-size: var(--input-size);
-            padding-left: 1em;
-            padding-top: .8em;
-            padding-bottom: .8em;
-            margin-top: .3em;
-            margin-bottom: .5em;
-
-            ::placeholder {
-              padding-top: .5em;
-            }
+            padding: .8em;
+            margin-top: .8em;
+            margin-bottom: 1em;
           }
         }
       }
   
       button {
-        width: 100%;
-        padding-top: .8em;
-        padding-bottom: .8em;
-        background-color: var(--primary-action-color);
-        color: var(--quinary-color);
-        font-weight: 600;
-        margin-bottom: .5em;
-        border: 0;
+        @extend .btn-primary;
       }
     }
   
@@ -814,59 +842,16 @@ textarea:focus, input:focus, button:focus {
       display: flex;
       flex-direction: column;
       margin-bottom: 1.5em;
-  
-      a {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 100%;
-        padding-top: .8em;
-        padding-bottom: .8em;
-        text-align: left;
-        background-color: var(--quinary-color);
-        color: var(--primary-color);
-        border: 1px solid var(--tertiary-color);
-        font-weight: 500;
-        margin-bottom: .5em;
-      }
-      a:hover {
-        text-decoration: none;
-      }
-      a:before {
-        font-family: 'FontAwesome';
-        speak: none;
-        font-size: 1.6em;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-        position: relative;
-        -webkit-font-smoothing: antialiased;
-        vertical-align: middle;
-        margin-right: .5em;
-      }
-    
-      #btn-twitter:before  {
-        content: "\f099";
-        color: #1DA1F2;
-      }
-    
-      #btn-facebook:before {
-        content: "\f082";
-        color: #4267B2;
+
+      h2 {
+        margin-bottom: 1em;
       }
     }
 
     .logout {
-      width: 100%;
+      @extend .btn-secondary;
+
       text-align: center;
-      padding-top: .8em;
-      padding-bottom: .8em;
-      background-color: var(--quinary-color);
-      border: 1px solid var(--tertiary-color);
-      font-weight: 600;
-      margin-bottom: 1em;
     }
   }
 }

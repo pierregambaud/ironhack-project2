@@ -3,37 +3,39 @@
   box-sizing: border-box; }
 
 :root {
-  --primary-color: #53566f;
-  --secondary-color: #B6BECC;
-  --tertiary-color: #E4E2E2;
-  --quaternary-color: #F9FAFB;
-  --quinary-color: #FFFFFF;
+  --primary-color: #233755;
+  --secondary-color: #98A0B0;
+  --tertiary-color: #ABB2BD;
+  --quaternary-color: #EFEFEF;
+  --quinary-color: #FDFDFD;
+  --senary-color: #FFFFFF;
   --primary-action-color: #337ab7;
+  --secondary-action-color: #aac5db;
   --star-color: #F2A138;
   --main-shadow-color: 0 0 10px 5px rgba(0,0,0,0.1);
-  --primary-title-size: 22px;
-  --secondary-title-size: 20px;
-  --primary-text-size: 18px;
-  --secondary-text-size: 16px;
-  --tertiary-text-size: 13px;
-  --quaternary-text-size: 12px;
+  --primary-text-size: 20px;
+  --secondary-text-size: 18px;
+  --tertiary-text-size: 16px;
+  --quaternary-text-size: 15px;
+  --quinary-text-size: 13px;
+  --senary-text-size: 12px;
   --input-size: 18px;
-  --primary-title-weight: 600;
-  --secondary-title-weight: 600;
-  --primary-text-weight: 400;
-  --secondary-text-weight: 300;
+  --primary-text-weight: 600;
+  --secondary-text-weight: 400;
+  --tertiary-text-weight: 300;
   --primary-text-lineheight: 1.1;
   --secondary-text-lineheight: 1.4;
   --border-radius: 5px;
-  --gutter: 1rem; }
+  --input-border-radius: 8px;
+  --gutter: 1.5rem; }
 
 body {
   margin: 0;
-  font: var(--primary-text-size) "Open Sans", sans-serif;
-  font-weight: var(--primary-text-weight);
+  font: var(--secondary-text-size) "Open Sans", sans-serif;
+  font-weight: var(--secondary-text-weight);
   line-height: var(primary-text-lineheight);
   color: var(--secondary-color);
-  background-color: var(--quaternary-color);
+  background-color: var(--senary-color);
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -59,27 +61,82 @@ h1, h2, h3 {
   margin-top: 0; }
 
 h1 {
-  font-size: var(--primary-title-size);
-  font-weight: var(--primary-title-weight); }
+  font-size: var(--primary-text-size);
+  font-weight: var(--primary-text-weight); }
 
 h2 {
-  font-size: var(--secondary-title-size);
-  font-weight: var(--secondary-title-weight); }
+  font-size: var(--secondary-text-size);
+  font-weight: var(--primary-text-weight); }
 
 input[type="text"], input[type="password"], textarea {
-  font-size: var(--primary-text-size);
+  width: 100%;
+  font-size: var(--input-size);
+  font-weight: var(--tertiary-text-weight);
   background-color: var(--quinary-color);
-  border: 1px solid var(--tertiary-color);
+  border: 1px solid var(--quaternary-color);
+  border-radius: var(--input-border-radius);
   color: var(--primary-color); }
 
-button {
-  font-size: var(--primary-text-size); }
+label {
+  font-size: var(--quaternary-text-size);
+  font-weight: var(--primary-text-weight); }
 
 textarea:focus, input:focus, button:focus {
   outline: none; }
 
 ::placeholder {
   color: var(--secondary-color); }
+
+.btn-structure, .btn-primary, #container-index-visitor main form button, #container-profile main form button, .btn-secondary, .social-logins #btn-twitter, .social-logins #btn-facebook, #container-profile main .logout {
+  width: 100%;
+  padding-top: .8em;
+  padding-bottom: .8em;
+  margin-bottom: 1em;
+  border-radius: var(--input-border-radius);
+  font-size: var(--secondary-text-size);
+  cursor: pointer; }
+
+.btn-primary, #container-index-visitor main form button, #container-profile main form button {
+  background-color: var(--primary-action-color);
+  color: var(--senary-color);
+  border: 0; }
+
+.btn-secondary, .social-logins #btn-twitter, .social-logins #btn-facebook, #container-profile main .logout {
+  background-color: var(--quinary-color);
+  color: var(--primary-action-color);
+  border: 1px solid var(--secondary-action-color); }
+
+.social-logins a:hover {
+  text-decoration: none; }
+
+.social-logins a:before {
+  font-family: 'FontAwesome';
+  speak: none;
+  font-size: 1.6em;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle; }
+
+.social-logins #btn-twitter, .social-logins #btn-facebook {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-left: .5em; }
+
+.social-logins #btn-twitter:before {
+  content: "\f099";
+  color: #1DA1F2;
+  padding-right: .5em; }
+
+.social-logins #btn-facebook:before {
+  content: "\f082";
+  color: #4267B2;
+  padding-right: .5em; }
 
 #container-index-visitor {
   min-height: 100vh;
@@ -93,69 +150,28 @@ textarea:focus, input:focus, button:focus {
     margin-top: 0;
     margin-bottom: -30px; }
   #container-index-visitor h2 {
-    font-size: var(--primary-text-size);
+    font-size: var(--secondary-text-size);
     margin-bottom: 3em; }
-  #container-index-visitor form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-    #container-index-visitor form input {
-      text-align: center;
-      padding-top: .8em;
-      padding-bottom: .8em;
-      width: calc(100% - 3*var(--gutter));
-      margin-bottom: .5em; }
-    #container-index-visitor form button {
-      width: calc(100% - 3*var(--gutter));
-      padding-top: .8em;
-      padding-bottom: .8em;
-      background-color: var(--primary-action-color);
-      color: var(--quinary-color);
-      font-weight: 600;
-      margin-bottom: 1em;
-      border: 0; }
+  #container-index-visitor main {
+    margin: var(--gutter); }
+    #container-index-visitor main form {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      #container-index-visitor main form input {
+        text-align: center;
+        padding-top: .8em;
+        padding-bottom: .8em;
+        margin-bottom: .5em; }
 
-#container-index-visitor #social-logins {
+#container-index-visitor .social-logins {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  #container-index-visitor #social-logins p {
+  #container-index-visitor .social-logins p {
     padding-top: .6em;
     padding-bottom: .3em; }
-  #container-index-visitor #social-logins a {
-    width: calc(100% - 3*var(--gutter));
-    padding-top: .8em;
-    padding-bottom: .8em;
-    text-align: left;
-    background-color: var(--quinary-color);
-    color: var(--primary-color);
-    border: 1px solid var(--tertiary-color);
-    font-weight: 500;
-    margin-bottom: .5em;
-    padding-left: 1em; }
-  #container-index-visitor #social-logins a:hover {
-    text-decoration: none; }
-  #container-index-visitor #social-logins a:before {
-    font-family: 'FontAwesome';
-    speak: none;
-    font-size: 1.6em;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    position: relative;
-    -webkit-font-smoothing: antialiased;
-    vertical-align: middle; }
-  #container-index-visitor #social-logins #btn-twitter:before {
-    content: "\f099";
-    color: #1DA1F2;
-    margin-right: .8em; }
-  #container-index-visitor #social-logins #btn-facebook:before {
-    content: "\f082";
-    color: #4267B2;
-    margin-right: .5em; }
-  #container-index-visitor #social-logins #signup {
+  #container-index-visitor .social-logins #signup {
     color: var(--primary-color); }
 
 #container-index-member {
@@ -167,7 +183,7 @@ textarea:focus, input:focus, button:focus {
     align-items: center;
     font-size: var(--input-size);
     background-color: var(--quinary-color);
-    border: 1px solid var(--tertiary-color); }
+    border: 1px solid var(--quaternary-color); }
     #container-index-member #search i {
       margin-left: 1em; }
     #container-index-member #search input {
@@ -183,7 +199,7 @@ textarea:focus, input:focus, button:focus {
   align-items: center;
   margin-top: 1.8em; }
   #container-index-member #last-reviews > header a {
-    font-size: var(--secondary-text-size); }
+    font-size: var(--tertiary-text-size); }
 
 #container-index-member #last-reviews > main {
   display: flex;
@@ -209,7 +225,7 @@ textarea:focus, input:focus, button:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: var(--secondary-text-size);
+    font-size: var(--tertiary-text-size);
     color: var(--primary-color);
     padding: 0 .6em;
     width: 240px;
@@ -226,7 +242,7 @@ textarea:focus, input:focus, button:focus {
         color: var(--star-color);
         font-weight: 600; }
       #container-index-member #last-reviews .last-review-card .book-review footer .author a {
-        font-size: var(--secondary-text-size); }
+        font-size: var(--tertiary-text-size); }
       #container-index-member #last-reviews .last-review-card .book-review footer .author img {
         vertical-align: middle;
         width: 25px;
@@ -244,7 +260,7 @@ textarea:focus, input:focus, button:focus {
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
-    font-size: var(--secondary-text-size); }
+    font-size: var(--tertiary-text-size); }
     #container-index-member #user-lists ul li {
       padding-top: .3em; }
     #container-index-member #user-lists ul img {
@@ -262,7 +278,7 @@ textarea:focus, input:focus, button:focus {
   align-items: center;
   margin-top: 1.8em; }
   #container-index-member #trending-books header a {
-    font-size: var(--secondary-text-size); }
+    font-size: var(--tertiary-text-size); }
 
 #container-index-member #trending-books main {
   display: flex;
@@ -284,7 +300,7 @@ textarea:focus, input:focus, button:focus {
       width: 100px; }
       #container-index-member #trending-books main .trending-book .description h3 {
         color: var(--primary-color);
-        font-size: var(--tertiary-text-size);
+        font-size: var(--quinary-text-size);
         margin-top: .6em;
         margin-bottom: .3em;
         overflow: hidden;
@@ -292,7 +308,7 @@ textarea:focus, input:focus, button:focus {
         white-space: nowrap; }
       #container-index-member #trending-books main .trending-book .description p {
         margin-top: 0;
-        font-size: var(--quaternary-text-size); }
+        font-size: var(--senary-text-size); }
 
 #books-index-container {
   margin: var(--gutter); }
@@ -309,10 +325,10 @@ textarea:focus, input:focus, button:focus {
     display: flex;
     flex-direction: row; }
     #container-books-show #book h1 {
-      font-size: var(--secondary-title-size); }
+      font-size: var(--secondary-text-size); }
     #container-books-show #book h2 {
-      font-size: var(--secondary-text-size);
-      font-weight: var(--primary-text-weight); }
+      font-size: var(--tertiary-text-size);
+      font-weight: var(--secondary-text-weight); }
     #container-books-show #book .cover {
       width: 120px;
       margin-right: 1em; }
@@ -325,20 +341,20 @@ textarea:focus, input:focus, button:focus {
       #container-books-show #book .main-details p {
         margin-bottom: 0; }
         #container-books-show #book .main-details p span {
-          font-size: var(--quaternary-text-size); }
+          font-size: var(--senary-text-size); }
 
 #container-books-show #interactions {
   margin-top: .5em;
   margin-bottom: .5em;
-  border-top: solid 2px var(--quaternary-color);
-  border-bottom: solid 2px var(--quaternary-color); }
+  border-top: solid 2px var(--quinary-color);
+  border-bottom: solid 2px var(--quinary-color); }
   #container-books-show #interactions ul {
     display: flex;
     justify-content: space-around;
     padding: 1em 0;
     margin: 0; }
     #container-books-show #interactions ul li {
-      font-size: var(--secondary-text-size);
+      font-size: var(--tertiary-text-size);
       list-style-type: none;
       vertical-align: middle; }
       #container-books-show #interactions ul li i {
@@ -353,12 +369,12 @@ textarea:focus, input:focus, button:focus {
   margin-right: calc(var(--gutter) * -1);
   margin-bottom: 1em;
   padding: 1em var(--gutter);
-  border-bottom: solid 2px var(--quaternary-color); }
+  border-bottom: solid 2px var(--quinary-color); }
   #container-books-show #description header {
     display: flex;
     justify-content: space-between; }
     #container-books-show #description header a {
-      font-size: var(--secondary-text-size); }
+      font-size: var(--tertiary-text-size); }
   #container-books-show #description .tags ul {
     display: flex;
     margin: 0;
@@ -367,9 +383,9 @@ textarea:focus, input:focus, button:focus {
       list-style-type: none;
       vertical-align: middle;
       margin-right: .5em;
-      border: 1px solid var(--quaternary-color);
+      border: 1px solid var(--quinary-color);
       padding: .2em .5em;
-      font-size: var(--tertiary-text-size); }
+      font-size: var(--quinary-text-size); }
       #container-books-show #description .tags ul li a {
         color: var(--secondary-color); }
 
@@ -382,7 +398,7 @@ textarea:focus, input:focus, button:focus {
     flex-direction: row;
     justify-content: space-between; }
     #container-books-show #book-reviews > header a {
-      font-size: var(--secondary-text-size); }
+      font-size: var(--tertiary-text-size); }
   #container-books-show #book-reviews > main {
     margin-top: 1em;
     padding-top: .5em; }
@@ -394,13 +410,13 @@ textarea:focus, input:focus, button:focus {
   border-radius: var(--border-radius);
   padding: .5em;
   margin-bottom: 1em;
-  font-size: var(--secondary-text-size); }
+  font-size: var(--tertiary-text-size); }
   #container-books-show #book-reviews .book-review-card header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: .6em;
-    border-bottom: 1px solid var(--quaternary-color); }
+    border-bottom: 1px solid var(--quinary-color); }
     #container-books-show #book-reviews .book-review-card header .user {
       display: flex;
       flex-direction: row;
@@ -411,10 +427,10 @@ textarea:focus, input:focus, button:focus {
         border-radius: 50%; }
       #container-books-show #book-reviews .book-review-card header .user > div {
         margin-left: .5em;
-        font-size: var(--quaternary-text-size); }
+        font-size: var(--senary-text-size); }
         #container-books-show #book-reviews .book-review-card header .user > div a {
           color: var(--primary-color);
-          font-weight: var(--primary-title-weight); }
+          font-weight: var(--primary-text-weight); }
         #container-books-show #book-reviews .book-review-card header .user > div .review-date {
           display: block; }
     #container-books-show #book-reviews .book-review-card header .interactions i {
@@ -424,7 +440,7 @@ textarea:focus, input:focus, button:focus {
     padding-top: 1em;
     padding-bottom: .5em;
     text-align: center;
-    font-size: var(--secondary-text-size); }
+    font-size: var(--tertiary-text-size); }
     #container-books-show #book-reviews .book-review-card main .user-rating {
       padding-bottom: .8em; }
 
@@ -465,13 +481,13 @@ textarea:focus, input:focus, button:focus {
       color: var(--star-color); }
     #container-books-show #popup-writing-review main form .bloc-rating #rating-label {
       flex: 1;
-      font-size: var(--secondary-text-size);
+      font-size: var(--tertiary-text-size);
       text-align: center;
       padding-right: .2em;
       padding-bottom: .4em; }
   #container-books-show #popup-writing-review main form textarea {
     width: 100%;
-    font-size: var(--secondary-text-size);
+    font-size: var(--tertiary-text-size);
     line-height: var(--secondary-text-lineheight);
     padding: 1em; }
   #container-books-show #popup-writing-review main form .bloc-submit {
@@ -481,7 +497,7 @@ textarea:focus, input:focus, button:focus {
     align-items: center;
     margin-top: .2em; }
     #container-books-show #popup-writing-review main form .bloc-submit span {
-      font-size: var(--secondary-text-size); }
+      font-size: var(--tertiary-text-size); }
     #container-books-show #popup-writing-review main form .bloc-submit button {
       color: var(--primary-action-color); }
     #container-books-show #popup-writing-review main form .bloc-submit button[disabled=disabled], #container-books-show #popup-writing-review main form .bloc-submit button:disabled {
@@ -491,94 +507,53 @@ textarea:focus, input:focus, button:focus {
   margin: var(--gutter); }
 
 #container-profile {
-  margin: var(--gutter); }
+  background-color: var(--tertiary-color); }
   #container-profile header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1em; }
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
+    margin-bottom: 1em;
+    padding-top: 2em; }
+    #container-profile header h1 {
+      color: var(--senary-color);
+      margin-bottom: .5em; }
     #container-profile header img {
       vertical-align: middle;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%; }
-  #container-profile main form {
-    margin-bottom: 1.5em; }
-    #container-profile main form fieldset {
-      border: 0;
-      margin: 0;
-      margin-bottom: .5em;
-      padding: 0; }
-      #container-profile main form fieldset label {
-        display: flex;
-        flex-direction: column;
-        font-size: var(--secondary-text-size);
-        padding-top: .3em; }
-        #container-profile main form fieldset label input {
-          font-size: var(--input-size);
-          padding-left: 1em;
-          padding-top: .8em;
-          padding-bottom: .8em;
-          margin-top: .3em;
-          margin-bottom: .5em; }
-          #container-profile main form fieldset label input ::placeholder {
-            padding-top: .5em; }
-    #container-profile main form button {
-      width: 100%;
-      padding-top: .8em;
-      padding-bottom: .8em;
-      background-color: var(--primary-action-color);
-      color: var(--quinary-color);
-      font-weight: 600;
-      margin-bottom: .5em;
-      border: 0; }
-  #container-profile main .social-logins {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5em; }
-    #container-profile main .social-logins a {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      width: 100%;
-      padding-top: .8em;
-      padding-bottom: .8em;
-      text-align: left;
-      background-color: var(--quinary-color);
-      color: var(--primary-color);
-      border: 1px solid var(--tertiary-color);
-      font-weight: 500;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--senary-color); }
+  #container-profile main {
+    background-color: var(--senary-color);
+    padding: var(--gutter);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px; }
+    #container-profile main h2 {
+      font-size: var(--secondary-text-size);
       margin-bottom: .5em; }
-    #container-profile main .social-logins a:hover {
-      text-decoration: none; }
-    #container-profile main .social-logins a:before {
-      font-family: 'FontAwesome';
-      speak: none;
-      font-size: 1.6em;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-      position: relative;
-      -webkit-font-smoothing: antialiased;
-      vertical-align: middle;
-      margin-right: .5em; }
-    #container-profile main .social-logins #btn-twitter:before {
-      content: "\f099";
-      color: #1DA1F2; }
-    #container-profile main .social-logins #btn-facebook:before {
-      content: "\f082";
-      color: #4267B2; }
-  #container-profile main .logout {
-    width: 100%;
-    text-align: center;
-    padding-top: .8em;
-    padding-bottom: .8em;
-    background-color: var(--quinary-color);
-    border: 1px solid var(--tertiary-color);
-    font-weight: 600;
-    margin-bottom: 1em; }
+    #container-profile main form {
+      margin-bottom: 1.5em; }
+      #container-profile main form fieldset {
+        border: 0;
+        margin: 0;
+        margin-bottom: .5em;
+        padding: 0; }
+        #container-profile main form fieldset label {
+          display: flex;
+          flex-direction: column;
+          padding-top: .5em;
+          color: var(--primary-color); }
+          #container-profile main form fieldset label input {
+            padding: .8em;
+            margin-top: .8em;
+            margin-bottom: 1em; }
+    #container-profile main .social-logins {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.5em; }
+      #container-profile main .social-logins h2 {
+        margin-bottom: 1em; }
+    #container-profile main .logout {
+      text-align: center; }
 
 #main-nav {
   flex: 0 0 auto;
