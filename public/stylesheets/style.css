@@ -376,6 +376,57 @@ textarea:focus, input:focus, button:focus {
           margin-top: 0;
           font-size: var(--senary-text-size); }
 
+#container-search {
+  background-color: var(--quinary-color);
+  height: 100vh; }
+  #container-search #search {
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
+    padding-top: var(--gutter); }
+    #container-search #search form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--input-size);
+      background-color: var(--senary-color);
+      border: 1px solid var(--quaternary-color);
+      border-radius: var(--input-border-radius); }
+      #container-search #search form i {
+        margin-left: 1em; }
+      #container-search #search form input {
+        background-color: var(--senary-color);
+        width: 100%;
+        padding: .8em 1em .7em 1em;
+        border: 0; }
+  #container-search #results {
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
+    padding-top: var(--gutter); }
+    #container-search #results .no-result {
+      text-align: center; }
+    #container-search #results .search-book-card {
+      background-color: var(--senary-color);
+      border: 1px solid var(--quaternary-color);
+      border-radius: var(--input-border-radius);
+      padding: .5em 1em; }
+      #container-search #results .search-book-card main {
+        display: flex;
+        flex-direction: row; }
+        #container-search #results .search-book-card main .book-cover img {
+          height: 100px;
+          margin-right: 1em; }
+        #container-search #results .search-book-card main .book-details {
+          display: flex;
+          flex-direction: column; }
+          #container-search #results .search-book-card main .book-details .book-title {
+            color: var(--primary-color);
+            font-weight: var(--primary-text-weight); }
+          #container-search #results .search-book-card main .book-details .book-authors {
+            color: var(--tertiary-color);
+            font-size: var(--quaternary-text-size);
+            margin-bottom: 1em; }
+
 #books-index-container {
   margin: var(--gutter); }
 

@@ -1,0 +1,21 @@
+<div class="search-book-card">
+  <main>
+    <div class="book-cover">
+      <a href="/livre/{{slug}}">
+        <img src="{{coverPath}}" alt="Couverture de {{title}}">
+      </a>
+    </div>
+
+    <div class="book-details">
+      <a href="/livre/{{slug}}" class="book-title">{{title}}</a>
+      <a href="/recherche?q={{authors}}" class="book-authors">{{authors}}</a>
+      <div class="user-rating {{ratingStarClass}}">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
+  </main>
+</div>

@@ -213,4 +213,53 @@ router.post(`/profil`, (req, res, next) => {
 });
 
 
+// search page
+router.get(`/recherche`, (req, res, next) => {
+  if(!req.user) {
+    return res.redirect(`/`);  
+  }
+
+  const query = req.query.q;
+
+  req.uest({
+    method: `GET`,
+    url: `/api/0.1/search/${query}`
+  }, (err, resp, body) => {
+    if (err) return next(err);
+    
+    const results = body;
+
+    const getStarClass = (roundedRating) => {
+      switch(roundedRating) {
+        case 1:
+          return `rating-star-1`;
+        case 2:
+          return `rating-star-2`;
+        case 3:
+          return `rating-star-3`;
+        case 4:
+          return `rating-star-4`;
+        case 5:
+          return `rating-star-5`;
+      }
+    }
+
+    // to highlight the correct number of stars for each book
+    if(results.length > 0) {
+      results.map(book => {
+        let roundedBookRating = Math.floor(book.rating);
+        return book.ratingStarClass = getStarClass(roundedBookRating);
+      })
+    }
+
+    console.log(`search:`, results)
+
+    return res.render(`search`, {
+      query,
+      results
+    });
+  });  
+});
+
+
 module.exports = router;

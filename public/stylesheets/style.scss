@@ -544,6 +544,93 @@ textarea:focus, input:focus, button:focus {
 }
 
 
+//                            _     
+//                           | |    
+//    ___  ___  __ _ _ __ ___| |__  
+//   / __|/ _ \/ _` | '__/ __| '_ \ 
+//   \__ \  __/ (_| | | | (__| | | |
+//   |___/\___|\__,_|_|  \___|_| |_|
+//                                  
+//                                  
+
+#container-search {
+  background-color: var(--quinary-color);
+  height: 100vh;
+  
+  #search {
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
+    padding-top: var(--gutter);
+
+    form {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--input-size);
+  
+      background-color: var(--senary-color);
+      border: 1px solid var(--quaternary-color);
+      border-radius: var(--input-border-radius);
+
+      
+      i {
+        margin-left: 1em;
+      }
+      input {
+        background-color: var(--senary-color);
+        width: 100%;
+        padding: .8em 1em .7em 1em;
+        border:0;
+      }
+    }
+  }
+
+  #results {
+    margin-left: var(--gutter);
+    margin-right: var(--gutter);
+    padding-top: var(--gutter);
+
+    .no-result {
+      text-align: center;
+    }
+
+    .search-book-card {
+      background-color: var(--senary-color);
+      border: 1px solid var(--quaternary-color);
+      border-radius: var(--input-border-radius);
+      padding: .5em 1em;
+      
+      main {
+        display: flex;
+        flex-direction: row;
+
+        .book-cover img {
+          height: 100px;
+          margin-right: 1em;
+        }
+
+        .book-details {
+          display: flex;
+          flex-direction: column;
+
+          .book-title {
+            color: var(--primary-color);
+            font-weight: var(--primary-text-weight);
+          }
+
+          .book-authors {
+            color: var(--tertiary-color);
+            font-size: var(--quaternary-text-size);
+            margin-bottom: 1em;
+          }
+        }
+      }
+    }
+  }
+}
+
+
 //    _                 _          _           _           
 //   | |               | |        (_)         | |          
 //   | |__   ___   ___ | | _____   _ _ __   __| | _____  __

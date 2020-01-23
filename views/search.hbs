@@ -1,0 +1,16 @@
+<div id="container-search">
+  <div id="search">
+    <form action="/recherche">
+      <i class="fas fa-search"></i>
+      <input type="text" name="q" placeholder="livres, auteurs, thématiques, etc." value="{{query}}">
+    </form>
+  </div>
+
+  <div id="results">
+    {{#each results}}
+      {{> searchBookCard}}
+    {{else}}
+      <p class="no-result">Aucun résultat trouvé</p>
+    {{/each}}   
+  </div>
+</div>
