@@ -8,9 +8,9 @@ router.post('/inscription', (req, res, next) => {
   const {email, password} = req.body;
 
   if (email === `` || password === ``) {
-    res.render(`/inscription`, {
+    res.render(`signup`, {
       layout: `/layouts/homepage`,
-      error: `Email, password and username are mandatory`
+      error: `Email et mot de passe obligatoires`
     })
     return;
   }
@@ -23,7 +23,10 @@ router.post('/inscription', (req, res, next) => {
     if (err) {
       // deal with specific "Forbidden" error
       if (err.status === 409) {
-        return res.render('signup', {error: "Email already taken"})
+        return res.render('signup', {
+          layout: `/layouts/homepage`,
+          error: `Adresse email déjà existante`
+        })
       }
 
       return next(err); // for any other error
@@ -47,7 +50,10 @@ router.post('/connexion', (req, res, next) => {
   const {email, password} = req.body;
 
   if (email === `` || password === ``) {
-    return res.render(`index/visitor`, { error: `Email, password and username are mandatory`});
+    return res.render(`index/visitor`, {
+      layout: `/layouts/homepage`,
+      error: `Email et mot de passe obligatoires`
+    });
   }
 
   req.uest({
@@ -58,7 +64,10 @@ router.post('/connexion', (req, res, next) => {
     if (err) {
       // deal with specific "Forbidden" error
       if (err.status === 401) {
-        return res.render('index/visitor', {error: `Username and password does not match`});
+        return res.render('index/visitor', {
+          layout: `/layouts/homepage`,
+          error: `Email et mot de passe ne correspondent pas`
+        });
       }
 
       return next(err); // for any other error

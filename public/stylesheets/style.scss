@@ -15,6 +15,8 @@
 
   --star-color: #F2A138;
 
+  --alert-color: #d2472f;
+
   --main-shadow-color: 0 0 10px 5px rgba(0,0,0,0.1);
 
   --primary-text-size: 20px;
@@ -197,7 +199,12 @@ textarea:focus, input:focus, button:focus {
   i {
     color: var(--star-color);
   }
-} 
+}
+
+.alert {
+  color: var(--alert-color);
+  font-size: var(--quaternary-text-size);
+}
 
 
 //    _           _                   _     _ _             

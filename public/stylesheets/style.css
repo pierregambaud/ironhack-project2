@@ -12,6 +12,7 @@
   --primary-action-color: #337ab7;
   --secondary-action-color: #aac5db;
   --star-color: #F2A138;
+  --alert-color: #d2472f;
   --main-shadow-color: 0 0 10px 5px rgba(0,0,0,0.1);
   --primary-text-size: 20px;
   --secondary-text-size: 18px;
@@ -155,6 +156,10 @@ textarea:focus, input:focus, button:focus {
 
 .rating-star-5 i {
   color: var(--star-color); }
+
+.alert {
+  color: var(--alert-color);
+  font-size: var(--quaternary-text-size); }
 
 #container-index-visitor {
   min-height: 100vh;

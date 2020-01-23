@@ -4,6 +4,9 @@
     <h2>Critiques de livres en 140 caractères</h2>
   </header>
   <main>
+    {{#if error}}
+      <p class="alert">{{error}}</p>
+    {{/if}}
     <form action="/inscription" method="POST">
       <input type="text" placeholder="Inscription avec email" name="email">
       <input type="password" placeholder="Votre mot de passe" name="password">
