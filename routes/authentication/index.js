@@ -8,7 +8,10 @@ router.post('/inscription', (req, res, next) => {
   const {email, password} = req.body;
 
   if (email === `` || password === ``) {
-    res.render(`/inscription`, { error: `Email, password and username are mandatory`})
+    res.render(`/inscription`, {
+      layout: `/layouts/homepage`,
+      error: `Email, password and username are mandatory`
+    })
     return;
   }
 
@@ -34,7 +37,7 @@ router.post('/inscription', (req, res, next) => {
 // signup homepage
 router.get(`/inscription`, (req, res, next) => {
   res.render(`signup`, {
-    layout: '/layouts/homepage'
+    layout: `/layouts/homepage`
   });
 });
 

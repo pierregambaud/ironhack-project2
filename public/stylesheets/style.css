@@ -27,6 +27,7 @@
   --secondary-text-lineheight: 1.4;
   --border-radius: 5px;
   --input-border-radius: 8px;
+  --main-top-border-radius: 20px;
   --gutter: 1.5rem; }
 
 body {
@@ -88,7 +89,7 @@ textarea:focus, input:focus, button:focus {
 ::placeholder {
   color: var(--secondary-color); }
 
-.btn-structure, .btn-primary, #container-index-visitor main form button, #container-profile main form button, .btn-secondary, .social-logins #btn-twitter, .social-logins #btn-facebook, #container-profile main .logout {
+.btn-structure, .btn-primary, #container-index-visitor main form button, #container-profile main form button, .btn-secondary, .social-logins #btn-twitter, .social-logins #btn-facebook, #container-books-show > main .interactions a, #container-profile main .logout {
   width: 100%;
   padding-top: .8em;
   padding-bottom: .8em;
@@ -102,7 +103,7 @@ textarea:focus, input:focus, button:focus {
   color: var(--senary-color);
   border: 0; }
 
-.btn-secondary, .social-logins #btn-twitter, .social-logins #btn-facebook, #container-profile main .logout {
+.btn-secondary, .social-logins #btn-twitter, .social-logins #btn-facebook, #container-books-show > main .interactions a, #container-profile main .logout {
   background-color: var(--quinary-color);
   color: var(--primary-action-color);
   border: 1px solid var(--secondary-action-color); }
@@ -139,6 +140,21 @@ textarea:focus, input:focus, button:focus {
     content: "\f082";
     color: #4267B2;
     padding-right: .5em; }
+
+.rating-star-1 > i:nth-child(1) {
+  color: var(--star-color); }
+
+.rating-star-2 > i:nth-child(1), .rating-star-2 i:nth-child(2) {
+  color: var(--star-color); }
+
+.rating-star-3 > i:nth-child(1), .rating-star-3 i:nth-child(2), .rating-star-3 i:nth-child(3) {
+  color: var(--star-color); }
+
+.rating-star-4 > i:nth-child(1), .rating-star-4 i:nth-child(2), .rating-star-4 i:nth-child(3), .rating-star-4 i:nth-child(4) {
+  color: var(--star-color); }
+
+.rating-star-5 i {
+  color: var(--star-color); }
 
 #container-index-visitor {
   min-height: 100vh;
@@ -197,7 +213,8 @@ textarea:focus, input:focus, button:focus {
         border: 0; }
 
 #container-index-member #last-reviews {
-  margin: var(--gutter); }
+  margin-left: var(--gutter);
+  margin-right: var(--gutter); }
   #container-index-member #last-reviews > header {
     display: flex;
     flex-direction: row;
@@ -291,6 +308,7 @@ textarea:focus, input:focus, button:focus {
         margin-bottom: .3em; }
 
 #container-index-member #user-lists {
+  margin: var(--gutter);
   margin-top: .2em; }
   #container-index-member #user-lists header {
     margin-top: 1.8em; }
@@ -312,123 +330,121 @@ textarea:focus, input:focus, button:focus {
       margin-bottom: .6em;
       border: 2px solid white; }
 
-#container-index-member #trending-books header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.8em; }
-  #container-index-member #trending-books header a {
-    font-size: var(--tertiary-text-size); }
-
-#container-index-member #trending-books main {
-  display: flex;
-  flex-direction: row;
-  margin-right: calc(var(--gutter) * -1);
-  overflow: auto; }
-  #container-index-member #trending-books main img {
-    border-radius: var(--border-radius);
-    height: 160px;
-    width: 104px; }
-  #container-index-member #trending-books main .trending-book {
-    padding-top: 1.4em;
-    margin-right: 1em;
-    padding-bottom: .5em; }
-    #container-index-member #trending-books main .trending-book a {
-      color: var(--primary-color); }
-    #container-index-member #trending-books main .trending-book .description {
-      overflow: hidden;
-      width: 100px; }
-      #container-index-member #trending-books main .trending-book .description h3 {
-        color: var(--primary-color);
-        font-size: var(--quinary-text-size);
-        margin-top: .6em;
-        margin-bottom: .3em;
+#container-index-member #trending-books {
+  margin-left: var(--gutter);
+  margin-right: var(--gutter); }
+  #container-index-member #trending-books header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .8em; }
+    #container-index-member #trending-books header a {
+      font-size: var(--tertiary-text-size); }
+  #container-index-member #trending-books main {
+    display: flex;
+    flex-direction: row;
+    margin-right: calc(var(--gutter) * -1);
+    overflow: auto; }
+    #container-index-member #trending-books main img {
+      border-radius: var(--border-radius);
+      height: 160px;
+      width: 104px; }
+    #container-index-member #trending-books main .trending-book {
+      padding-top: 1.4em;
+      margin-right: 1em;
+      padding-bottom: .5em; }
+      #container-index-member #trending-books main .trending-book a {
+        color: var(--primary-color); }
+      #container-index-member #trending-books main .trending-book .description {
         overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; }
-      #container-index-member #trending-books main .trending-book .description p {
-        margin-top: 0;
-        font-size: var(--senary-text-size); }
+        width: 100px; }
+        #container-index-member #trending-books main .trending-book .description h3 {
+          color: var(--primary-color);
+          font-size: var(--quinary-text-size);
+          margin-top: .6em;
+          margin-bottom: .3em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+        #container-index-member #trending-books main .trending-book .description p {
+          margin-top: 0;
+          font-size: var(--senary-text-size); }
 
 #books-index-container {
   margin: var(--gutter); }
 
 #container-books-show {
-  margin: var(--gutter); }
-  #container-books-show nav {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2em; }
-    #container-books-show nav a {
-      color: var(--secondary-color); }
-  #container-books-show #book {
-    display: flex;
-    flex-direction: row; }
-    #container-books-show #book h1 {
-      font-size: var(--secondary-text-size); }
-    #container-books-show #book h2 {
+  background-color: var(--quaternary-color); }
+  #container-books-show > header {
+    padding-top: var(--gutter);
+    text-align: center; }
+    #container-books-show > header nav {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1em;
+      margin-left: var(--gutter);
+      margin-right: var(--gutter); }
+      #container-books-show > header nav a {
+        color: var(--tertiary-color); }
+    #container-books-show > header img {
+      height: 200px;
+      border: 5px solid var(--quinary-color);
+      border-radius: var(--input-border-radius);
+      margin-bottom: 1em; }
+  #container-books-show > main {
+    background-color: var(--quinary-color);
+    padding: var(--gutter);
+    border-top-right-radius: var(--main-top-border-radius);
+    border-top-left-radius: var(--main-top-border-radius); }
+    #container-books-show > main .book-main-information h1, #container-books-show > main .book-main-information h2 {
+      text-align: center; }
+    #container-books-show > main .book-main-information h1 {
+      margin-bottom: .3em; }
+    #container-books-show > main .book-main-information h2 {
       font-size: var(--tertiary-text-size);
-      font-weight: var(--secondary-text-weight); }
-    #container-books-show #book .cover {
-      width: 120px;
-      margin-right: 1em; }
-    #container-books-show #book .main-details {
+      color: var(--tertiary-color);
+      font-weight: var(--secondary-text-weight);
+      margin-bottom: 1.5em; }
+    #container-books-show > main .book-main-information .book-rating {
       display: flex;
       flex-direction: column;
-      justify-content: center; }
-      #container-books-show #book .main-details h2 {
-        color: var(--secondary-color); }
-      #container-books-show #book .main-details p {
-        margin-bottom: 0; }
-        #container-books-show #book .main-details p span {
-          font-size: var(--senary-text-size); }
-
-#container-books-show #interactions {
-  margin-top: .5em;
-  margin-bottom: .5em;
-  border-top: solid 2px var(--quinary-color);
-  border-bottom: solid 2px var(--quinary-color); }
-  #container-books-show #interactions ul {
-    display: flex;
-    justify-content: space-around;
-    padding: 1em 0;
-    margin: 0; }
-    #container-books-show #interactions ul li {
-      font-size: var(--tertiary-text-size);
-      list-style-type: none;
-      vertical-align: middle; }
-      #container-books-show #interactions ul li i {
-        color: var(--secondary-color); }
-      #container-books-show #interactions ul li span {
-        color: var(--primary-color);
-        margin-left: .5em; }
-
-#container-books-show #description {
-  background-color: var(--quinary-color);
-  margin-left: calc(var(--gutter) * -1);
-  margin-right: calc(var(--gutter) * -1);
-  margin-bottom: 1em;
-  padding: 1em var(--gutter);
-  border-bottom: solid 2px var(--quinary-color); }
-  #container-books-show #description header {
-    display: flex;
-    justify-content: space-between; }
-    #container-books-show #description header a {
-      font-size: var(--tertiary-text-size); }
-  #container-books-show #description .tags ul {
-    display: flex;
-    margin: 0;
-    padding: 0; }
-    #container-books-show #description .tags ul li {
-      list-style-type: none;
-      vertical-align: middle;
-      margin-right: .5em;
-      border: 1px solid var(--quinary-color);
-      padding: .2em .5em;
-      font-size: var(--quinary-text-size); }
-      #container-books-show #description .tags ul li a {
-        color: var(--secondary-color); }
+      align-items: center;
+      margin-bottom: 1.5em; }
+      #container-books-show > main .book-main-information .book-rating .rating-details {
+        margin-top: .5em;
+        color: var(--tertiary-color);
+        font-size: var(--tertiary-text-size); }
+    #container-books-show > main .interactions {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1em; }
+      #container-books-show > main .interactions a {
+        background-color: var(--senary-color);
+        text-align: center; }
+        #container-books-show > main .interactions a i {
+          padding-right: 1em; }
+    #container-books-show > main .book-complementary-information header {
+      display: flex;
+      justify-content: space-between; }
+      #container-books-show > main .book-complementary-information header a {
+        font-size: var(--tertiary-text-size); }
+    #container-books-show > main .book-complementary-information main .book-description {
+      color: var(--tertiary-color); }
+    #container-books-show > main .book-complementary-information main .book-tags {
+      display: flex;
+      margin: 0;
+      margin-bottom: 2em;
+      padding: 0; }
+      #container-books-show > main .book-complementary-information main .book-tags li {
+        list-style-type: none;
+        vertical-align: middle;
+        margin-right: .5em;
+        border: 1px solid var(--quaternary-color);
+        padding: .5em .8em;
+        font-size: var(--quinary-text-size); }
+        #container-books-show > main .book-complementary-information main .book-tags li a {
+          color: var(--secondary-color); }
 
 #container-books-show #book-reviews {
   display: flex;
@@ -447,17 +463,18 @@ textarea:focus, input:focus, button:focus {
 #container-books-show #book-reviews .book-review-card {
   display: flex;
   flex-direction: column;
-  background-color: var(--quinary-color);
+  background-color: var(--senary-color);
   border-radius: var(--border-radius);
   padding: .5em;
   margin-bottom: 1em;
-  font-size: var(--tertiary-text-size); }
+  font-size: var(--tertiary-text-size);
+  border: 1px solid var(--quaternary-color); }
   #container-books-show #book-reviews .book-review-card header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: .6em;
-    border-bottom: 1px solid var(--quinary-color); }
+    border-bottom: 1px solid var(--quaternary-color); }
     #container-books-show #book-reviews .book-review-card header .user {
       display: flex;
       flex-direction: row;
@@ -499,7 +516,7 @@ textarea:focus, input:focus, button:focus {
     #container-books-show #popup-writing-review main form .bloc-rating fieldset {
       border: 0;
       padding-left: 0;
-      width: 200px; }
+      width: 180px; }
     #container-books-show #popup-writing-review main form .bloc-rating .rating > input {
       display: none; }
     #container-books-show #popup-writing-review main form .bloc-rating .rating > label:before {
@@ -528,6 +545,7 @@ textarea:focus, input:focus, button:focus {
       padding-bottom: .4em; }
   #container-books-show #popup-writing-review main form textarea {
     width: 100%;
+    background-color: var(--senary-color);
     font-size: var(--tertiary-text-size);
     line-height: var(--secondary-text-lineheight);
     padding: 1em; }
@@ -540,22 +558,22 @@ textarea:focus, input:focus, button:focus {
     #container-books-show #popup-writing-review main form .bloc-submit span {
       font-size: var(--tertiary-text-size); }
     #container-books-show #popup-writing-review main form .bloc-submit button {
-      color: var(--primary-action-color); }
+      color: var(--primary-action-color);
+      font-size: var(--secondary-text-size); }
     #container-books-show #popup-writing-review main form .bloc-submit button[disabled=disabled], #container-books-show #popup-writing-review main form .bloc-submit button:disabled {
-      color: var(--secondary-color); }
+      color: var(--tertiary-color); }
 
 #users-show-container {
   margin: var(--gutter); }
 
 #container-profile {
-  background-color: var(--tertiary-color); }
+  background-color: var(--quaternary-color); }
   #container-profile header {
     margin-left: var(--gutter);
     margin-right: var(--gutter);
     margin-bottom: 1em;
     padding-top: 2em; }
     #container-profile header h1 {
-      color: var(--senary-color);
       margin-bottom: .5em; }
     #container-profile header img {
       vertical-align: middle;
@@ -566,8 +584,8 @@ textarea:focus, input:focus, button:focus {
   #container-profile main {
     background-color: var(--senary-color);
     padding: var(--gutter);
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px; }
+    border-top-right-radius: var(--main-top-border-radius);
+    border-top-left-radius: var(--main-top-border-radius); }
     #container-profile main h2 {
       font-size: var(--secondary-text-size);
       margin-bottom: .5em; }

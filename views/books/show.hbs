@@ -1,81 +1,89 @@
 <div id="container-books-show">
-  <nav>
-    <span><a href="/"><i class="fas fa-arrow-left fa-2x"></i></a></span>
-    <span><a href=""><i class="fas fa-shopping-cart fa-2x"></i></a></span>
-  </nav>
-  <div id="book">
-    <div class="cover">
-      <img src="{{book.coverPath}}" alt="Couverture de {{book.title}}">
-    </div>
-    <div class="main-details">
+
+  <header>
+    <nav>
+      <span><a href="/"><i class="fas fa-arrow-left fa-2x"></i></a></span>
+      <span><a href=""><i class="fas fa-shopping-cart fa-2x"></i></a></span>
+    </nav>
+    <img src="{{book.coverPath}}" alt="Couverture de {{book.title}}">
+  </header>
+
+  <main>
+    <div class="book-main-information">
       <h1>{{book.title}}</h1>
       <h2>{{book.authors}}</h2>
-      <p><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <span>(x notes)</span></p>
+      <div class="book-rating">
+        <span class="rating-stars {{book.ratingStarClass}}">
+          <i class="fas fa-star fa-2x"></i> <i class="fas fa-star fa-2x"></i> <i class="fas fa-star fa-2x"></i> <i class="fas fa-star fa-2x"></i> <i class="fas fa-star fa-2x"></i>
+        </span>
+        <span class="rating-details">avec {{book.reviewsNumberText}}</span>
+      </div>
     </div>
-  </div>
-  <div id="interactions">
-    <ul>
-      <li><a href=""><i class="fas fa-book"></i><span>ajouter à une liste</span></a></li>
-      <li><a href="#popup-writing-review"><i class="fas fa-pen"></i><span>écrire une critique</span></a></li>
-    </ul>
-  </div>
-  <div id="description">
-    <header>
-      <h3>Description</h3>
-      <a href="/livre/{{book._id}}/enrichir">enrichir</a>
-    </header>
-    <main>
-      <p>Dans un futur post apocalyptique indéterminé, une communauté d'hommes et de femmes organise sa survie dans un silo souterrain géant.</p>
-      <div class="tags">
-        <ul>
+
+    <div class="interactions">
+      <a href=""><i class="fas fa-book"></i><span>Ajouter à une liste</span></a>
+      <a href="#popup-writing-review"><i class="fas fa-pen"></i><span>Écrire une critique</span></a>
+    </div>
+
+    <div class="book-complementary-information">
+      <header>
+        <h3>Description</h3>
+        <a href="/livre/{{book.id}}/critiques">enrichir</a>
+      </header>
+      <main>
+        <p class="book-description">Dans un futur post apocalyptique indéterminé, une communauté d'hommes et de femmes organise sa survie dans un silo souterrain géant.</p>  
+        <ul class="book-tags">
           <li><a href="">roman policier</a></li>
           <li><a href="">londres</a></li>
           <li><a href="">enquêtes</a></li>
         </ul>
-      </div>
-    </main>
-  </div>
-  <div id="book-reviews">
-    <header>
-      <h3>Critiques</h3>
-      <a href="/livre/{{book.id}}/critiques">plus</a>
-    </header>
-    <main>
-      {{#each book.reviews}}
-        {{>reviewCardBookPage}}
-      {{/each}}
-    </main>
-  </div>
+      </main>
+    </div>
 
-  <div id="popup-writing-review">
-    <header>
-      <h3>Publier une critique</h3>
-      <a class="close" href="#"><i class="fas fa-chevron-down"></i></a>
-    </header>
-    <main>
-      <form action="" method="POST">
-        <div class="bloc-rating">
-          <fieldset class="rating">    
-            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Coup de coeur !"></label>
-            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="J'ai adoré"></label>
-            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Bien aimé"></label>
-            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Pas accroché"></label>
-            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="J'ai détesté"></label>
-          </fieldset>
-          <span id="rating-label">Quelle note ?</span>
-        </div>
-        <input type="hidden" name="book_id" value="{{book._id}}">
-        {{#if user}}
-          <input type="hidden" name="user_id" value="{{user._id}}">
-        {{/if}}
-        <textarea name="review" id="review" minlength="20" maxlength="140" rows="5" placeholder="Ecrivez une critique entre 20 et 140 caractères"></textarea>
-      
-        <div class="bloc-submit">
-          <span><span id="remaining-review-characters">140</span> caractères restants</span>
-          <button disabled id="submit-review">Ecrire</button>
-        </div>
-      </form>
-    </main>
+    <div id="book-reviews">
+      <header>
+        <h3>Critiques</h3>
+        <a href="/livre/{{book.id}}/critiques">plus</a>
+      </header>
+      <main>
+        {{#each book.reviews}}
+          {{>reviewCardBookPage}}
+        {{/each}}
+      </main>
+    </div>
+
+    <div id="popup-writing-review">
+      <header>
+        <h3>Publier une critique</h3>
+        <a class="close" href="#"><i class="fas fa-chevron-down"></i></a>
+      </header>
+      <main>
+        <form action="" method="POST">
+          <div class="bloc-rating">
+            <fieldset class="rating">    
+              <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Coup de coeur !"></label>
+              <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="J'ai adoré"></label>
+              <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Bien aimé"></label>
+              <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Pas accroché"></label>
+              <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="J'ai détesté"></label>
+            </fieldset>
+            <span id="rating-label">Quelle note ?</span>
+          </div>
+          <input type="hidden" name="book_id" value="{{book._id}}">
+          {{#if user}}
+            <input type="hidden" name="user_id" value="{{user._id}}">
+          {{/if}}
+          <textarea name="review" id="review" minlength="20" maxlength="140" rows="5" placeholder="Ecrivez une critique entre 20 et 140 caractères"></textarea>
+        
+          <div class="bloc-submit">
+            <span><span id="remaining-review-characters">140</span> caractères restants</span>
+            <button disabled id="submit-review">Ecrire</button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </main>
+
 </div>
 
 <script>

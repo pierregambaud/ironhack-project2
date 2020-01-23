@@ -35,6 +35,7 @@
 
   --border-radius: 5px;
   --input-border-radius: 8px;
+  --main-top-border-radius: 20px;
 
   --gutter: 1.5rem;
 }
@@ -172,6 +173,32 @@ textarea:focus, input:focus, button:focus {
   }
 }
 
+.rating-star-1 {
+  > i:nth-child(1) {
+    color: var(--star-color);
+  }
+}
+.rating-star-2 {
+  > i:nth-child(1), i:nth-child(2) {
+    color: var(--star-color);
+  }
+}
+.rating-star-3 {
+  > i:nth-child(1), i:nth-child(2), i:nth-child(3) {
+    color: var(--star-color);
+  }
+}
+.rating-star-4 {
+  > i:nth-child(1), i:nth-child(2), i:nth-child(3), i:nth-child(4) {
+    color: var(--star-color);
+  }
+} 
+.rating-star-5 {
+  i {
+    color: var(--star-color);
+  }
+} 
+
 
 //    _           _                   _     _ _             
 //   (_)         | |                 (_)   (_) |            
@@ -279,7 +306,8 @@ textarea:focus, input:focus, button:focus {
 }
 
 #container-index-member #last-reviews {
-  margin: var(--gutter);
+  margin-left: var(--gutter);
+  margin-right: var(--gutter);
 
   > header {
     display: flex;
@@ -416,6 +444,8 @@ textarea:focus, input:focus, button:focus {
 }
 
 #container-index-member #user-lists {
+  margin: var(--gutter);
+
   header {
     margin-top: 1.8em;
   }
@@ -447,12 +477,15 @@ textarea:focus, input:focus, button:focus {
 }
 
 #container-index-member #trending-books {
+  margin-left: var(--gutter);
+  margin-right: var(--gutter);
+
   header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1.8em;
+    margin-top: .8em;
 
     a {
       font-size: var(--tertiary-text-size);
@@ -526,117 +559,120 @@ textarea:focus, input:focus, button:focus {
 //                                                         
 
 #container-books-show {
-  margin: var(--gutter);
+  background-color: var(--quaternary-color);
 
-  nav {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2em;
+  > header {
+    padding-top: var(--gutter);
+    text-align: center;
 
-    a {
-      color: var(--secondary-color);
-    } 
+    nav {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1em;
+      margin-left: var(--gutter);
+      margin-right: var(--gutter);
+
+      a {
+        color: var(--tertiary-color);
+      } 
+    }
+
+    img {
+      height: 200px;
+      border: 5px solid var(--quinary-color);
+      border-radius: var(--input-border-radius);
+      margin-bottom: 1em;
+    }
   }
 
-  #book {
-    display: flex;
-    flex-direction: row;
+  > main {
+    background-color: var(--quinary-color);
+    padding: var(--gutter);
 
-    h1 {
-      font-size: var(--secondary-text-size);
-    }
+    border-top-right-radius: var(--main-top-border-radius);
+    border-top-left-radius: var(--main-top-border-radius);
 
-    h2 {
-      font-size: var(--tertiary-text-size);
-      font-weight: var(--secondary-text-weight);
-    }
+    .book-main-information {
+      h1, h2 {
+        text-align: center;
+      }
 
-    .cover {
-      width: 120px;
-      margin-right: 1em;
-    }
-
-    .main-details {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      h1 {
+        margin-bottom: .3em;
+      }
 
       h2 {
-        color: var(--secondary-color);
+        font-size: var(--tertiary-text-size);
+        color: var(--tertiary-color);
+        font-weight: var(--secondary-text-weight);
+        margin-bottom: 1.5em;
       }
-  
-      p {
-        margin-bottom: 0;
 
-        span {
-          font-size: var(--senary-text-size);
+      .book-rating {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.5em;
+
+        .rating-details {
+          margin-top: .5em;
+          color: var(--tertiary-color);
+          font-size: var(--tertiary-text-size);
         }
       }
     }
-  }
-}
 
-#container-books-show #interactions {
-  margin-top: .5em;
-  margin-bottom: .5em;
-  border-top: solid 2px var(--quinary-color);
-  border-bottom: solid 2px var(--quinary-color);
+    .interactions {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1em;
 
-  ul {
-    display: flex;
-    justify-content: space-around;
-    padding: 1em 0;
-    margin: 0;
-
-    li {
-      font-size: var(--tertiary-text-size);
-      list-style-type: none;
-      vertical-align: middle;
-
-      i {
-        color: var(--secondary-color);
-      }
-
-      span {
-        color: var(--primary-color);
-        margin-left: .5em;
-      }
-    }
-  }
-}
-
-#container-books-show #description {
-  background-color: var(--quinary-color);
-  margin-left: calc(var(--gutter) * -1);
-  margin-right: calc(var(--gutter) * -1);
-  margin-bottom: 1em;
-  padding: 1em var(--gutter);
-  border-bottom: solid 2px var(--quinary-color);
-
-  header {
-    display: flex;
-    justify-content: space-between;
-  
-    a {
-      font-size: var(--tertiary-text-size)
-    }
-  }
-
-  .tags ul {
-    display: flex;
-    margin: 0;
-    padding: 0;
-  
-    li {
-      list-style-type: none;
-      vertical-align: middle;
-      margin-right: .5em;
-      border: 1px solid var(--quinary-color);
-      padding: .2em .5em;
-      font-size: var(--quinary-text-size);
-  
       a {
-        color: var(--secondary-color);
+        @extend .btn-secondary;
+        
+        background-color: var(--senary-color);
+        text-align: center;
+
+        i {
+          padding-right: 1em;
+        }
+      }
+    }
+
+    .book-complementary-information {
+      header {
+        display: flex;
+        justify-content: space-between;
+      
+        a {
+          font-size: var(--tertiary-text-size)
+        }
+      }
+
+      main {
+        .book-description {
+          color: var(--tertiary-color);
+        }
+  
+        .book-tags {
+          display: flex;
+          margin: 0;
+          margin-bottom: 2em;
+          padding: 0;
+        
+          li {
+            list-style-type: none;
+            vertical-align: middle;
+            margin-right: .5em;
+            border: 1px solid var(--quaternary-color);
+            padding: .5em .8em;
+            font-size: var(--quinary-text-size);
+        
+            a {
+              color: var(--secondary-color);
+            }
+          }
+        }
       }
     }
   }
@@ -666,18 +702,19 @@ textarea:focus, input:focus, button:focus {
 #container-books-show #book-reviews .book-review-card {
   display: flex;
   flex-direction: column;
-  background-color: var(--quinary-color);
+  background-color: var(--senary-color);
   border-radius: var(--border-radius);
   padding: .5em;
   margin-bottom: 1em;
   font-size: var(--tertiary-text-size);
+  border: 1px solid var(--quaternary-color);
 
   header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-bottom: .6em;
-    border-bottom: 1px solid var(--quinary-color);
+    border-bottom: 1px solid var(--quaternary-color);
 
     .user {
       display: flex;
@@ -745,7 +782,7 @@ textarea:focus, input:focus, button:focus {
         fieldset {
           border: 0;
           padding-left: 0;
-          width: 200px;
+          width: 180px;
         }
         
         .rating > input { display: none; } 
@@ -784,6 +821,7 @@ textarea:focus, input:focus, button:focus {
       
       textarea {
         width: 100%;
+        background-color: var(--senary-color);
         font-size: var(--tertiary-text-size);
         line-height: var(--secondary-text-lineheight);
         padding: 1em;
@@ -802,9 +840,10 @@ textarea:focus, input:focus, button:focus {
 
         button {
           color: var(--primary-action-color);
+          font-size: var(--secondary-text-size);
         }
         button[disabled=disabled], button:disabled {
-          color: var(--secondary-color); 
+          color: var(--tertiary-color); 
         }
       }
     } 
@@ -839,7 +878,7 @@ textarea:focus, input:focus, button:focus {
 //   |_|                           
 
 #container-profile {
-  background-color: var(--tertiary-color);
+  background-color: var(--quaternary-color);
 
   header {
     margin-left: var(--gutter);
@@ -848,7 +887,6 @@ textarea:focus, input:focus, button:focus {
     padding-top: 2em;
 
     h1 {
-      color: var(--senary-color);
       margin-bottom: .5em;
     }
   
@@ -865,8 +903,8 @@ textarea:focus, input:focus, button:focus {
     background-color: var(--senary-color);
     padding: var(--gutter);
 
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
+    border-top-right-radius: var(--main-top-border-radius);
+    border-top-left-radius: var(--main-top-border-radius);
 
     h2 {
       font-size: var(--secondary-text-size);
