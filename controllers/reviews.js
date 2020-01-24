@@ -1,5 +1,6 @@
 const Review = require(`../models/review.js`);
-const Book   = require(`../models/book.js`);
+const Book    = require(`../models/book.js`);
+const helpers = require(`../helpers/index.js`);
 
 
 //    _           _           
@@ -40,14 +41,26 @@ exports.create = (req, res, next) => {
     url
   })
     .then(review => {
-      Book.findByIdAndUpdate(book_id,
-        {
-          $push: {
-            "reviews": review._id
-          }
-        })
-        .then(() => {
-          res.status(201).json(review);
+      Book.findById(book_id)
+        .populate(`reviews`)
+        .then(book => {
+          helpers.calculateBookRating(rating, book)
+            .then((updatedRating) => {
+              Book.findByIdAndUpdate(book_id,
+                {
+                  $set: {
+                    "rating": updatedRating
+                  },
+                  $push: {
+                    "reviews": review._id
+                  }
+                })
+                .then(() => {
+                  res.status(201).json(review);
+                })
+                .catch(next);
+            })
+            .catch(next);
         })
         .catch(next);
 

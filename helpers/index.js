@@ -106,3 +106,27 @@ exports.generateUniqueSlug = (type, elementToSlugify) => {
   })
 };
 
+
+//              _            _       _                   _   _             
+//             | |          | |     | |                 | | (_)            
+//     ___ __ _| | ___ _   _| | __ _| |_ ___   _ __ __ _| |_ _ _ __   __ _ 
+//    / __/ _` | |/ __| | | | |/ _` | __/ _ \ | '__/ _` | __| | '_ \ / _` |
+//   | (_| (_| | | (__| |_| | | (_| | ||  __/ | | | (_| | |_| | | | | (_| |
+//    \___\__,_|_|\___|\__,_|_|\__,_|\__\___| |_|  \__,_|\__|_|_| |_|\__, |
+//                                                                    __/ |
+//                                                                   |___/ 
+
+exports.calculateBookRating = (newReviewRating, book) => {
+  return new Promise((resolve, reject) => {  
+    const reviews = book.reviews;
+
+    const sumCurrentRating = reviews.reduce((sumRating, review) => {
+      return sumRating += review.rating;
+    }, 0);
+
+    let newSum = sumCurrentRating + +newReviewRating;
+    let newNumberOfRatings = book.reviews.length + 1;
+    
+    resolve(Math.floor(newSum / newNumberOfRatings * 10) / 10);
+  })
+};
