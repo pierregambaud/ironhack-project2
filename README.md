@@ -39,7 +39,7 @@ BCRYPT_SALT=10
 Seed the database: `$ node bin/seeds.js`
 
 ### Launching
-Launch the APP `$ npm run dev``
+Launch the APP: `$ npm run dev`
 
 
 ## Routes
