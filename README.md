@@ -93,9 +93,14 @@ Launch the APP `$ npm run dev``
 | GET | /membre/:slugOrId | views/users/show.hbs | no | no |
 
 
+## Demo
+
+**On Heroku** - http://ironhack-project2-pierre.herokuapp.com/
+
+
 ## Author
 
-* **Pierre Gambaud** - https://github.com/pierregambaud
+**Pierre Gambaud** - https://github.com/pierregambaud
 
 
 ## Acknowledgments
