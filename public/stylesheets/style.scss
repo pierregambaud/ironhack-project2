@@ -32,8 +32,7 @@
   --secondary-text-weight: 400;
   --tertiary-text-weight: 300;
 
-  --primary-text-lineheight: 1.1;
-  --secondary-text-lineheight: 1.4;
+  --primary-text-lineheight: 1.4;
 
   --border-radius: 5px;
   --input-border-radius: 8px;
@@ -46,7 +45,7 @@ body {
   margin:0;
   font: var(--secondary-text-size) "Open Sans",sans-serif;
   font-weight: var(--secondary-text-weight);
-  line-height: var(primary-text-lineheight);
+  line-height: var(--primary-text-lineheight);
   color: var(--secondary-color);
   background-color: var(--senary-color);
   display: flex;
@@ -917,7 +916,7 @@ textarea:focus, input:focus, button:focus {
         width: 100%;
         background-color: var(--senary-color);
         font-size: var(--tertiary-text-size);
-        line-height: var(--secondary-text-lineheight);
+        line-height: var(--primary-text-lineheight);
         padding: 1em;
       }
 
