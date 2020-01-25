@@ -46,7 +46,7 @@ Launch the APP: `$ npm run dev`
 
 ### API routing
 | verbs | route | Controller#Action | private | admin |
-| - | - | - | - | - | - |
+| - | - | - | - | - |
 | ### | **SESSIONS** | ### | ### | ### |
 | POST | /api/0.1/sessions | sessions#new | no | no |
 | DELETE | /api/0.1/session | sessions#destoy | no | no |
@@ -105,4 +105,4 @@ Launch the APP: `$ npm run dev`
 
 ## Acknowledgments
 
-* A special thanks to IronHack and **Antoine** for its huge help!
+* A special thanks to **Antoine Bernier** for its huge help and support! - https://github.com/abernier/
