@@ -95,14 +95,14 @@ Launch the APP: `$ npm run dev`
 
 ## Demo
 
-**On Heroku** - http://ironhack-project2-pierre.herokuapp.com/
+On Heroku - http://ironhack-project2-pierre.herokuapp.com/
 
 
 ## Author
 
-**Pierre Gambaud** - https://github.com/pierregambaud
+Pierre Gambaud - https://github.com/pierregambaud
 
 
 ## Acknowledgments
 
-* A special thanks to **Antoine Bernier** for its huge help and support! - https://github.com/abernier/
+A special thanks to **Antoine Bernier** for its huge help and support! - https://github.com/abernier/
