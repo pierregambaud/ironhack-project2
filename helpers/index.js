@@ -117,16 +117,14 @@ exports.generateUniqueSlug = (type, elementToSlugify) => {
 //                                                                   |___/ 
 
 exports.calculateBookRating = (newReviewRating, book) => {
-  return new Promise((resolve, reject) => {  
-    const reviews = book.reviews;
+  const reviews = book.reviews;
 
-    const sumCurrentRating = reviews.reduce((sumRating, review) => {
-      return sumRating += review.rating;
-    }, 0);
+  const sumCurrentRating = reviews.reduce((sumRating, review) => {
+    return sumRating += review.rating;
+  }, 0);
 
-    let newSum = sumCurrentRating + +newReviewRating;
-    let newNumberOfRatings = book.reviews.length + 1;
-    
-    resolve(Math.floor(newSum / newNumberOfRatings * 10) / 10);
-  })
+  let newSum = sumCurrentRating + +newReviewRating;
+  let newNumberOfRatings = book.reviews.length + 1;
+  
+  return (Math.floor(newSum / newNumberOfRatings * 10) / 10);
 };

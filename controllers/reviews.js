@@ -44,21 +44,19 @@ exports.create = (req, res, next) => {
       Book.findById(book_id)
         .populate(`reviews`)
         .then(book => {
-          helpers.calculateBookRating(rating, book)
-            .then((updatedRating) => {
-              Book.findByIdAndUpdate(book_id,
-                {
-                  $set: {
-                    "rating": updatedRating
-                  },
-                  $push: {
-                    "reviews": review._id
-                  }
-                })
-                .then(() => {
-                  res.status(201).json(review);
-                })
-                .catch(next);
+          const updatedRating = helpers.calculateBookRating(rating, book);
+          
+          Book.findByIdAndUpdate(book_id,
+            {
+              $set: {
+                "rating": updatedRating
+              },
+              $push: {
+                "reviews": review._id
+              }
+            })
+            .then(() => {
+              res.status(201).json(review);
             })
             .catch(next);
         })
