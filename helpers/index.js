@@ -123,8 +123,13 @@ exports.calculateBookRating = (newReviewRating, book) => {
     return sumRating += review.rating;
   }, 0);
 
-  let newSum = sumCurrentRating + +newReviewRating;
-  let newNumberOfRatings = book.reviews.length + 1;
+  let newSum = sumCurrentRating;
+  let newNumberOfRatings = book.reviews.length;
+
+  if(newNumberOfRatings !== null) {
+    newSum += +newReviewRating;
+    newNumberOfRatings++;
+  }
   
   return (Math.floor(newSum / newNumberOfRatings * 10) / 10);
 };

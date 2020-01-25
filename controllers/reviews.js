@@ -119,10 +119,22 @@ exports.update = (req, res, next) => {
   },{ 
     new: true
   })
-    .populate(`book`)
-    .populate(`user`)
+    .populate(`book_id`)
+    .populate(`user_id`)
     .then(review => {
-      res.status(200).json(review);
+      const updatedRating = helpers.calculateBookRating(null, book_id);
+
+      Book.findByIdAndUpdate(book_id,
+        {
+          set: {
+            rating: updatedRating
+          }
+        }
+      )
+      .then(() => 
+        res.status(200).json(review)
+      )
+      .catch(next);
     })
     .catch(next);
 }
