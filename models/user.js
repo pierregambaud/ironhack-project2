@@ -3,7 +3,7 @@ const Schema    = mongoose.Schema;
 
 const UserSchema = Schema ({
   email: { type: String, match: /^\S+@\S+\.\S+$/, unique: true, required: true },
-  password: { type: String, required: true },
+  password: { type: String, minlength: 3, maxlength: 30, required: true },
   facebookId: { type: String },
   twitterId: { type: String },
   username: { type: String, minlength: 3, maxlength: 25, unique: true, required: true },
