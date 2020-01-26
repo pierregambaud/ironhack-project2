@@ -39,9 +39,7 @@ exports.generateUniqueUsername = (email) => {
 
         resolve(username);
       })
-      .catch(err => {
-        reject(err)
-      })
+      .catch(reject)
   })
 };
 

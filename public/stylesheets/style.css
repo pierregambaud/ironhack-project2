@@ -356,7 +356,7 @@ textarea:focus, input:focus, button:focus {
       width: 104px; }
     #container-index-member #trending-books main .trending-book {
       padding-top: 1.4em;
-      margin-right: 1em;
+      margin-right: .7em;
       padding-bottom: .5em; }
       #container-index-member #trending-books main .trending-book a {
         color: var(--primary-color); }
