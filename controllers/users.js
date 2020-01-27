@@ -31,19 +31,29 @@ exports.create = (req, res, next) => {
   const email      = req.body.email;
   const password   = req.body.password;
 
-  // check email and password are not empty
-  if (email === `` || password === ``) {
+  if (email === null || email.length === 0 || password === null || password.length === 0) {
     let err = new Error(`Email and password are mandatory`);
     err.status = 412;
     
     return next(err);
   }
 
+  if (!(/^\S+@\S+\.\S+$/.test(email))) {
+    let err = new Error(`Email format failed`);
+    err.status = 412;
+    
+    return next(err);  
+  }
+
+  if (password.length < 3 || password.length > 30) {
+    let err = new Error(`Password length must between 3 and 30 characters included`);
+    err.status = 412;
+    
+    return next(err);  
+  }
+
   User.findOne({ email })
     .then(user => {
-      // TODO if email already exists?
-
-      // check username does not already exist
       if (user) {
         let err = new Error(`This email already exists`);
         err.status = 409;
@@ -55,7 +65,6 @@ exports.create = (req, res, next) => {
         .then(username => {
           helpers.generateUniqueSlug(`username`, username)
             .then(slug => {
-              // save the user in DB
               const newUser = new User({
                 email,
                 password: helpers.encryptPassword(password),
@@ -124,7 +133,7 @@ exports.show = (req, res, next) => {
 //         | |                        
 //         |_|                        
 
-exports.update = (req, res, next) => {
+exports.update = async (req, res, next) => {
   if(!req.params.id) {
     return next(new Error(`This ID does not match any user`));
   }
@@ -140,35 +149,30 @@ exports.update = (req, res, next) => {
   if(password) userElementsToUpdate.password = helpers.encryptPassword(password);
   if(avatarPath) userElementsToUpdate.avatarPath = avatarPath;
   if(username) {
-    userElementsToUpdate.username = username;
     // TODO: check if username already taken (include lower/uppercase)
+    let foundUsername = await User.findOne({ username });
 
-    helpers.generateUniqueSlug(`username`, username)
-      .then(slug => {
-        userElementsToUpdate.slug = slug;
-        
-        userElementsToUpdate = { $set: userElementsToUpdate };
-  
-        User.findByIdAndUpdate(id,
-          userElementsToUpdate,
-          { 
-            new: true
-          })
-          .then(user => res.status(200).json(user))
-          .catch(next);
-      })
-      .catch(next);
-  } else {
-    userElementsToUpdate = { $set: userElementsToUpdate };
-  
-    User.findByIdAndUpdate(id,
-      userElementsToUpdate,
-      { 
-        new: true
-      })
-      .then(user => res.status(200).json(user))
-      .catch(next);
+    if(foundUsername) {
+      let err = new Error(`This username already exists`);
+      err.status = 409;
+      
+      return next(err);
+    }
+
+    userElementsToUpdate.username = username;
+
+    userElementsToUpdate.slug = await helpers.generateUniqueSlug(`username`, username);   
   }
+  
+  User.findByIdAndUpdate(id,
+    { 
+      $set: userElementsToUpdate
+    },
+    { 
+      new: true
+    })
+    .then(user => res.status(200).json(user))
+    .catch(next);
 }
 
 
